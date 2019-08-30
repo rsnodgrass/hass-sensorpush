@@ -1,0 +1,8 @@
+{
+  "domain": "sensorpush",
+  "name": "SensorPush",
+  "documentation": "https://github.com/rsnodgrass/hass-sensorpush/",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": ["@rsnodgrass"]
+}

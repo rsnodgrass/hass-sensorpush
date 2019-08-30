@@ -1,0 +1,2578 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">	
+	var amazonLink = "http://amzn.to/1Q9eg0T";
+  var amazonUkLink = "http://amzn.to/2aOFVZG";
+  var amazonCaLink = "http://amzn.to/2siTruN";
+  </script>
+	
+	
+  <title>The easiest way to monitor the environmental conditions affecting the things you care about</title>
+	<meta name="description" content="SensorPush monitors the temperature and humidity of your environment, so you don't have to." >
+	<meta property="og:title" content="The easiest way to monitor the environmental conditions affecting the things you care about" >
+	<meta property="og:description" content="SensorPush monitors the temperature and humidity of your environment, so you don't have to." >	
+	
+	
+	<meta property="og:type" content="website" >
+	<meta property="og:image" content='https://s3.amazonaws.com/sensorpush-assets/sensorpush-opengraph.jpg' >
+	<meta property="og:url" content='http://source.www.sensorpush.com/api/docs' />
+		<meta property="fb:admins" content='726436610' >
+		<meta property="fb:admins" content='1052322488161612' >
+		<meta property="fb:admins" content='1195459626' >
+
+
+	<meta name="twitter:card" content="summary_large_image" >
+	<meta name="twitter:site" content="@SensorPush" >
+	<meta name="twitter:creator" content="@SensorPush" >
+	<meta name="twitter:title" content="The easiest way to monitor the environmental conditions affecting the things you care about" >
+	<meta name="twitter:description" content="SensorPush monitors the temperature and humidity of your environment, so you don&#39;t have to." >
+	<meta name="twitter:image" content="https://s3.amazonaws.com/sensorpush-assets/sensorpush-opengraph.jpg" >
+	
+
+	
+	
+  <link rel="stylesheet" media="all" href="/assets/public-7674d764114136cece52ad894ec4ca6d9236a69a561ad72e73c1cb3d38b4481e.css" data-turbolinks-track="false" />
+  <script src="/assets/application-27cde13a657a9d14350965c93648a4534aa905ce218d9937a35614d451487814.js" data-turbolinks-track="false"></script>
+ 
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="H5o4zkm/DTaL25drk4PF+sGukWF0mqY8k1/vVJRDfqXAWz6wgiCvNymFO3qc4KU8nYK6sw40CYP/7D+et/5fJQ==" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57-b31a827749e16a2c753214262a0f3388c2cfc1cfad8374991a4b253a0259c118.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60-16ccb979e156174e8b4628ec14a801b8a9c612da47f19110719b95b5c4071543.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72-5f7a1a8daec32c0ea6ce47c185ce7d9385a4e79a751f34d6dfdd1a9c8847d271.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76-dc985594f9e7a6a610d1d59719a79f6db4e3b5fcaa80c665a61d9ce10814f342.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114-b385df128e837d0623f606359d8cc85ee186570f1be7fd65c0562a2f39908798.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120-343c89e4c89c3c37f7eef4f2637cf2399a913478b98496eada4d01407074f010.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144-975bd0e81ac3cafe001a8a3e7c827983d57c457f8c594de0ff597be2b177d577.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152-475b11ab08a11b0ef1dff3a3af9badbea0dadc92276672ffd6c9b7eb759f468e.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180-ce1f5131c63703f7b261505cb1f27b598faed01675caf60cc5dd4e9bee843446.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/android-icon-192x192-3e5d1f3a996ed941b4347c01b7cb1ff64edf36f2f54c1b73a30d587c85b633fb.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32-27c3614ac0942b55f3ee9003e23d70f84eabc51f28cc2a92c1d1b6a2c8a1eef5.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96-40d3886ce9f1b438f663f9caf55a7f436a488676544485eb0f0197e47ca43a5d.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16-ae84c0fc32aed81f858418aa38c1f0b2920bc8e15cd4af5b5f976bd39ff46d5d.png">
+  <link rel="manifest" href="/assets/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  
+	
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-21202061-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+	
+	<!-- Facebook Pixel Code -->
+	<script>
+	!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+	n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+	document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+	fbq('init', '543569982485423');
+	fbq('track', "PageView");
+	
+	var sourceData = {};
+	var url = window.location.href;			
+	if(true || url.indexOf('http://localhost') < 0) { // Don't track in dev mode
+		var sourceData = {};
+		
+		var source_matches = url.match(/utm_source=([^\&]+)/);
+		if(source_matches && source_matches.length >= 2) {
+			sourceData.source = source_matches[1];
+		}
+		
+		var medium_matches = url.match(/utm_medium=([^\&]+)/);
+		if(medium_matches && medium_matches.length >= 2) {
+			sourceData.medium = medium_matches[1];
+		}
+		
+		var content_matches = url.match(/utm_content=([^\&]+)/);
+		if(content_matches && content_matches.length >= 2) {
+			sourceData.content = content_matches[1];
+		}
+		
+		var campaign_matches = url.match(/utm_campaign=([^\&]+)/);
+		if(campaign_matches && campaign_matches.length >= 2) {
+			sourceData.campaign = campaign_matches[1];
+		}
+		
+		var gclid_matches = url.match(/gclid=([^\&]+)/);
+		if(gclid_matches && gclid_matches.length >= 2) {
+			sourceData.source = 'adwords';
+			sourceData.gclid = gclid_matches[1];
+		}
+		
+		var dataSize = 0;
+		for(var key in sourceData) {
+			dataSize++;
+		}
+		
+		if(dataSize > 0) {
+			fbq('trackCustom', 'Campaign Visit', sourceData);
+		}
+		
+		var referrer = document.referrer;
+		if(referrer && referrer.length > 0) {
+			if(!referrer.match(/www\.sensorpush\.com/)) {
+				fbq('trackCustom', 'Referral', {
+					referrer: referrer
+				});
+			}
+		}
+	}
+	
+	</script>
+  
+	<noscript><img height="1" width="1" style="display:none"
+	src="https://www.facebook.com/tr?id=543569982485423&ev=PageView&noscript=1"
+	/></noscript>
+	<!-- End Facebook Pixel Code -->
+	
+	<script src="//cdn.jsdelivr.net/youtube-google-analytics/8.0.2/lunametrics-youtube.gtm.min.js"></script>
+	
+<!-- Start of sensorpush Zendesk Widget script -->
+<script>/*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(c){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","sensorpush.zendesk.com");
+/*]]>*/
+	
+	
+	 
+	
+	window.zESettings = {
+	  webWidget: {
+	    contactForm: {
+			title: {
+			        'en-US': 'Contact Us! A product engineer will reply within 24 hours (often sooner).',
+			        '*': 'Contact Us! A product engineer will reply within 24 hours (often sooner).'
+			      }
+	    }
+	  }
+	};
+	
+	</script>
+<!-- End of sensorpush Zendesk Widget script -->
+</head>
+<body>
+
+<div id="breaking-news-header">
+	<div id="breaking-news-message"><!-- SET VIA JS --></div>
+</div>
+<div id="header">
+	
+			<div class="logo"> 
+				<a href="/">
+				<img id="logo_color" alt="SensorPush Logo" src="/assets/logo-with-trademark-R-d23e19fa1323f82ed8d908dab9329c2473012f63608db3327f9ee97250649bdb.svg" />			
+				<img id="logo_white" alt="SensorPush Logo" src="/assets/logo-with-trademark-R-white-c7550960e5678a1b58c9e400c55c78395409784605a0ed02a762ccb76dda0cd3.svg" />
+				</a>			
+			</div>			
+
+			<div class="nav-buttons"> 
+				<div id="non_hamburger_menu_container"> 
+					<div class="nav-standard">	<a class="nav-standard" href="/support">Support / FAQ</a></div> 
+					<div class="nav-standard">	<a class="nav-standard" href="/#products">Products</a></div> 
+					<div class="nav-standard">	<a class="nav-standard" href="/apps">Apps</a></div> 
+					<div class="nav-standard">	<a class="nav-standard" href="/about">About Us</a></div> 
+	<!--				<div class="nav-standard">	<a class="nav-standard" href="/account">My Account</a></div> -->
+				</div>	
+
+
+
+				<div class="nav-both">   	
+					<a href="http://amzn.to/1Q9eg0T"   class="nav-big-button" onclick="buyNow(this);return false;">Buy Now!</a>
+				</div>
+				<div class="nav-mobile"><a href="/apps" class="nav-big-button hamburger_menu_nav"  onclick="">Get App!</a></div>
+
+
+				<div id="hamburger_btn" onclick="hamburgerNav(this);return false;">
+					<img id="hamburger" class="hamburger" alt="Menu Icon" src="/assets/hamburger-white-08d6979845cfc10a6a61138f42141bbc61cc90bfdbf786d453e47318258f9dba.png" /><img id="hamburgerX" class="hamburger" alt="Close Menu Icon" src="/assets/hamburgerX-white-dfc2333d247a9198e2e328914fe907ae5cfd183761567eb680cc98b6e4106e7f.png" />
+					
+					<img id="hamburger-blue" class="hamburger" alt="Menu Icon" src="/assets/hamburger-blue-7c22ac76c7c21a59a7852eef14696df1ab5b0edfe3e5dac9fd3989ba65d4b9c6.png" /><img id="hamburgerX-blue" class="hamburger" alt="Close Menu Icon" src="/assets/hamburgerX-blue-21400e6344ec76c3618c6ad6ae3d1f765d30715e49db6178b40fc1da45fded71.png" />
+					
+				</div>
+
+
+
+			</div>	
+
+
+				
+			
+			<div id="hamburger_menu_container">
+				<div class="nav-standard hamburger">	<a class="nav-standard" href="/support">Support / FAQ</a></div> 
+				<div class="nav-standard hamburger" onclick="hamburgerNav(this);">	<a class="nav-standard" href="/#products">Products</a></div> 
+				<div class="nav-standard hamburger">	<a class="nav-standard" href="/apps">Apps</a></div> 
+				<div class="nav-standard hamburger">	<a class="nav-standard" href="/about">About Us</a></div> 
+				<!-- <div class="nav-standard hamburger">	<a class="nav-standard" href="/account">My Account</a></div>  -->
+
+			</div>
+
+			<!-- <div class="header nav"><a href="/images" class="header nav">Images</a></div>
+			<div class="header nav"><a href="" class="header nav">Testimonials</a></div>  -->
+</div>
+
+
+
+
+
+
+
+	
+<style>
+
+
+	@font-face {
+		font-family: 'Avenir LT Std-Light';
+	        src: url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirLTStd-Light.eot');
+	        src: url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirLTStd-Light.eot?#iefix') format('embedded-opentype'),
+	             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirLTStd-Light.woff') format('woff'),
+	             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirLTStd-Light.ttf') format('truetype'),
+	             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirLTStd-Light.svg#CreativeBlockBBBold') format('svg');
+	        font-weight: normal;
+	        font-style: normal;
+
+	    }
+
+ 
+	@font-face {
+	    font-family: 'AvenirNextLTPro-Demi';
+	        src: url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirNextLTPro-Demi.eot');
+	        src: url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirNextLTPro-Demi.eot?#iefix') format('embedded-opentype'),
+	             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirNextLTPro-Demi.woff') format('woff'),
+	             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirNextLTPro-Demi.ttf') format('truetype'),
+	             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirNextLTPro-Demi.svg#CreativeBlockBBBold') format('svg');
+	        font-weight: normal;
+	        font-style: normal;
+
+	    }
+
+		@font-face {
+		    font-family: 'AvenirNextLTPro-DemiIt';
+		        src: url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirNextLTPro-DemiIt.eot');
+		        src: url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirNextLTPro-DemiIt.eot?#iefix') format('embedded-opentype'),
+		             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirNextLTPro-DemiIt.woff') format('woff'),
+		             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirNextLTPro-DemiIt.ttf') format('truetype'),
+		             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirNextLTPro-DemiIt.svg#CreativeBlockBBBold') format('svg');
+		        font-weight: normal;
+		        font-style: normal;
+
+		    }
+		
+		
+			@font-face {
+			  font-family: 'AvenirLTStd-LightOblique';
+	        src: url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirLTStd-LightOblique.eot');
+	        src: url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirLTStd-LightOblique.eot?#iefix') format('embedded-opentype'),
+	             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirLTStd-LightOblique.woff') format('woff'),
+	             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirLTStd-LightOblique.ttf') format('truetype'),
+	             url('https://s3.amazonaws.com/sensorpush-assets/fonts/hinted-AvenirLTStd-LightOblique.svg#CreativeBlockBBBold') format('svg');
+	        font-weight: normal;
+	        font-style: normal;
+
+	    }
+		
+		
+	html {
+		text-rendering: optimizeLegibility !important;
+		    -webkit-font-smoothing: antialiased !important;
+	}
+	body {
+		font-style: normal;
+		color: #1A2B65;
+	    font-family:  'Avenir LT Std-Light';
+	    font-size: 16px;
+	    line-height: 24px;
+		text-align: left;
+		
+	}
+
+	
+	.sw-operation-example {
+	  
+	}
+
+	.sw-operation-example textarea.curl {
+		font-family: 'Avenir LT Std-Light';
+		font-style: normal;
+	   font-size: 12px;
+	   min-height: 130px;
+	   	   width: 670px;
+	   margin: 0;
+	   padding: 0px;
+	   resize: none;
+	   border-radius: 4px;
+	   background: #41444e;
+	   font-family: Source Code Pro,monospace;
+	   font-weight: 600;
+	   color: #fff;
+	}
+
+.sw-operation-example textarea.curl.smaller {
+   min-height: 80px;
+	
+}
+.sw-operation-example textarea.curl.medium {
+   min-height: 120px;
+	
+}
+
+	table.table.table-bordered.table-condensed.swagger--summary tbody tr:nth-child(even){
+		background: rgba(26,43,85,0.08);
+	}
+	table.table.table-bordered.table-condensed.swagger--summary tbody td{
+		border-bottom: solid 1px #eeeeee;
+	}
+	.table>thead>tr>th {
+	    vertical-align: bottom;
+	}
+	.table-bordered>thead>tr>th {
+	    border: none;
+	    vertical-align: middle;
+	    padding: 10px 20px 10px 20px;
+	    font-size: 16px;
+	    line-height: 24px;
+	}
+
+	.table-bordered>thead>tr>th, .table>thead>tr>th {
+		border-bottom: 1px solid #c2cacc;
+	}
+
+
+	.table-bordered>tbody>tr>td {
+	    border: none;
+	    border-left: solid 1px #eee;
+	    vertical-align: middle;
+	    padding: 10px 20px 10px 20px;
+	    font-family: 'Avenir LT Std-Light';
+	    font-size: 16px;
+	    line-height: 24px;
+	}
+	.table-bordered {
+	    border: 0px solid #ddd;
+	}
+
+	a {
+		color: #2eb027;
+		text-decoration:underline;
+	}
+
+	a.json-schema-ref {
+	    font-family: 'Avenir LT Std-Light';
+	    font-size: 16px;
+	    line-height: 24px;
+	}
+
+	.panel {
+	    margin-bottom: 40px;
+	    background-color: #fff;
+	    border: 1px solid #ddddde;
+	    border-radius: 6px;
+	    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.0);
+	    box-shadow: 0 1px 1px rgba(0,0,0,0.0);
+	}
+
+	.sw-operation-example textarea.curl {
+		line-height: 16px;
+	
+	}
+
+	.panel-security-definition>.panel-heading {
+	    background: rgba(26,43,85,0.1);
+	    border-color: #ddddde;
+		color: #1A2B65;
+	}
+	div.panel-security-definition {
+		margin-top: 35px;
+	}
+	.swagger--panel-operation-post>.panel-heading {
+	    background: rgba(26,43,85,0.1);
+	    border-color: #ddddde;
+		color: #1A2B65;
+	}
+
+	.swagger--panel-operation-post {
+	/*    border-color: #78cc94; */
+		  border-color: #ddddde;
+	}
+
+
+	.panel-definition>.panel-heading {
+	    background: rgba(26,43,85,0.1);
+	    border-color: #ddddde;
+		color: #1A2B65;
+	}
+
+	.panel-heading {
+	    padding: 20px 15px 20px 20px;
+	    border-bottom: 1px solid transparent;
+	/*    border-top-right-radius: 3px;
+	    border-top-left-radius: 3px; */
+	
+		line-height: 24px;
+		font-size: 16px;
+	
+	}
+
+	.label-default {
+		background: rgba(26,43,85,0.1);
+		    color: #1A2B65;
+		
+	}
+	.label {
+	    display: inline;
+	    padding: 9px 14px 9px 14px;/*.2em .6em .3em; */
+	    font-family: 'Avenir LT Std-Light';
+	    font-size: 12px;
+	    line-height: 24px;
+	    font-weight: normal;
+	    text-align: center;
+	    white-space: nowrap;
+	    vertical-align: baseline;
+	    border-radius: 3px;
+	}
+	dl {
+	    margin-top: 20px;
+	}
+
+	h1 {    
+		font-family: 'AvenirNextLTPro-DemiIt';
+	    letter-spacing: -1.5px;
+	    font-size: 46px;
+	    line-height: 46px;
+	    text-transform: none;
+	    text-align: center;
+	    margin-top: 100px;
+	    margin-bottom: 25px;
+	}
+	h2 {
+	    font-family: 'AvenirNextLTPro-DemiIt';
+	    letter-spacing: -1px;
+	    font-size: 27px;
+	    line-height: 27px;
+	    text-transform: none;
+	    text-align: left;
+	    margin-top: 48px;
+	}
+
+	p, td, th, li {
+			color: #1A2B65;
+			font-color: #1A2B65;
+		    font-family: 'Avenir LT Std-Light';
+		    font-size: 16px;
+		    line-height: 24px;
+		    font-weight: normal;
+			text-align:left;
+	}
+	.operation-name, strong {
+	    font-weight: normal;	
+	}
+	.operation-name {
+		margin-right: 17px;
+	}
+
+ 
+	dt, p.sw-info, span.sw-default-value-header, .table-bordered>thead>tr>th, span.operation-name, section.sw-operation-description, section.sw-responses, section.sw-request-body, table.table th, .sw-operation-description:before, .sw-operation-body:before, .sw-request-body:before, .sw-responses:before, .sw-request-security:before, section.json-schema-description, section.json-schema-properties, section.json-schema-additionalProperties, section.json-schema-description:before, section.json-schema-properties:before, section.json-schema-additionalProperties:before, section.json-schema-array-items, section.json-schema-array-items:before {
+	    text-align: left;
+	    font-size: 16px;
+	    letter-spacing: -0.5px;
+	    font-family: 'AvenirNextLTPro-DemiIt';
+		color: #1A2B65;
+		font-color: #1A2B65;
+	    text-transform: none;
+	    font-weight: normal;
+	
+	} 
+
+	/* Font size */
+	p, td, th, li, dt, p.sw-info, span.sw-default-value-header, .table-bordered>thead>tr>th, span.operation-name, section.sw-operation-description, section.sw-responses, section.sw-request-body, table.table th, .sw-operation-description:before, .sw-operation-body:before, .sw-request-body:before, .sw-responses:before, .sw-request-security:before, section.json-schema-description, section.json-schema-properties, section.json-schema-additionalProperties, section.json-schema-description:before, section.json-schema-properties:before, section.json-schema-additionalProperties:before, section.json-schema-array-items, section.json-schema-array-items:before {
+	    font-size: 16px;
+	}
+
+	dt.sw-response-200:first-child {
+	    margin-top: 45px;
+	
+	}
+
+	div.swagger--panel-operation-example.panel {
+		margin-top: 20px;
+	
+	}
+	div.operation-example {
+		border-top: 10px;
+		text-align: left;
+	}
+
+	div.panel-body:first-child {
+	    margin-top: 5px;
+	}
+
+	section.sw-security-properties dl {
+		margin-top: 0px;
+	}
+
+	.json-inner-schema .json-schema-properties, .json-inner-schema .json-schema-array-items, .json-inner-schema .json-schema-description, .json-inner-schema .json-schema-example {
+	    margin-top: 10px;
+		border-left: 1px solid #aaa;
+	}
+	section.json-schema-properties {
+		margin-top:20px;
+		span.json-property-name,
+		span.json-property-type,
+		.json-property-type,
+		span.json-property-format,
+		.json-property-enum,
+		span.json-property-enum,
+		span.json-property-range {
+		    font-family:  'Avenir LT Std-Light';
+			color: #1A2B65;
+			font-weight: normal;	
+			font-style: normal;	
+		}
+	
+		dd p {
+		    font-family: 'AvenirLTStd-LightOblique';/* 'Avenir LT Std-Light'; */
+			color: #85a0ba;
+			color: #777;
+			//color: #000000;//5677ff
+			font-weight: normal;	
+			font-size: 16px;	
+			line-height: 20px;
+		
+		}
+		.json-property-format {
+		    font-size: normal;
+		}
+	}
+
+	section.json-schema-description, section.json-schema-properties, section.json-schema-additionalProperties, section.json-schema-description:before, section.json-schema-properties:before, section.json-schema-additionalProperties:before, section.json-schema-array-items, section.json-schema-array-items:before {
+		padding-top: 0px;
+	}
+	
+	.article-container.api-docs {
+		
+		margin: 85px auto 0px auto;
+	}
+	
+	h3.api-head {
+	    font-size: 16px;
+	    letter-spacing: -0.5px;
+	    font-family: 'AvenirNextLTPro-DemiIt';
+		color: #1A2B65;
+		font-color: #1A2B65;
+	    text-transform: none;
+	    font-weight: normal;
+	}
+	div.panel-heading h3.api-head {
+		margin-top: 0px;
+	}
+	
+	div.border-box {
+ 	   border-radius: 4px;
+	   border: solid 1px #efefef;
+	}
+	
+	textarea {
+		max-width: 630px;
+	}
+	
+	button.api-copy {
+	/*	color: #1A2B65;
+		padding: 10px;
+		background: rgba(26,43,85,.023);*/
+/*#5aba55; */ /* #5c7085 */		
+		padding: 4px 10px 4px 10px;
+		font-family:'Avenir LT Std-Light';
+		font-size: 10px;margin: 0px -10px 4px 0px;
+		border-color: #dedeef;
+		color: #1A2B55;
+		border-radius : 3px;
+		cursor: pointer;
+		background: rgba(245,245,255);
+		letter-spacing: 0.2px;
+	}
+	table#api-summary td { padding: 4px 50px 4px 0px; }
+	
+	
+	
+	
+	div.panel-heading {
+	
+			color: #1A2B65;
+			    font-color: #1A2B65;
+			    font-family: 'Avenir LT Std-Light';
+			    font-size: 16px;
+			    line-height: 24px;
+			    font-weight: normal;
+			    text-align: left;
+			}
+	
+	
+	div.api-item h3.api-head {
+		margin-top:0px;
+	}
+	div.api-item {
+		margin-top:20px;		
+	}
+	
+	
+	div.panel-body {
+		margin: 20px 20px 20px 20px;
+	}
+	
+	div.panel.panel-definition.api {
+		padding: 10px 14px 10px 13px;
+		margin: 3px 0px 0px -1px;
+		border: solid 1px #dedeee;
+	}
+	
+	div.api-item-detail {
+		margin: 10px 0px 0px 20px;
+	}
+	div.api-item-detail table {
+		width: -webkit-fill-available;
+		padding: 0px;
+		margin: 0px;
+	}	
+	div.api-item-detail table tr {
+		width: 100%;
+	}
+	div.api-item-detail table td, div.api-item-detail table th  {
+		width: 50%;
+		padding: 6px 0px 6px 0px;
+	}
+	div.panel-body div.api-item {
+	}
+	
+	span.top-key {
+		text-transform: uppercase;
+	}
+	
+	
+	
+/*	.sw-operation-example textarea.curl, .table-bordered>thead>tr>th, .table-bordered>tbody>tr>td, a.json-schema-ref, .panel-heading, .label, p, td, th, li, dt, p.sw-info, span.sw-default-value-header, .table-bordered>thead>tr>th, span.operation-name, section.sw-operation-description, section.sw-responses, section.sw-request-body, table.table th, .sw-operation-description:before, .sw-operation-body:before, .sw-request-body:before, .sw-responses:before, .sw-request-security:before, section.json-schema-description, section.json-schema-properties, section.json-schema-additionalProperties, section.json-schema-description:before, section.json-schema-properties:before, section.json-schema-additionalProperties:before, section.json-schema-array-items, section.json-schema-array-items:before, p, td, th, li, dt, p.sw-info, span.sw-default-value-header, .table-bordered>thead>tr>th, span.operation-name, section.sw-operation-description, section.sw-responses, section.sw-request-body, table.table th, .sw-operation-description:before, .sw-operation-body:before, .sw-request-body:before, .sw-responses:before, .sw-request-security:before, section.json-schema-description, section.json-schema-properties, section.json-schema-additionalProperties, section.json-schema-description:before, section.json-schema-properties:before, section.json-schema-additionalProperties:before, section.json-schema-array-items, section.json-schema-array-items:before, dd p, div.panel-heading, .api-item {
+
+	font-size: 12px;
+	}*/  
+	
+</style>
+
+<div class='band white' header-colorscheme="light-bg" id="products">		
+	<h1>SensorPush API Docs</h1>	
+	<div class="article-container api-docs" >
+			
+			
+			<!-- BEGIN DOCS -->
+			
+		    <h2 id="swagger--summary-no-tags">Summary</h2>
+			
+			
+			
+			    <p>The information below is a swagger definition for the SensorPush public API. Download the swagger definition file <a href="https://api.sensorpush.com/api/v1/support/swagger/swagger-v1.json">here</a>.</p>
+				<p>Note that requests can be made no more than <span class="api_bold">once per minute</span>. If you requestinguire support, please reach out to <a href="mailto:support@sensorpush.com?subject=[api]">support@sensorpush.com</a>, please be sure to preface your email subject with "[api]" so it reaches the correct team.
+				    </p>
+    <p>Agreement to our terms of service is required for access to the SensorPush API. You can review the terms <a href="/legal/info">here</a>.</p> 
+    
+			    <div style="line-height: 34px; margin-bottom: 50px;">
+					
+					
+					<table id="api-summary" style="max-width: 670px; width: 670px; min-width: 670px;  display: block;">
+						<tr><td><span class="sw-default-value-header">Base URL:</span></td><td>https://api.sensorpush.com/api/v1</td></tr>
+						<tr><td><span class="sw-default-value-header">Version:</span></td><td>v1.0.20190926</td></tr>
+						<tr><td><span class="sw-default-value-header">Schemes:</span></td><td>https</td></tr>
+					</table>
+			    </div>
+    
+    
+
+			    
+
+
+				
+				
+			   
+
+
+
+
+				
+
+			    <h2 id="swagger--examples">Examples</h2>
+			    <p>The following illustrates how to interact with the API via simple curl commands.</p>
+				
+				
+				<h3 class="api-head">Important FYI about tokens:</h3><p>The authorization token is returned after a successful signin. This token identifies the user as a trusted client, and is valid for 60 minutes.</p>
+
+				<p>The authorization token is used to request  two additional tokens: access and refresh tokens. The access token authorizes the user to begin using the API. This token is valid for 30 minutes, at which time the client must request a new access token using the refresh token. </p>
+
+				<p>The refresh token is valid for 60 minutes. Upon requesting a new access token, the client will receive new refresh token as well. The access token is valid for another 30 minutes, and the refresh token is again valid up to an additional 60 minutes.</p>
+
+				<p>These steps are in accordance with the oAuth2 specifications such that if any of the three tokens are lost, the tokens eventually expire, thus securing the account once again.</p>
+
+				<p>For additional information, please refer to the <a href="https://oauth.net/2/" target="_blank">oAuth website.</a></p> 
+
+				
+				<h3 class="api-head">Important FYI about Gateways:</h3><p>A Gateway steadily relays sensor data roughly every minute. In addition to that, a Gateway will periodically check in with the cloud to make a record to indicate that that Gateway is on and connected to the SensorPush cloud via the internet. A Gateway’s check in can be observed by reading the “last_seen” property of a Gateway. Consider evaluating the “last_seen” property of a Gateway roughly every 15 minutes for a reliable indication of its status.</p>
+				
+				
+				
+				
+				<!-- step 1 -->
+					<h3 class="api-head">Step 1: Authorization</h3>
+					<p>Log in using a valid email/password to recieve an authorization code. 					
+					</p>
+<section class="sw-operation-example" style="">
+<button class="api-copy" onclick="javascript:copyCodeSample(this);">copy to clipboard </button> 								
+<textarea readonly="" style="max-height: 1px; height: 1px;  overflow:hidden; opacity: 0;">curl -X POST "https://api.sensorpush.com/api/v1/oauth/authorize" -H "accept: application/json" -H "Content-Type: application/json" -d @- <<BODY 
+	{ "email": "<email>", "password": "<password>" }
+	BODY</textarea>
+
+<textarea readonly="" class="curl" style="padding:20px; ">curl -X POST "https://api.sensorpush.com/api/v1/oauth/authorize" \
+-H "accept: application/json" \
+-H "Content-Type: application/json" \
+-d @- <<BODY
+{ 
+   "email": "<email>", 
+   "password": "<password>"
+} 
+BODY</textarea>
+</section>
+				
+
+
+
+
+				<!-- step 2 -->
+					<h3 class="api-head">Step 2: OAuth Access</h3>
+					<p>Request a temporary oauth access token. Use the result from the previous step for the authorization code in the body.</p>
+<section class="sw-operation-example" style="">
+<button class="api-copy" onclick="javascript:copyCodeSample(this);">copy to clipboard </button> 								
+<textarea readonly="" style="max-height: 1px; height: 1px;  overflow:hidden; opacity: 0;">curl -X POST "https://api.sensorpush.com/api/v1/oauth/accesstoken" -H "accept: application/json" -H "Content-Type: application/json" -d @- <<BODY
+{ "authorization": "<authorization>"}
+BODY</textarea>
+<textarea readonly="" class="curl medium" style="padding:20px; ">curl -X POST "https://api.sensorpush.com/api/v1/oauth/accesstoken" \
+-H "accept: application/json" \
+-H "Content-Type: application/json" \
+-d @- <<BODY
+{ 
+   "authorization": "<authorization>"
+} 
+BODY</textarea>
+</section>
+				
+				
+				
+				<!-- step 3 -->
+					<h3 class="api-head">Step 3: List Gateways</h3>
+					<p>Request a list of gateways. Add the header "Authorization: " using the accesstoken returned in the OAuth Access step.</p>
+<section class="sw-operation-example" style="">
+<button class="api-copy" onclick="javascript:copyCodeSample(this);">copy to clipboard </button> 								
+<textarea readonly="" style="max-height: 1px; height: 1px;  overflow:hidden; opacity: 0;">curl -X POST "https://api.sensorpush.com/api/v1/devices/gateways" -H "accept: application/json" -H "Authorization: <accesstoken>" -d @- <<BODY 
+	{} 
+	BODY</textarea>
+<textarea readonly="" class="curl smaller" style="padding:20px; ">curl -X POST "https://api.sensorpush.com/api/v1/devices/gateways" \
+-H "accept: application/json" \
+-H "Authorization: <accesstoken>" \
+-d @- <<BODY 
+{} 
+BODY</textarea>
+</section>				
+				
+				
+				
+				
+				<!-- step 4 -->
+					<h3 class="api-head">Step 4: List Sensors</h3>
+					<p>Request a list of sensors. Add the header "Authorization: " using the accesstoken returned in the OAuth Access step.</p>
+<section class="sw-operation-example" style="">
+<button class="api-copy" onclick="javascript:copyCodeSample(this);">copy to clipboard </button> 								
+<textarea readonly="" style="max-height: 1px; height: 1px;  overflow:hidden; opacity: 0;">curl -X POST "https://api.sensorpush.com/api/v1/devices/sensors" -H "accept: application/json" -H "Authorization: <accesstoken>" -d @- <<BODY 
+	{} 
+	BODY</textarea>
+<textarea readonly="" class="curl smaller" style="padding:20px; ">curl -X POST "https://api.sensorpush.com/api/v1/devices/sensors" \
+-H "accept: application/json" \
+-H "Authorization: <accesstoken>" \
+-d @- <<BODY 
+{} 
+BODY</textarea>
+</section>						
+				
+
+
+<!-- step 5 -->
+					<h3 class="api-head">Step 5: Query Samples</h3>
+					<p>Request up to 20 samples occuring after a timestamp with this format YYYY-MM-DDThh:mm:ss.000Z, and also add the header "Authorization: " using the accesstoken returned in the OAuth Access step.</p>
+					<p>
+						Data for temperature is in Fahrenheit.
+					</p>
+					
+<section class="sw-operation-example" style="">
+<button class="api-copy" onclick="javascript:copyCodeSample(this);">copy to clipboard </button> 								
+<textarea readonly="" style="max-height: 1px; height: 1px;  overflow:hidden; opacity: 0;">curl -X POST "https://api.sensorpush.com/api/v1/samples" -H "accept: application/json" -H "Authorization: <accesstoken>" -d @- <<BODY
+{ "limit": 20 }
+BODY</textarea>
+<textarea readonly="" class="curl medium" style="padding:20px; ">curl -X POST "https://api.sensorpush.com/api/v1/samples" \
+-H "accept: application/json" \
+-H "Authorization: <accesstoken>" \
+-d @- <<BODY
+{ "limit": 20 }
+BODY</textarea>
+</section>		
+
+
+<!-- step 6 -->
+
+					<h3 class="api-head">Step 6: Query Samples for Specific Sensors and/or Specific Start and Stop Times</h3>
+					<p>Similar to the "Query Samples" example, but with an added array for specific sensor IDs, and also added startTime and stopTime.</p>
+<section class="sw-operation-example" style="">
+<button class="api-copy" onclick="javascript:copyCodeSample(this);">copy to clipboard </button> 								
+<textarea readonly="" style="max-height: 1px; height: 1px;  overflow:hidden; opacity: 0;">curl -X POST "https://api.sensorpush.com/api/v1/samples" -H "accept: application/json" -H "Authorization: <accesstoken>" -d @- <<BODY
+{ "sensors": ["01234.0123456789012345"], "limit": 10000, "startTime": "2019-03-07T10:30:00-0400", "stopTime": "2019-04-07T10:30:00-0400" }
+BODY</textarea>
+<textarea readonly="" class="curl medium" style="padding:20px; height: 170px; ">curl -X POST "https://api.sensorpush.com/api/v1/samples" \
+-H "accept: application/json" \
+-H "Authorization: <accesstoken>" \
+-d @- <<BODY
+{ "sensors": ["01234.0123456789012345"],
+"limit": 10000,
+"startTime": "2019-03-07T10:30:00-0400",
+"stopTime": "2019-04-07T10:30:00-0400"
+ }
+BODY</textarea>
+</section>						
+				
+				
+			    
+    
+    
+			        <h2>Security</h2>
+    
+			                   
+			            <div class="panel panel-security-definition">
+			                <div class="panel-heading">
+			                    <h3 class="api-head">Oauth</h3>							
+			                </div>
+			                <div class="panel-body">                
+								<div class="api-item">
+									<h3 class="api-head">Name:</h3>
+									Authorization
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">In:</h3>
+									Header
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">Description:</h3>
+									This header value grants temporary access to data resources. Use the accesstoken value returned by the accesstoken service.
+								</div>
+			                </div>
+			            </div>        
+
+
+
+    
+			    <h2>Paths</h2>
+				
+				
+			    <table class="alternated-api" style="max-width: 670px; width: 670px; min-width: 670px;  display: block;">
+			        <thead>
+				        <tr>
+				            <th>Path</th>
+				            <th>Operation</th>
+				            <th>Description</th>
+				        </tr>
+			        </thead>
+			        <tbody>
+							<tr>
+								<td class="" rowspan="1"><a href="#operation---/">/</a></td>
+								<td><span style="text-transform:uppercase;">post</span></td>
+								<td>SensorPush API status</td>
+							</tr>						
+							<tr>
+								<td class="" rowspan="1"><a href="#operation---/devices/gateways">/devices/gateways</a></td>
+								<td><span style="text-transform:uppercase;">post</span></td>
+								<td>Lists all gateways.</td>
+							</tr>						
+							<tr>
+								<td class="" rowspan="1"><a href="#operation---/devices/sensors">/devices/sensors</a></td>
+								<td><span style="text-transform:uppercase;">post</span></td>
+								<td>Lists all sensors.</td>
+							</tr>						
+							<tr>
+								<td class="" rowspan="1"><a href="#operation---/oauth/accesstoken">/oauth/accesstoken</a></td>
+								<td><span style="text-transform:uppercase;">post</span></td>
+								<td>Request a temporary oAuth access code.</td>
+							</tr>						
+							<tr>
+								<td class="" rowspan="1"><a href="#operation---/oauth/authorize">/oauth/authorize</a></td>
+								<td><span style="text-transform:uppercase;">post</span></td>
+								<td>Sign in and request an authorization code</td>
+							</tr>						
+							<tr>
+								<td class="" rowspan="1"><a href="#operation---/oauth/token">/oauth/token</a></td>
+								<td><span style="text-transform:uppercase;">post</span></td>
+								<td>oAuth 2.0 for authorization, access, and refresh tokens</td>
+							</tr>						
+							<tr>
+								<td class="" rowspan="1"><a href="#operation---/reports/download">/reports/download</a></td>
+								<td><span style="text-transform:uppercase;">post</span></td>
+								<td>Download bulk reports.</td>
+							</tr>						
+							<tr>
+								<td class="" rowspan="1"><a href="#operation---/reports/list">/reports/list</a></td>
+								<td><span style="text-transform:uppercase;">post</span></td>
+								<td>Lists reports available for download.</td>
+							</tr>						
+							<tr>
+								<td class="" rowspan="1"><a href="#operation---/samples">/samples</a></td>
+								<td><span style="text-transform:uppercase;">post</span></td>
+								<td>Queries for sensor samples.</td>
+							</tr>						
+					</tbody>				
+				</table>
+				
+						
+						
+						
+				        <div id="" class="panel panel-security-definition">
+							<div id="operation---/" style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				            <div class="panel-heading">
+				                <h3 class="api-head"><span class="top-key" style="">post</span><div style="display: inline-block; margin-left: 20px;">/</h3>		
+								SensorPush API status<br/>	
+				                <!-- Tags: <a href="#tag-Api">Api</a> -->
+				            </div>
+				            <div class="panel-body">                
+								<div class="api-item">
+									<h3 class="api-head">Description:</h3>
+									This service is used as a simple method for clients to verify they can connect to the API. 
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">Responses:</h3>
+									<span class="label label-default">application/json</span> 
+								</div>
+								
+								
+								<div class="api-item">
+									<h3 class="api-head">200 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Status"> 											
+													Status											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+
+				            </div>
+				        </div>
+						
+						
+				        <div id="" class="panel panel-security-definition">
+							<div id="operation---/devices/gateways" style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				            <div class="panel-heading">
+				                <h3 class="api-head"><span class="top-key" style="">post</span><div style="display: inline-block; margin-left: 20px;">/devices/gateways</h3>		
+								Lists all gateways.<br/>	
+				                <!-- Tags: <a href="#tag-Api">Api</a> -->
+				            </div>
+				            <div class="panel-body">                
+								<div class="api-item">
+									<h3 class="api-head">Description:</h3>
+									This service will return an inventory of all registered gateways for this account. 
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">Responses:</h3>
+									<span class="label label-default">application/json</span> 
+								</div>
+								
+								
+								<div class="api-item">
+									<h3 class="api-head">200 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Gateways"> 											
+													Gateways											
+												</a>
+											</div>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">400 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">500 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+
+									<div class="api-item">
+										<h3 class="api-head">Security:</h3>
+										<div  class="api-item-detail">
+					                        <table class="alternated-api post">
+					                            <tbody>
+					                                    <tr><td>oauth</td></tr>
+					                            </tbody>
+					                        </table>
+										</div>
+									</div>
+				            </div>
+				        </div>
+						
+						
+				        <div id="" class="panel panel-security-definition">
+							<div id="operation---/devices/sensors" style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				            <div class="panel-heading">
+				                <h3 class="api-head"><span class="top-key" style="">post</span><div style="display: inline-block; margin-left: 20px;">/devices/sensors</h3>		
+								Lists all sensors.<br/>	
+				                <!-- Tags: <a href="#tag-Api">Api</a> -->
+				            </div>
+				            <div class="panel-body">                
+								<div class="api-item">
+									<h3 class="api-head">Description:</h3>
+									This service will return an inventory of all registered sensors for this account. 
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">Responses:</h3>
+									<span class="label label-default">application/json</span> 
+								</div>
+								
+								
+								<div class="api-item">
+									<h3 class="api-head">200 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Sensors"> 											
+													Sensors											
+												</a>
+											</div>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">400 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">500 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+
+									<div class="api-item">
+										<h3 class="api-head">Security:</h3>
+										<div  class="api-item-detail">
+					                        <table class="alternated-api post">
+					                            <tbody>
+					                                    <tr><td>oauth</td></tr>
+					                            </tbody>
+					                        </table>
+										</div>
+									</div>
+				            </div>
+				        </div>
+						
+						
+				        <div id="" class="panel panel-security-definition">
+							<div id="operation---/oauth/accesstoken" style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				            <div class="panel-heading">
+				                <h3 class="api-head"><span class="top-key" style="">post</span><div style="display: inline-block; margin-left: 20px;">/oauth/accesstoken</h3>		
+								Request a temporary oAuth access code.<br/>	
+				                <!-- Tags: <a href="#tag-Api">Api</a> -->
+				            </div>
+				            <div class="panel-body">                
+								<div class="api-item">
+									<h3 class="api-head">Description:</h3>
+									This is a simplified version of oAuth in that it only supports accesstokens and does not require a client_id. See the endpoint &#39;/api/v1/oauth/token&#39; for the more advanced oAuth endpoint. Once a user has been authorized, the client app will call this service to receive the access token. The access token will be used to grant permissions to data stores. An access token expires every hour. After that, request a new access token. 
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">Responses:</h3>
+									<span class="label label-default">application/json</span> 
+								</div>
+								
+								
+								<div class="api-item">
+									<h3 class="api-head">200 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/AccessTokenResponse"> 											
+													AccessTokenResponse											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">400 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">500 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+
+				            </div>
+				        </div>
+						
+						
+				        <div id="" class="panel panel-security-definition">
+							<div id="operation---/oauth/authorize" style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				            <div class="panel-heading">
+				                <h3 class="api-head"><span class="top-key" style="">post</span><div style="display: inline-block; margin-left: 20px;">/oauth/authorize</h3>		
+								Sign in and request an authorization code<br/>	
+				                <!-- Tags: <a href="#tag-Api">Api</a> -->
+				            </div>
+				            <div class="panel-body">                
+								<div class="api-item">
+									<h3 class="api-head">Description:</h3>
+									Sign into the SensorPush API via redirect to SensorPush logon. Then signin using email/password, or an api id. This service will return an oAuth authorization code that can be exchanged for an oAuth access token using the accesstoken service. 
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">Responses:</h3>
+									<span class="label label-default">application/json</span> 
+								</div>
+								
+								
+								<div class="api-item">
+									<h3 class="api-head">200 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/AuthorizeResponse"> 											
+													AuthorizeResponse											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">400 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">invalid user:</h3>
+									
+									<div  class="api-item-detail">
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">500 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+
+				            </div>
+				        </div>
+						
+						
+				        <div id="" class="panel panel-security-definition">
+							<div id="operation---/oauth/token" style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				            <div class="panel-heading">
+				                <h3 class="api-head"><span class="top-key" style="">post</span><div style="display: inline-block; margin-left: 20px;">/oauth/token</h3>		
+								oAuth 2.0 for authorization, access, and refresh tokens<br/>	
+				                <!-- Tags: <a href="#tag-Api">Api</a> -->
+				            </div>
+				            <div class="panel-body">                
+								<div class="api-item">
+									<h3 class="api-head">Description:</h3>
+									This is a more advanced endpoint that implements the oAuth 2.0 specification. Supports grant_types: password, refresh_token, and access_token. If grant_type is null an access_token will be returned. (see &lt;a href=&quot;https://oauth.net/2/grant-types/&quot;&gt;oAuth Grant Types&lt;/a&gt;). A client_id is required for this endpoint. Contact support@sensorpush.com to register your application and recieve a client_id. 
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">Responses:</h3>
+									<span class="label label-default">application/json</span> 
+								</div>
+								
+								
+								<div class="api-item">
+									<h3 class="api-head">200 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/TokenResponse"> 											
+													TokenResponse											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">400 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">500 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+
+				            </div>
+				        </div>
+						
+						
+				        <div id="" class="panel panel-security-definition">
+							<div id="operation---/reports/download" style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				            <div class="panel-heading">
+				                <h3 class="api-head"><span class="top-key" style="">post</span><div style="display: inline-block; margin-left: 20px;">/reports/download</h3>		
+								Download bulk reports.<br/>	
+				                <!-- Tags: <a href="#tag-Api">Api</a> -->
+				            </div>
+				            <div class="panel-body">                
+								<div class="api-item">
+									<h3 class="api-head">Description:</h3>
+									This service will download bulk generated reports. 
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">Responses:</h3>
+									<span class="label label-default">application/json</span> 
+								</div>
+								
+								
+								<div class="api-item">
+									<h3 class="api-head">200 response:</h3>
+									
+									<div  class="api-item-detail">
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">400 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">500 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+
+									<div class="api-item">
+										<h3 class="api-head">Security:</h3>
+										<div  class="api-item-detail">
+					                        <table class="alternated-api post">
+					                            <tbody>
+					                                    <tr><td>oauth</td></tr>
+					                            </tbody>
+					                        </table>
+										</div>
+									</div>
+				            </div>
+				        </div>
+						
+						
+				        <div id="" class="panel panel-security-definition">
+							<div id="operation---/reports/list" style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				            <div class="panel-heading">
+				                <h3 class="api-head"><span class="top-key" style="">post</span><div style="display: inline-block; margin-left: 20px;">/reports/list</h3>		
+								Lists reports available for download.<br/>	
+				                <!-- Tags: <a href="#tag-Api">Api</a> -->
+				            </div>
+				            <div class="panel-body">                
+								<div class="api-item">
+									<h3 class="api-head">Description:</h3>
+									This service will list all bulk generated reports available to download. 
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">Responses:</h3>
+									<span class="label label-default">application/json</span> 
+								</div>
+								
+								
+								<div class="api-item">
+									<h3 class="api-head">200 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/ListResponse"> 											
+													ListResponse											
+												</a>
+											</div>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">400 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">500 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+
+									<div class="api-item">
+										<h3 class="api-head">Security:</h3>
+										<div  class="api-item-detail">
+					                        <table class="alternated-api post">
+					                            <tbody>
+					                                    <tr><td>oauth</td></tr>
+					                            </tbody>
+					                        </table>
+										</div>
+									</div>
+				            </div>
+				        </div>
+						
+						
+				        <div id="" class="panel panel-security-definition">
+							<div id="operation---/samples" style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				            <div class="panel-heading">
+				                <h3 class="api-head"><span class="top-key" style="">post</span><div style="display: inline-block; margin-left: 20px;">/samples</h3>		
+								Queries for sensor samples.<br/>	
+				                <!-- Tags: <a href="#tag-Api">Api</a> -->
+				            </div>
+				            <div class="panel-body">                
+								<div class="api-item">
+									<h3 class="api-head">Description:</h3>
+									This service is used to query for samples persisted by the sensors. The service will return all samples after the given parameter {startTime}. Queries that produce greater than ~5MB of data will be truncated. If results return truncated, consider using the sensors parameter list. This will allow you to retrieve more data per sensor. For example, a query that does not provide a sensor list, will attempt to return equal amounts of data for all sensors (i.e. ~5MB divided by N sensors). However, if one sensor is specified, than all ~5MB will be filled for that one sensor (i.e. ~5MB divided by 1). Another option is to paginate through results by time, using {startTime} as the last date in your previous page of results. 
+								</div>
+								<div class="api-item">
+									<h3 class="api-head">Responses:</h3>
+									<span class="label label-default">application/json</span> 
+								</div>
+								
+								
+								<div class="api-item">
+									<h3 class="api-head">200 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Samples"> 											
+													Samples											
+												</a>
+											</div>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">400 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+								
+								<div class="api-item">
+									<h3 class="api-head">500 response:</h3>
+									
+									<div  class="api-item-detail">
+											<div  class="panel panel-definition api">											
+				                        		<a class="json-schema-ref" href="#/definitions/Error"> 											
+													Error											
+												</a>
+											</div>
+					                        <table class="alternated-api post">
+					                            <thead>
+					                            <tr>
+					                                <th class="sw-response-header-name">Header</th>
+					                                <th class="sw-response-header-data-type">Data type</th>
+					                            </tr>
+					                            </thead>
+					                            <tbody>
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Headers</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Methods</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                                    <tr class="sw-response-header-Access-Control-Allow-Headers">
+					                                        <td>Access-Control-Allow-Origin</td>
+					                                        <td>string</td>
+					                                    </tr>														
+					                            </tbody>
+					                        </table>
+									</div>
+								</div>
+
+									<div class="api-item">
+										<h3 class="api-head">Security:</h3>
+										<div  class="api-item-detail">
+					                        <table class="alternated-api post">
+					                            <tbody>
+					                                    <tr><td>oauth</td></tr>
+					                            </tbody>
+					                        </table>
+										</div>
+									</div>
+				            </div>
+				        </div>
+					
+					
+			        <h2>Schema definitions</h2>
+					<br/>
+            
+			
+			
+			
+			 
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/AccessTokenRequest"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">AccessTokenRequest</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Request object for an oAuth accesstoken code. 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">authorization: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Authorization code recieved from the oauth/authorize service.</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/AccessTokenResponse"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">AccessTokenResponse</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Response object for an oAuth authorization code. 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">accesstoken: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">JWT oAuth accesstoken. Pass this code to the data services via the http header 'Authorization'. Example 'Authorization' : 'Bearer <access token>'</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/AuthorizeRequest"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">AuthorizeRequest</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Request object for an oAuth authorization code. 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">email: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Email associated with a valid account.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">password: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Password associated with the email.</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/AuthorizeResponse"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">AuthorizeResponse</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Response object for an oAuth authorization code. 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">authorization: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">JWT oAuth authorization code. Pass this code to the oauth/accesscode service to request an access token. The [jwt](https://jwt.io/) website has a useful jwt viewer.</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/Error"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">Error</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">message: string </div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/Gateway"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">Gateway</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">last_alert: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Date last alert was sent</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">last_seen: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Date the gateway was last seen</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">message: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Detailed message associated with the gateway status.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">name: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Name associated with a gateway</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">paired: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Gateway is paired with a bluetooth device</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">samples: object <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Samples associated with SensorPush gateway</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">version: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Version of Sensorpush software</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/Gateways"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">Gateways</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Map of registered SensorPush gateways 
+						</div>
+
+					
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/GatewaysRequest"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">GatewaysRequest</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Request object for gateways. 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">format: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Returns the results as the specified format (csv|json). Defaults to json</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/ListResponse"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">ListResponse</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">files: array </div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/ReportListing"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">ReportListing</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">last_modified: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Date file was last modified</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">name: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Name of the file</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">size: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">File size</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/ReportsRequest"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">ReportsRequest</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Request object for reports. 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">path: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">The directory path to perform this operation.</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/Sample"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">Sample</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">humidity: number </div><div class="api-property" style="margin: 10px 0px 20px 0px;">observed: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Date time when sample was observed.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">temperature: number </div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/Samples"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">Samples</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Map of registered SensorPush sensors 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">last_time: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Timestamp of the last sample returned. Use this as the start_ts to query for the next page of samples.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">sensors: object <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Map of sensors and the associated samples.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">status: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Message describing state of the api call.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">total_samples: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Total number of samples across all sensors</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">total_sensors: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Total number of sensors returned</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">truncated: boolean <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">The query returned too many results, causing the sample list to be truncated. Consider adjusting the limit or startTime parameters.</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/SamplesRequest"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">SamplesRequest</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Request object for samples. 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">active: boolean <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Filters sensors by active = (true|false). Defaults to true</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">bulk: boolean <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Queries that return large results are truncated (see comments on Samples endpoint). Set this flag to true for large reports. The report request will be queued and processed within 24 hours. Upon completion, the primary account holder will recieve an email with a link for download.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">format: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Returns the results as the specified format (csv|json). Defaults to json</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">limit: integer <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Number of samples to return.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">sensors: array <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Filters samples by sensor id. This will be the same id returned in the sensors api call. The parameter value must be a list of strings. Example: sensors: ["123.56789"].</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">startTime: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Start time to find samples (example: 2019-04-07T00:00:00-0400). Leave blank or zero to get the most recent samples.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">stopTime: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Stop time to find samples (example: 2019-04-07T10:30:00-0400). Leave blank or zero to get the most recent samples.</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/Sensor"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">Sensor</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">active: boolean <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Is the sensor active?</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">address: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">MAC address</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">alerts: object <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Alert settings</span></div><div class="api-item" style="padding-left: 50px; border-left: solid 1px #ccc;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">humidity: object <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">alert settings for humidity</span></div><div class="api-item" style="padding-left: 50px; border-left: solid 1px #ccc;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">enabled: boolean <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Is enabled?</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">max: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Max threshold for alert</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">min: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Min threshold for alert</span></div></div></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">temperature: object <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">alert settings for temperature</span></div><div class="api-item" style="padding-left: 50px; border-left: solid 1px #ccc;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">enabled: boolean <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Is enabled?</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">max: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Max threshold for alert</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">min: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Min threshold for alert</span></div></div></div></div></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">battery_voltage: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Current battery voltage</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">calibration: object <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Calibration settings</span></div><div class="api-item" style="padding-left: 50px; border-left: solid 1px #ccc;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">humidity: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Humidity calibration</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">temperature: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Temperature calibration</span></div></div></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">deviceId: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Short device Id</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">id: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Long device Id</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">name: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Name of the sensor sensor</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/Sensors"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">Sensors</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Map of registered SensorPush sensors 
+						</div>
+
+					
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/SensorsRequest"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">SensorsRequest</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Request object for sensors. 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">active: boolean <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">filters sensors by active = (true|false). Defaults to true</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">format: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Returns the results as the specified format (csv|json). Defaults to json</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/Status"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">Status</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Required:</h3>
+							<ul>
+									<li>api</li> 
+									<li>datetime</li> 
+									<li>message</li> 
+									<li>state</li> 
+							</ul>
+						</div>
+
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">api: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Unique identifier for this api service.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">datetime: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Date time when status was reported.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">message: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Detailed message describing the final state of the api call.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">state: string - e.g.: ["ok", "error", "warning"]<div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Categorical description describing the final state of the api call.</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/TokenRequest"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">TokenRequest</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Request object for an oAuth accesstoken code. 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">client_id: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Client Id assigned to 3rd party applications. Contact support@sensorpush.com to register you app.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">client_secret: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Password associated with the client_id</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">code: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">This can be an authorization, access, or refresh token. Depending on which grant_type you are using.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">grant_type: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Accepted values are password, refresh_token, and access_token</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">password: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">User's password</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">redirect_uri: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Redirection url to the 3rd party application once the user has signed into the sensorpush logon. This value should be URL encoded.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">refresh_token: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Refresh token used to request new access tokens.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">username: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Email of the user to sign in.</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			
+            <div class="panel panel-definition">
+				<div id="/definitions/TokenResponse"  style="position:relative; margin-top: -90px; opacity: 0.0; background-color: #ff00ff; height: 90px;">x</div>
+				
+		            <div class="panel-heading">
+		                <h3 class="api-head">TokenResponse</h3>
+						Type: object
+		            </div>
+                <div class="panel-body">
+					
+					
+					
+						<div class="api-item">
+							<h3 class="api-head">Description:</h3>
+							Response object for an oAuth authorization code. 
+						</div>
+
+					<div class="api-item" style="padding-left: 0px; border-left: none;"><h3 class="api-head">Properties:</h3><div class="api-property" style="margin: 10px 0px 20px 0px;">access_token: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">JWT oAuth access token. Pass this token to the data services via the http header 'Authorization'. Example 'Authorization' : 'Bearer <access token>'</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">expires_in: number <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">TTL of the token in seconds</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">refresh_token: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">JWT oAuth refresh token. Pass this token to the token service to retrieve a new access token.</span></div></div><div class="api-property" style="margin: 10px 0px 20px 0px;">token_type: string <div class="api-property-details"><span style="color: #777; font-family: 'AvenirLTStd-LightOblique';">Type of token returned</span></div></div></div>
+					
+					
+					
+                </div>
+            </div>
+			
+			
+			
+			<!-- END -->
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+	<div id="footer" class='band' header-colorscheme="dark-bg">	
+		<div class='band_content_container'>
+		<div class='footer_column' >
+			<div class='footer_column_heading' >
+				SALES AND SUPPORT
+			</div>
+			<a href="/support">Support / FAQ</a><br/>
+			<a href="/apps">Apps</a><br/>
+			<a href="/about">About Us</a><br/>
+			<a href="/legal/info">Terms of Service</a> <br/>
+			
+			<a href="/legal/privacy/" target="_blank" >Privacy Policy</a> <br/>
+			<!-- <a href="/partners">Partners</a><br/>
+			<a href="/enterprise">Enterprise Solutions</a><br/> -->
+		</div>		
+		<div class='footer_column' >
+			<div class='footer_column_heading' >
+				Subscribe to our mailing list
+			</div>
+			<!-- <div id='contact_form'>
+	<input placeholder="Name" type='text' id='name' /><br/>
+	<input placeholder="Email" type='text' id='email' /><br/>
+	<input type="hidden" name="authenticity_token" id="authenticity_token" value="66LGkgnktHqNOsMM1rP/lZFkItV04BL/qzOmaV+PoQ00Y8DswnsWey9kbx3Z0J9TzUgJBw5OvUDHgHajfDKAjQ==" />
+	<input type='button' id='submit' value='Sign Up'/>
+	<div id='response'></div>
+</div> -->
+
+<!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font-size:14px; line-height: 18px;
+		text-align: center;
+	}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+	
+	#mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error { 
+		font-size: 28px;
+	}
+	#mce-success-response, #mce-error-response {
+		background-color: #1A2B55;
+		color: #ffffff;
+		padding: 20px 20px 50px 20px;
+		border-radius: 5px;
+		text-align: center;
+	}
+	
+</style>
+<div id="mc_embed_signup" style='background:transparent;position:relative;top:-22px;left:-10px;'>
+<form action="//cousins-sears.us1.list-manage.com/subscribe/post?u=310775c55a7b0b20acdea4691&amp;id=3a18db518f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+<!-- <div class="indicates-required"><span class="asterisk">*</span> indicates required</div> -->
+<div class="mc-field-group">
+	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+</label>
+	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+</div>
+<div class="mc-field-group">
+	<label for="mce-FNAME">First Name </label>
+	<input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+</div>
+<div class="mc-field-group">
+	<label for="mce-LNAME">Last Name </label>
+	<input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+</div>
+
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_310775c55a7b0b20acdea4691_3a18db518f" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+
+<div class="mc-field-group">
+	By submitting this form I agree to the <a href="/legal/privacy" ><span style="text-transform: capitalize;">Privacy Policy</span></a>.
+</div>
+
+    </div>
+</form>
+
+
+</div>
+
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup-->
+			
+		</div>
+		<div class='footer_column' >
+				<div class='footer_column_heading' >
+					Connect
+				</div>
+			<a href="https://www.facebook.com/SensorPush/" target="_blank" class="footer" onclick='facebook(this);return false;'><img class="footer social" alt="Facebook" src="/assets/facebook-sm-dark-blue-dc3ecef79735ec1d3d0b5e5bd9d337fb11c2c052cfdf8df2e00fd904d6581378.png" /></a>
+			<a href="https://twitter.com/SensorPush" target="_blank" class="footer" onclick='twitter(this);return false;'><img class="footer social" alt="Twitter" src="/assets/twitter-sm-dark-blue-012da6bbd49daf8f76bd51e986e376275d2c71996c703db498976576a0182be4.png" /></a>
+		</div>
+
+
+
+
+			
+	
+	</div>
+
+		<div class="clear_element"></div>
+		<div class='footer_address'>			
+			<!-- SensorPush &bull; Brooklyn, New York -->
+		</div>
+		<div class='footer_address additional_info'>			
+			SensorPush is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.
+		</div>
+
+
+
+
+	</div><!-- footer band -->
+	
+	<img style="display: none;" alt="SensorPush Logo" src="/assets/logo-sp-512x512-19b66540b6b772010435e399407e5ddba97f2ae3ee5a826ed0c3ca207a3098f7.png" /> 
+	
+
+
+<div id="amzn-assoc-ad-956f7c07-d2ca-4034-9e1e-6e50e738824d"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=956f7c07-d2ca-4034-9e1e-6e50e738824d"></script>
+
+</body>
+</html>

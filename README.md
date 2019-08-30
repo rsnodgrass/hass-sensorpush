@@ -29,10 +29,9 @@ However you can also manually copy all the files in [custom_components/sensorpus
 Example configuration:
 
 ```yaml
-sensor:
-  - platform: sensorpush
-    username: your@email.com
-    password: your_password
+sensorpush:
+  username: your@email.com
+  password: your_password
 ```
 
 ### Step 3: Add Lovelace Card

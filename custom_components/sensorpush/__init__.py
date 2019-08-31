@@ -101,7 +101,7 @@ def setup(hass, config):
     hass.services.register(SENSORPUSH_DOMAIN, 'update', refresh_sensorpush_data)
 
     # automatically update SensorPush data (samples) on the scan interval
-    scan_interval = int(conf.get(CONF_SCAN_INTERVAL))
+    scan_interval = timedelta(seconds = conf.get(CONF_SCAN_INTERVAL))
     track_time_interval(hass, refresh_sensorpush_data, scan_interval)
 
     return True

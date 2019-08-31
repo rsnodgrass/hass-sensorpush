@@ -30,13 +30,8 @@ SENSORPUSH_CACHE_EXPIRY=10
 SENSORPUSH_API = 'https://api.sensorpush.com/api/v1'
 
 UNIT_SYSTEMS = {
-    'imperial_us': { 
-        'system':   'imperial_us',
-        'temp':     '°F',
-        'humidity': 'Rh'
-    },
-    'imperial_uk': { 
-        'system':   'imperial_uk',
+    'imperial': { 
+        'system':   'imperial',
         'temp':     '°F',
         'humidity': 'Rh'
     },
@@ -94,50 +89,15 @@ class SensorPushService:
         self._auth_token_expiry = 0
         
         self._username = config[CONF_USERNAME]
-        self._password = config[CONF_PASSWORD]
+        password = config[CONF_PASSWORD]
+        self._sensorpush = PySensorPush(self._username, password)
 
-#        self._units = UNIT_SYSTEMS[self._get_unit_system]
+        self._units = UNIT_SYSTEMS['imperial']
 
-    def _authentication_token(self):
-        now = int(time.time())
-        if not self._auth_token or now > self._auth_token_expiry:
-            # authenticate to the Flo API
-            #   POST https://api.meetflo.com/api/v1/users/auth
-            #   Payload: {username: "your@email.com", password: "1234"}
+    # FIXME: cache the results (throttle to avoid DoS API)
+    def get_devices(self):
+        devices = self._sensorpush.devices
 
-            auth_url = SENSORPUSH_API + '/oath/authorize'
-            payload = json.dumps({
-                'username': self._username,
-                'password': self._password
-            })
-            headers = { 
-                'User-Agent': SENSORPUSH_USER_AGENT,
-                'Content-Type': 'application/json;charset=UTF-8'
-            }
-
-            _LOGGER.debug("Authenticating SensorPush account %s via %s", self._username, auth_url)
-            response = requests.post(auth_url, data=payload, headers=headers)
-            # Example response:
-            # { "token": "caJhb.....",
-            #   "tokenPayload": { "user": { "user_id": "9aab2ced-c495-4884-ac52-b63f3008b6c7", "email": "your@email.com"},
-            #                     "timestamp": 1559246133 },
-            #   "tokenExpiration": 86400,
-            #   "timeNow": 1559226161 }
-
-            json_response = response.json()
-
-            _LOGGER.debug("SensorPush user %s authentication results %s : %s", self._username, auth_url, json_response)
-            self._auth_token_expiry = now + int( int(json_response['tokenExpiration']) / 2)
-            self._auth_token = json_response['token']
-
-        return self._auth_token
-
-    def get_request(self, url_path):
-        url = SENSORPUSH_API + url_path
-        headers = { 
-            'authorization': self._authentication_token(), 
-            'User-Agent': SENSORPUSH_USER_AGENT
-        }
-        response = requests.get(url, headers=headers)
-        _LOGGER.debug("SensorPush GET %s : %s", url, response.content)
-        return response
+    # FIXME: cache the results (throttle to avoid DoS API)
+    def get_samples(self):
+        samples = self._sensorpush.samples

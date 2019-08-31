@@ -17,11 +17,11 @@ from . import SensorPushService, SensorPushEntity
 
 _LOGGER = logging.getLogger(__name__)
 
-ATTR_TIME            = 'time'
 ATTR_ACTIVE          = 'active'
 ATTR_BATTERY_VOLTAGE = 'battery_voltage'
 ATTR_MAC_ADDRESS     = 'mac_address'
 ATTR_DEVICE_ID       = 'device_id'
+ATTR_OBSERVED        = 'observed'
 
 #SCAN_INTERVAL = timedelta(seconds=0.1)
 
@@ -53,7 +53,7 @@ def setup_platform(hass, config, add_sensors_callback, discovery_info=None):
 
 
 # pylint: disable=too-many-instance-attributes
-class SPHumiditySensor(SensorPushEntity):
+class SensorPushHumidity(SensorPushEntity):
     """Humidity sensor for a SensorPush device"""
 
     def __init__(self, sensorpush_service, device_id):
@@ -82,13 +82,13 @@ class SPHumiditySensor(SensorPushEntity):
 
         self._state = float(json_response['humidity'])
         self._attrs.update({
-            ATTR_TIME            : json_response['time'],
-            ATTR_BATTERY_VOLTAGE : json_response['battery_voltage']
+            ATTR_BATTERY_VOLTAGE : json_response['battery_voltage'],
+            ATTR_OBSERVED        : json_response['observed']
         })
         _LOGGER.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, json_response)
 
 # pylint: disable=too-many-instance-attributes
-class SPTemperatureSensor(SensorPushEntity):
+class SensorPushTemperature(SensorPushEntity):
     """Temperature sensor for a SensorPush device"""
 
     def __init__(self, sensorpush_service, device_id):
@@ -99,8 +99,8 @@ class SPTemperatureSensor(SensorPushEntity):
 
     @property
     def unit_of_measurement(self):
-        """Fahrenheit"""
-        return 'F'
+        """Unit of measurement"""
+        return '°F'
 
     @property
     def state(self):
@@ -117,7 +117,7 @@ class SPTemperatureSensor(SensorPushEntity):
 
         self._state = float(json_response['temperature'])
         self._attrs.update({
-            ATTR_TIME            : json_response['time']
-            ATTR_BATTERY_VOLTAGE : json_response['battery_voltage']
+            ATTR_BATTERY_VOLTAGE : json_response['battery_voltage'],
+            ATTR_OBSERVED        : json_response['observed']
         })
         _LOGGER.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, json_response)

@@ -8,25 +8,24 @@ FUTURE:
 import logging
 
 from homeassistant.const import ( TEMP_FAHRENHEIT, ATTR_TEMPERATURE )
-from . import SensorPushService, SensorPushEntity
+
+from . import SensorPushService, SensorPushEntity, SENSORPUSH_SERVICE, SIGNAL_UPDATE_SENSORPUSH
+
 
 LOG = logging.getLogger(__name__)
 
 # pylint: disable=unused-argument
-def setup_platform(hass, config, add_sensors_callback, discovery_info=None):
+def setup_platform(hass, config, add_entities_callback, discovery_info=None):
     """Setup the SensorPush sensor"""
-    service = SensorPushService(config)
+    sensorpush_service = hass.data[SENSORPUSH_SERVICE]
 
-    # FUTURE: support multiple sensors
-    sensors = []
-    sensors.append(SensorPushTemperature(service, device_id))
-    sensors.append(SensorPushHumidity(service, device_id))
-
-    for sensor in sensors:
-        sensor.update()
+    hass_sensors = []
+    for sensor in sensorpush_service.sensors:
+        hass_sensors.append(SensorPushTemperature(service, sensor.device_id))
+        hass_sensors.append(SensorPushHumidity(service, sensor.device_id))
 
     # execute callback to add new entities
-    add_sensors_callback(sensors)
+    add_entities_callback(hass_sensors)
 
 # pylint: disable=too-many-instance-attributes
 class SensorPushHumidity(SensorPushEntity):

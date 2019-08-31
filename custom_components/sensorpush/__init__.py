@@ -20,6 +20,7 @@ import pysensorpush
 import voluptuous as vol
 from requests.exceptions import HTTPError, ConnectTimeout
 
+from homeassistant.core import callback
 from homeassistant.helpers import config_validation as cv, discovery
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.dispatcher import dispatcher_send
@@ -32,7 +33,8 @@ LOG = logging.getLogger(__name__)
 SENSORPUSH_DOMAIN = 'sensorpush'
 
 SENSORPUSH_SERVICE = 'sensorpush_service'
-SIGNAL_UPDATE_SENSORPUSH = 'sensorpush_update'
+SENSORPUSH_SAMPLES = 'sensorpush_samples'
+SIGNAL_SENSORPUSH_UPDATED = 'sensorpush_updated'
 
 NOTIFICATION_ID = 'sensorpush_notification'
 NOTIFICATION_TITLE = 'SensorPush'
@@ -120,20 +122,24 @@ def setup(hass, config):
         )
         return False
 
-    def update_from_service(event_time):
+    def refresh_sensorpush_data(event_time):
         """Call SensorPush service to refresh latest data"""
         LOG.debug("Updating data from SensorPush cloud API")
-        # hass.data[SENSORPUSH_SERVICE].update(update_devices=True)
+        #hass.data[SENSORPUSH_SERVICE].update(update_devices=True)
+
+        # update the samples
+        hass.data[SENSORPUSH_SAMPLES] = self._sensorpush_service.samples
+
+        # notify all listeners (sensor entities) that they may have new data
         dispatcher_send(hass, SIGNAL_UPDATE_SENSORPUSH)
 
     # subscribe for notifications to trigger an update
-    hass.services.register(SENSORPUSH_DOMAIN, 'update', update_from_service)
+    hass.services.register(SENSORPUSH_DOMAIN, 'update', refresh_sensorpush_data)
 
-    # periodically force an update (FIXME: not necessary, since I don't think devices are added frequently)
-    # FIXME ... we want SENSOR updates
-    track_time_interval(hass, update_from_service, scan_interval)
+    # automatically update SensorPush data (samples) on the scan interval
+    track_time_interval(hass, refresh_sensorpush_data, scan_interval)
+
     return True
-
 
 
 class SensorPushEntity(Entity):
@@ -160,6 +166,19 @@ class SensorPushEntity(Entity):
         """Return the device state attributes."""
         return self._attrs
 
+    async def async_added_to_hass(self):
+        """Register callbacks."""
+        # register for a callback when cached SensorPush data has been updated
+        async_dispatcher_connect(self.hass, SIGNAL_SENSORPUSH_UPDATED, self._update_callback)
+
+    @callback
+    def _update_callback(self):
+         """Call update method."""
+        self._update_state_from_field('temperature')
+
+        # let Home Assistant know that SensorPush datafor this entity has been updated
+        self.async_schedule_update_ha_state()
+
     def _update_state_from_field(self, field):
         if field not in ['humidity', 'temperature']:
             LOG.error(f"Update field {field} not supported")
@@ -174,24 +193,3 @@ class SensorPushEntity(Entity):
             ATTR_OBSERVED        : json_response['observed']
         })
         LOG.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, json_response)
-
-class SensorPushUpdater:
-    """Cached interface to SensorPush service samples"""
-
-    def __init__(self, config, service):
-        self._sensorpush_service = service
-
-        # prevent DDoS of SensorPush service, cache results for N seconds
-        self._cache_ttl_seconds = 45 # config[CONF_CACHE_TTL]; must be > MIN_CACHE_TTL = 5
-        self._last_updated = 0
-
-    @property
-    def samples(self):
-        current_time = time.time()
-
-        # cache the results (throttle to avoid DoS API)
-        if self._last_updated < current_time - self._cache_ttl_seconds:
-            self._last_sample = self._sensorpush_service.samples
-            self._last_updated = time.time()
-
-        return self._last_sample

@@ -2,7 +2,7 @@
   "domain": "sensorpush",
   "name": "SensorPush",
   "documentation": "https://github.com/rsnodgrass/hass-sensorpush/",
-  "requirements": [],
+  "requirements": ["pysensorpush>=0.1.0"],
   "dependencies": [],
   "codeowners": ["@rsnodgrass"]
 }

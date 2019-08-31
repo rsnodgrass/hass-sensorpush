@@ -44,8 +44,6 @@ ATTR_BATTERY_VOLTAGE = 'battery_voltage'
 ATTR_DEVICE_ID       = 'device_id'
 ATTR_OBSERVED_TIME   = 'observed_time'
 
-SCAN_INTERVAL = timedelta(seconds = 60)
-
 UNIT_SYSTEMS = {
     'imperial': { 
         'system':   'imperial',
@@ -63,7 +61,7 @@ CONFIG_SCHEMA = vol.Schema({
         SENSORPUSH_DOMAIN: vol.Schema({
             vol.Required(CONF_USERNAME): cv.string,
             vol.Required(CONF_PASSWORD): cv.string,
-            vol.Optional(CONF_SCAN_INTERVAL, default=SCAN_INTERVAL): cv.positive_int
+            vol.Optional(CONF_SCAN_INTERVAL, default=60): cv.positive_int
         })
     }, extra=vol.ALLOW_EXTRA
 )
@@ -74,7 +72,6 @@ def setup(hass, config):
 
     username = conf.get(CONF_USERNAME)
     password = conf.get(CONF_PASSWORD)
-    scan_interval = conf.get(CONF_SCAN_INTERVAL)
 
     try:
         sensorpush_service = PySensorPush(username, password)
@@ -114,6 +111,7 @@ def setup(hass, config):
     hass.services.register(SENSORPUSH_DOMAIN, 'update', refresh_sensorpush_data)
 
     # automatically update SensorPush data (samples) on the scan interval
+    scan_interval = int(conf.get(CONF_SCAN_INTERVAL))
     track_time_interval(hass, refresh_sensorpush_data, scan_interval)
 
     return True

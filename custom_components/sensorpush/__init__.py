@@ -1,6 +1,12 @@
 """
 SensorPush for Home Assistant
 See https://github.com/rsnodgrass/hass-sensorpush
+
+- battery_voltage
+- deviceId
+- id
+- address?
+- active?
 """
 import logging
 
@@ -15,6 +21,12 @@ from homeassistant.const import ( CONF_USERNAME, CONF_PASSWORD, CONF_NAME, CONF_
 _LOGGER = logging.getLogger(__name__)
 
 SENSORPUSH_DOMAIN = 'sensorpush'
+
+ATTR_ACTIVE          = 'active'
+ATTR_BATTERY_VOLTAGE = 'battery_voltage'
+ATTR_MAC_ADDRESS     = 'mac_address'
+ATTR_DEVICE_ID       = 'device_id'
+ATTR_OBSERVED        = 'observed'
 
 UNIT_SYSTEMS = {
     'imperial': { 
@@ -44,17 +56,32 @@ def setup(hass, config):
     username = config[CONF_USERNAME]
     password = config[CONF_PASSWORD]
     
-    service = PySensorPush(username, password)
-    updater = SensorPushUpdater(config, service)
+    sensorpush_service = PySensorPush(username, password)
+    updater = SensorPushUpdater(config, sensorpush_service)
 
-    # create sensors for all registered devices
-    devices = sensorpush.devices()
+    # create sensors for all devices registered with SensorPush
+    registered_devices = sensorpush_service.devices
+    for device in registered_devices.values():
+        SensorPushTemperature
 
-    self._units = UNIT_SYSTEMS['imperial'] # config[CONF_UNIT_SYSTEM]
+        discovery.load_platform(hass, component, SENSORPUSH_DOMAIN, conf, device, updater)
 
-#    for component in ['sensor', 'switch']:
-#        discovery.load_platform(hass, component, SENSORPUSH_DOMAIN, conf, config)
+    #{ 'active': True,
+    #                             'address': 'EF:E1:D0:40:F8:37',
+    #                             'alerts': { 'humidity': { 'enabled': True,
+    #                                                       'max': 58,
+    #                                                       'min': 32},
+    #                                         'temperature': { 'enabled': True,
+    #                                                          'max': 85.00000038146973,
+    #                                                          'min': 49.00000038146973}},
+    #                             'battery_voltage': 2.93,
+    #                             'calibration': { 'humidity': 0,
+    #                                              'temperature': 0},
+    #                             'deviceId': '36600',
+    #                             'id': '36600.3025014081951077535',
+    #                             'name': 'Warehouse 3095 - Exterior Unit'}
 
+    # units = UNIT_SYSTEMS['imperial'] # config[CONF_UNIT_SYSTEM]
     return True
 
 class SensorPushEntity(Entity):
@@ -73,9 +100,25 @@ class SensorPushEntity(Entity):
         return self._name
 
     @property
+    def icon(self):
+        return 'mdi:gauge'
+
+    @property
     def device_state_attributes(self):
         """Return the device state attributes."""
         return self._attrs
+
+    def _update_state_from_field(self, field):
+        # json_response = self._sensorpush_service.update(self._device_id)
+        #temperature or humidity
+
+        self._state = float(json_response['temperature'])
+        self._attrs.update({
+            ATTR_BATTERY_VOLTAGE : json_response['battery_voltage'],
+            ATTR_OBSERVED        : json_response['observed']
+        })
+        LOG.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, json_response)
+
 
 class SensorPushUpdater:
     """Cached interface to SensorPush service samples"""
@@ -87,7 +130,8 @@ class SensorPushUpdater:
         self._cache_ttl_seconds = 45 # config[CONF_CACHE_TTL]; must be > MIN_CACHE_TTL = 5
         self._last_updated = 0
 
-    def get_samples(self):
+    @property
+    def samples(self):
         current_time = time.time()
 
         # cache the results (throttle to avoid DoS API)

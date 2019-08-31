@@ -1,12 +1,6 @@
 """
 SensorPush for Home Assistant
-
-See also:
-
-* https://github.com/rsnodgrass/hass-sensorpush
-* http://www.sensorpush.com/api/docs
-* https://community.home-assistant.io/t/sensorpush-humidity-and-temperature-sensors/105711
-
+See https://github.com/rsnodgrass/hass-sensorpush
 """
 import logging
 
@@ -21,14 +15,6 @@ from homeassistant.const import ( CONF_USERNAME, CONF_PASSWORD, CONF_NAME, CONF_
 _LOGGER = logging.getLogger(__name__)
 
 SENSORPUSH_DOMAIN = 'sensorpush'
-SENSORPUSH_USER_AGENT = 'Home Assistant (https://homeassistant.io/; https://github.com/rsnodgrass/hass-sensorpush)'
-
-# cache expiry in minutes; TODO: make this configurable (with a minimum to prevent DDoS)
-SENSORPUSH_CACHE_EXPIRY=10
-
-SENSORPUSH_API = 'https://api.sensorpush.com/api/v1'
-
-MINIMUM_CACHE_TTL = 10
 
 UNIT_SYSTEMS = {
     'imperial': { 
@@ -43,8 +29,6 @@ UNIT_SYSTEMS = {
     }
 }
 
-mutex = Lock()
-
 #CONFIG_SCHEMA = vol.Schema({
 #    SENSORPUSH_DOMAIN: vol.Schema({
 #        vol.Required(CONF_USERNAME): cv.string,
@@ -55,18 +39,29 @@ mutex = Lock()
 
 def setup(hass, config):
     """Set up the SensorPush integration"""
-#    conf = config[SENSORPUSH_DOMAIN]
-#    conf = {}
+    conf = config[SENSORPUSH_DOMAIN]
+
+    username = config[CONF_USERNAME]
+    password = config[CONF_PASSWORD]
+    
+    service = PySensorPush(username, password)
+    updater = SensorPushUpdater(config, service)
+
+    # create sensors for all registered devices
+    devices = sensorpush.devices()
+
+    self._units = UNIT_SYSTEMS['imperial'] # config[CONF_UNIT_SYSTEM]
+
 #    for component in ['sensor', 'switch']:
 #        discovery.load_platform(hass, component, SENSORPUSH_DOMAIN, conf, config)
+
     return True
 
 class SensorPushEntity(Entity):
     """Base Entity class for SensorPush devices"""
 
-    def __init__(self, sensorpush_service):
-        """Store service upon init."""
-        self._service = sensorpush_service
+    def __init__(self, sensorpush_updater):
+        self._service_updater = sensorpush_updater
         self._attrs = {}
 
         if self._name is None:
@@ -82,30 +77,22 @@ class SensorPushEntity(Entity):
         """Return the device state attributes."""
         return self._attrs
 
-class SensorPushService:
-    """Client interface to the SensorPush service API"""
+class SensorPushUpdater:
+    """Cached interface to SensorPush service samples"""
 
-    def __init__(self, config):
-        self._username = config[CONF_USERNAME]
-        password = config[CONF_PASSWORD]
-        self._sensorpush = PySensorPush(self._username, password)
-
-        self._units = UNIT_SYSTEMS['imperial'] # config[CONF_UNIT_SYSTEM]
+    def __init__(self, config, service):
+        self._sensorpush_service = service
 
         # prevent DDoS of SensorPush service, cache results for N seconds
-        self._cache_ttl_seconds = 60           # config[CONF_CACHE_TTL]
+        self._cache_ttl_seconds = 45 # config[CONF_CACHE_TTL]; must be > MIN_CACHE_TTL = 5
         self._last_updated = 0
-
-    def get_devices(self):
-        # rarely accessed, so no need to cache
-        return self._sensorpush.devices
 
     def get_samples(self):
         current_time = time.time()
 
         # cache the results (throttle to avoid DoS API)
         if self._last_updated < current_time - self._cache_ttl_seconds:
-            self._last_sample = self._sensorpush.samples
+            self._last_sample = self._sensorpush_service.samples
             self._last_updated = time.time()
 
         return self._last_sample

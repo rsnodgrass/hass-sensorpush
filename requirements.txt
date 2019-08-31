@@ -1,1 +1,1 @@
-pysensorpush>=0.0.2
+pysensorpush>=0.1.0

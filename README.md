@@ -5,12 +5,6 @@
 
 Home Assistant integration for [SensorPush temperature and humidity/hygrometer sensors](https://www.amazon.com/SensorPush-Wireless-Thermometer-Hygrometer-Android/dp/B01AEQ9X9I?tag=rynoshark-20).
 
-### Supported Sensors
-
-- temperature (&deg;F)
-- humidity (Rh)
-- battery voltage
-
 NOTE:
 
 * If you register a new physical sensor with SensorPush, you must restart Home Assistant to discover the new device(s).

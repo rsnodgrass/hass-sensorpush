@@ -11,14 +11,17 @@ See https://github.com/rsnodgrass/hass-sensorpush
 import logging
 
 import time
+from datetime import timedelta
 import pysensorpush
+import voluptuous as vol
+from requests.exceptions import HTTPError, ConnectTimeout
 
-from homeassistant.helpers import discovery
+from homeassistant.helpers import config_validation as cv, discovery
 from homeassistant.helpers.entity import Entity
-from homeassistant.const import ( CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL )
+from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 #from homeassistant.components.sensor import ( PLATFORM_SCHEMA )
 
-_LOGGER = logging.getLogger(__name__)
+LOG = logging.getLogger(__name__)
 
 SENSORPUSH_DOMAIN = 'sensorpush'
 
@@ -30,6 +33,8 @@ ATTR_BATTERY_VOLTAGE = 'battery_voltage'
 ATTR_MAC_ADDRESS     = 'mac_address'
 ATTR_DEVICE_ID       = 'device_id'
 ATTR_OBSERVED        = 'observed'
+
+SCAN_INTERVAL = timedelta(seconds = 60)
 
 UNIT_SYSTEMS = {
     'imperial': { 
@@ -44,13 +49,14 @@ UNIT_SYSTEMS = {
     }
 }
 
-#CONFIG_SCHEMA = vol.Schema({
-#    SENSORPUSH_DOMAIN: vol.Schema({
-#        vol.Required(CONF_USERNAME): cv.string,
-#        vol.Required(CONF_PASSWORD): cv.string
-#        vol.Optional(CONF_SCAN_INTERVAL, default=600): cv.positive_int
-#    })
-#}, extra=vol.ALLOW_EXTRA)
+CONFIG_SCHEMA = vol.Schema({
+        SENSORPUSH_DOMAIN: vol.Schema({
+            vol.Required(CONF_USERNAME): cv.string,
+            vol.Required(CONF_PASSWORD): cv.string,
+            vol.Optional(CONF_SCAN_INTERVAL, default=SCAN_INTERVAL): cv.positive_int
+        })
+    }, extra=vol.ALLOW_EXTRA
+)
 
 def setup(hass, config):
     """Set up the SensorPush integration"""
@@ -71,8 +77,8 @@ def setup(hass, config):
 
         # create sensors for all devices registered with SensorPush
         registered_devices = sensorpush_service.devices
-        for device in registered_devices.values():
-            SensorPushTemperature
+#        for device in registered_devices.values():
+#            SensorPushTemperature
 
 #        discovery.load_platform(hass, component, SENSORPUSH_DOMAIN, conf, device, updater)
 
@@ -128,6 +134,10 @@ class SensorPushEntity(Entity):
         return self._attrs
 
     def _update_state_from_field(self, field):
+        if field not in ['humidity', 'temperature']:
+            LOG.error(f"Update field {field} not supported")
+            return
+
         # json_response = self._sensorpush_service.update(self._device_id)
         #temperature or humidity
 
@@ -137,7 +147,6 @@ class SensorPushEntity(Entity):
             ATTR_OBSERVED        : json_response['observed']
         })
         LOG.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, json_response)
-
 
 class SensorPushUpdater:
     """Cached interface to SensorPush service samples"""

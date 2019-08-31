@@ -7,6 +7,10 @@ See https://github.com/rsnodgrass/hass-sensorpush
 - id
 - address?
 - active?
+
+FIXME: "If the component fetches data that causes its related platform entities to update,
+you can notify them using the dispatcher code in homeassistant.helpers.dispatcher."
+
 """
 import logging
 
@@ -18,6 +22,8 @@ from requests.exceptions import HTTPError, ConnectTimeout
 
 from homeassistant.helpers import config_validation as cv, discovery
 from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.dispatcher import dispatcher_send
+from homeassistant.helpers.event import track_time_interval
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 #from homeassistant.components.sensor import ( PLATFORM_SCHEMA )
 
@@ -25,12 +31,13 @@ LOG = logging.getLogger(__name__)
 
 SENSORPUSH_DOMAIN = 'sensorpush'
 
-NOTIFICATION_ID = "sensorpush_notification"
-NOTIFICATION_TITLE = "SensorPush"
+SENSORPUSH_SERVICE = 'sensorpush_service'
+SIGNAL_UPDATE_SENSORPUSH = 'sensorpush_update'
 
-ATTR_ACTIVE          = 'active'
+NOTIFICATION_ID = 'sensorpush_notification'
+NOTIFICATION_TITLE = 'SensorPush'
+
 ATTR_BATTERY_VOLTAGE = 'battery_voltage'
-ATTR_MAC_ADDRESS     = 'mac_address'
 ATTR_DEVICE_ID       = 'device_id'
 ATTR_OBSERVED        = 'observed'
 
@@ -59,7 +66,7 @@ CONFIG_SCHEMA = vol.Schema({
 )
 
 def setup(hass, config):
-    """Set up the SensorPush integration"""
+    """Initialize the SensorPush integration"""
     conf = config[SENSORPUSH_DOMAIN]
 
     username = conf.get(CONF_USERNAME)
@@ -80,6 +87,8 @@ def setup(hass, config):
 #        for device in registered_devices.values():
 #            SensorPushTemperature
 
+    # FIXME: do we ignore devices that are not "active"?  Or go ahead and create them as sensors (with empty data?)
+
 #        discovery.load_platform(hass, component, SENSORPUSH_DOMAIN, conf, device, updater)
 
     #{ 'active': True,
@@ -98,7 +107,9 @@ def setup(hass, config):
     #                             'name': 'Warehouse 3095 - Exterior Unit'}
 
         # units = UNIT_SYSTEMS['imperial'] # config[CONF_UNIT_SYSTEM]
-        return True
+
+        # share reference to the service with other components/platforms running within HASS
+        hass.data[SENSORPUSH_SERVICE] = sensorpush_service
 
     except (ConnectTimeout, HTTPError) as ex:
         LOG.error("Unable to connect to SensorPush: %s", str(ex))
@@ -108,6 +119,22 @@ def setup(hass, config):
             notification_id=NOTIFICATION_ID,
         )
         return False
+
+    def update_from_service(event_time):
+        """Call SensorPush service to refresh latest data"""
+        LOG.debug("Updating data from SensorPush cloud API")
+        # hass.data[SENSORPUSH_SERVICE].update(update_devices=True)
+        dispatcher_send(hass, SIGNAL_UPDATE_SENSORPUSH)
+
+    # subscribe for notifications to trigger an update
+    hass.services.register(SENSORPUSH_DOMAIN, 'update', update_from_service)
+
+    # periodically force an update (FIXME: not necessary, since I don't think devices are added frequently)
+    # FIXME ... we want SENSOR updates
+    track_time_interval(hass, update_from_service, scan_interval)
+    return True
+
+
 
 class SensorPushEntity(Entity):
     """Base Entity class for SensorPush devices"""

@@ -2,11 +2,11 @@
 SensorPush Home Assistant sensors
 
 FUTURE:
-- support celsius and fahrenheit (based on cloud setup)
+- support Celsius and Fahrenheit (based on SensorPush's cloud responses)
 """
 import logging
 
-from . import SensorPushService, SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES
+from . import SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES
 
 LOG = logging.getLogger(__name__)
 
@@ -20,8 +20,8 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
             LOG.warn(f"Ignoring inactive SensorPush sensor '{sensor_info['name']}'")
             continue
 
-        hass_sensors.append(SensorPushTemperature(sensor_info))
-        hass_sensors.append(SensorPushHumidity(sensor_info))
+        hass_sensors.append(SensorPushTemperature(hass, sensor_info))
+        hass_sensors.append(SensorPushHumidity(hass, sensor_info))
 
     # execute callback to add new entities
     add_entities_callback(hass_sensors)
@@ -30,10 +30,10 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
 class SensorPushHumidity(SensorPushEntity):
     """Humidity sensor for a SensorPush device"""
 
-    def __init__(self, sensor_info):
+    def __init__(self, hass, sensor_info):
         self._name = f"{sensor_info['name']} Humidity"
         self._state = 0.0
-        super().__init__(sensor_info, 'humidity')
+        super().__init__(hass, sensor_info, 'humidity')
 
     @property
     def unit_of_measurement(self):
@@ -44,10 +44,10 @@ class SensorPushHumidity(SensorPushEntity):
 class SensorPushTemperature(SensorPushEntity):
     """Temperature sensor for a SensorPush device"""
 
-    def __init__(self, sensor_info):
+    def __init__(self, hass, sensor_info):
         self._name = f"{sensor_info['name']} Temperature"
         self._state = 0.0
-        super().__init__(sensor_info, 'temperature')
+        super().__init__(hass, sensor_info, 'temperature')
 
     @property
     def unit_of_measurement(self):

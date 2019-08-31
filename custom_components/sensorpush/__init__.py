@@ -16,9 +16,10 @@ import logging
 
 import time
 from datetime import timedelta
-import pysensorpush
 import voluptuous as vol
 from requests.exceptions import HTTPError, ConnectTimeout
+
+import pysensorpush
 
 from homeassistant.core import callback
 from homeassistant.helpers import config_validation as cv, discovery
@@ -121,13 +122,14 @@ def setup(hass, config):
 class SensorPushEntity(Entity):
     """Base Entity class for SensorPush devices"""
 
-    def __init__(self, sensor_info, field_name):
+    def __init__(self, hass, sensor_info, field_name):
+        self._hass = hass
         self._sensor_info = sensor_info
         self._device_id = sensor_info['id']
         self._field_name = field_name
         self._attrs = {}
-
-        if self._name is None:
+        
+        if not self._name:
             self._name = f"SensorPush {sensor_info['name']}"
 
     @property
@@ -156,10 +158,10 @@ class SensorPushEntity(Entity):
     @callback
     def _update_callback(self):
         """Call update method."""
-        latest_samples = hass.data[SENSORPUSH_SAMPLES]
+        latest_samples = self._hass.data[SENSORPUSH_SAMPLES]
         all_sensors = latest_samples['sensors']
         data = all_sensors[self._device_id]
-        
+
         self._state = float(data[self._field_name])
 
         self._attrs.update({

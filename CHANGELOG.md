@@ -1,3 +1,3 @@
 ## NOT YET RELEASED
 
-Initial release of the SensorPush for Home Assistant
+Initial release of SensorPush for Home Assistant

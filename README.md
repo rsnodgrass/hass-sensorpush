@@ -40,3 +40,7 @@ sensorpush:
 * [SensorPush G1 WiFi Gateway](https://www.amazon.com/SensorPush-G1-WiFi-Gateway-Anywhere/dp/B01N17RWWV?tag=rynoshark-20)
 * [SensorPush](https://sensorpush.com) (official product page)
 
+## Future Enhancements
+
+* support Celsius (in addition to Fahrenheit) when SensorPush exposes units via its APIs
+

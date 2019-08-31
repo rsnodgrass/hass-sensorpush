@@ -15,12 +15,15 @@ import pysensorpush
 
 from homeassistant.helpers import discovery
 from homeassistant.helpers.entity import Entity
-from homeassistant.const import ( CONF_USERNAME, CONF_PASSWORD, CONF_NAME, CONF_SCAN_INTERVAL )
+from homeassistant.const import ( CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL )
 #from homeassistant.components.sensor import ( PLATFORM_SCHEMA )
 
 _LOGGER = logging.getLogger(__name__)
 
 SENSORPUSH_DOMAIN = 'sensorpush'
+
+NOTIFICATION_ID = "sensorpush_notification"
+NOTIFICATION_TITLE = "SensorPush"
 
 ATTR_ACTIVE          = 'active'
 ATTR_BATTERY_VOLTAGE = 'battery_voltage'
@@ -53,18 +56,25 @@ def setup(hass, config):
     """Set up the SensorPush integration"""
     conf = config[SENSORPUSH_DOMAIN]
 
-    username = config[CONF_USERNAME]
-    password = config[CONF_PASSWORD]
-    
-    sensorpush_service = PySensorPush(username, password)
-    updater = SensorPushUpdater(config, sensorpush_service)
+    username = conf.get(CONF_USERNAME)
+    password = conf.get(CONF_PASSWORD)
+    scan_interval = conf.get(CONF_SCAN_INTERVAL)
 
-    # create sensors for all devices registered with SensorPush
-    registered_devices = sensorpush_service.devices
-    for device in registered_devices.values():
-        SensorPushTemperature
+    try:
+        sensorpush_service = PySensorPush(username, password)
+        #if not sensorpush_service.is_connected:
+        #    return False
 
-        discovery.load_platform(hass, component, SENSORPUSH_DOMAIN, conf, device, updater)
+        # FIXME: log warning if no sensors found?
+
+        updater = SensorPushUpdater(config, sensorpush_service)
+
+        # create sensors for all devices registered with SensorPush
+        registered_devices = sensorpush_service.devices
+        for device in registered_devices.values():
+            SensorPushTemperature
+
+#        discovery.load_platform(hass, component, SENSORPUSH_DOMAIN, conf, device, updater)
 
     #{ 'active': True,
     #                             'address': 'EF:E1:D0:40:F8:37',
@@ -81,8 +91,17 @@ def setup(hass, config):
     #                             'id': '36600.3025014081951077535',
     #                             'name': 'Warehouse 3095 - Exterior Unit'}
 
-    # units = UNIT_SYSTEMS['imperial'] # config[CONF_UNIT_SYSTEM]
-    return True
+        # units = UNIT_SYSTEMS['imperial'] # config[CONF_UNIT_SYSTEM]
+        return True
+
+    except (ConnectTimeout, HTTPError) as ex:
+        LOG.error("Unable to connect to SensorPush: %s", str(ex))
+        hass.components.persistent_notification.create(
+            f"Error: {ex}<br />You will need to restart Home Assistant after fixing.",
+            title=NOTIFICATION_TITLE,
+            notification_id=NOTIFICATION_ID,
+        )
+        return False
 
 class SensorPushEntity(Entity):
     """Base Entity class for SensorPush devices"""

@@ -28,7 +28,6 @@ def setup_platform(hass, config, add_sensors_callback, discovery_info=None):
     # execute callback to add new entities
     add_sensors_callback(sensors)
 
-
 # pylint: disable=too-many-instance-attributes
 class SensorPushHumidity(SensorPushEntity):
     """Humidity sensor for a SensorPush device"""

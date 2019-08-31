@@ -13,6 +13,7 @@ Home Assistant sensors for [SensorPush temeperature and humidity sensors](https:
 
 - temperature (&deg;F)
 - humidity (Rh)
+- battery voltage
 
 ## Installation
 

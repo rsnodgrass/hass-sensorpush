@@ -4,6 +4,11 @@ Support for SensorPUsh sensors
 FUTURE:
 - convert to async
 - support celsius and fahrenheit (based on HA default config?)
+- battery_voltage
+- deviceId
+- id
+- address?
+- active?
 """
 import logging
 
@@ -12,7 +17,11 @@ from . import SensorPushService, SensorPushEntity
 
 _LOGGER = logging.getLogger(__name__)
 
-ATTR_TIME       = 'time'
+ATTR_TIME            = 'time'
+ATTR_ACTIVE          = 'active'
+ATTR_BATTERY_VOLTAGE = 'battery_voltage'
+ATTR_MAC_ADDRESS     = 'mac_address'
+ATTR_DEVICE_ID       = 'device_id'
 
 #SCAN_INTERVAL = timedelta(seconds=0.1)
 
@@ -73,7 +82,8 @@ class SPHumiditySensor(SensorPushEntity):
 
         self._state = float(json_response['humidity'])
         self._attrs.update({
-            ATTR_TIME        : json_response['time']
+            ATTR_TIME            : json_response['time'],
+            ATTR_BATTERY_VOLTAGE : json_response['battery_voltage']
         })
         _LOGGER.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, json_response)
 
@@ -107,6 +117,7 @@ class SPTemperatureSensor(SensorPushEntity):
 
         self._state = float(json_response['temperature'])
         self._attrs.update({
-            ATTR_TIME        : json_response['time']
+            ATTR_TIME            : json_response['time']
+            ATTR_BATTERY_VOLTAGE : json_response['battery_voltage']
         })
         _LOGGER.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, json_response)

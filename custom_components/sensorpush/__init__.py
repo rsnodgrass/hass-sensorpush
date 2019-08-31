@@ -41,7 +41,7 @@ NOTIFICATION_TITLE = 'SensorPush'
 
 ATTR_BATTERY_VOLTAGE = 'battery_voltage'
 ATTR_DEVICE_ID       = 'device_id'
-ATTR_OBSERVED        = 'observed'
+ATTR_OBSERVED_TIME   = 'observed_time'
 
 SCAN_INTERVAL = timedelta(seconds = 60)
 
@@ -79,35 +79,13 @@ def setup(hass, config):
         sensorpush_service = PySensorPush(username, password)
         #if not sensorpush_service.is_connected:
         #    return False
-
         # FIXME: log warning if no sensors found?
-
-        # create sensors for all devices registered with SensorPush
-#        registered_devices = sensorpush_service.devices
-#        for device in registered_devices.values():
-#            SensorPushTemperature
-
-    # FIXME: do we ignore devices that are not "active"?  Or go ahead and create them as sensors (with empty data?)
-
-    #{ 'active': True,
-    #                             'address': 'EF:E1:D0:40:F8:37',
-    #                             'alerts': { 'humidity': { 'enabled': True,
-    #                                                       'max': 58,
-    #                                                       'min': 32},
-    #                                         'temperature': { 'enabled': True,
-    #                                                          'max': 85.00000038146973,
-    #                                                          'min': 49.00000038146973}},
-    #                             'battery_voltage': 2.93,
-    #                             'calibration': { 'humidity': 0,
-    #                                              'temperature': 0},
-    #                             'deviceId': '36600',
-    #                             'id': '36600.3025014081951077535',
-    #                             'name': 'Warehouse 3095 - Exterior Unit'}
 
         # units = UNIT_SYSTEMS['imperial'] # config[CONF_UNIT_SYSTEM]
 
         # share reference to the service with other components/platforms running within HASS
         hass.data[SENSORPUSH_SERVICE] = sensorpush_service
+        hass.data[SENSORPUSH_SAMPLES] = sensorpush_service.samples
 
     except (ConnectTimeout, HTTPError) as ex:
         LOG.error("Unable to connect to SensorPush: %s", str(ex))
@@ -121,15 +99,17 @@ def setup(hass, config):
     def refresh_sensorpush_data(event_time):
         """Call SensorPush service to refresh latest data"""
         LOG.debug("Updating data from SensorPush cloud API")
+
+        # TODO: discovering new devices (and auto-configuring HASS sensors) is not supported
         #hass.data[SENSORPUSH_SERVICE].update(update_devices=True)
 
-        # update the samples
-        hass.data[SENSORPUSH_SAMPLES] = self._sensorpush_service.samples
+        # retrieve the latest samples from the SensorPush cloud service
+        hass.data[SENSORPUSH_SAMPLES] = hass.data[SENSORPUSH_SERVICE].samples
 
         # notify all listeners (sensor entities) that they may have new data
         dispatcher_send(hass, SIGNAL_SENSORPUSH_UPDATED)
 
-    # subscribe for notifications to trigger an update
+    # subscribe for notifications that an update should be triggered
     hass.services.register(SENSORPUSH_DOMAIN, 'update', refresh_sensorpush_data)
 
     # automatically update SensorPush data (samples) on the scan interval
@@ -143,11 +123,12 @@ class SensorPushEntity(Entity):
 
     def __init__(self, sensor_info, field_name):
         self._sensor_info = sensor_info
+        self._device_id = sensor_info['id']
         self._field_name = field_name
         self._attrs = {}
 
         if self._name is None:
-            self._name = 'SensorPush' # default if unspecified
+            self._name = f"SensorPush {sensor_info['name']}"
 
     @property
     def name(self):
@@ -175,21 +156,17 @@ class SensorPushEntity(Entity):
     @callback
     def _update_callback(self):
         """Call update method."""
-        self._update_state_from_field('temperature')
+        latest_samples = hass.data[SENSORPUSH_SAMPLES]
+        all_sensors = latest_samples['sensors']
+        data = all_sensors[self._device_id]
+        
+        self._state = float(data[self._field_name])
+
+        self._attrs.update({
+            ATTR_OBSERVED_TIME   : data['observed'],
+            ATTR_BATTERY_VOLTAGE : self._sensor_info['battery_voltage'] # FIXME: this is not updated once the 
+        })
+        LOG.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, data)
 
         # let Home Assistant know that SensorPush data for this entity has been updated
         self.async_schedule_update_ha_state()
-
-    def _update_state_from_field(self, field):
-        if field not in ['humidity', 'temperature']:
-            LOG.error(f"Update field {field} not supported")
-            return
-
-        latest_samples = hass.data[SENSORPUSH_SAMPLES]
-
-        self._state = float(json_response['temperature'])
-        self._attrs.update({
-            ATTR_BATTERY_VOLTAGE : json_response['battery_voltage'],
-            ATTR_OBSERVED        : json_response['observed']
-        })
-        LOG.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, json_response)

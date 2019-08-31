@@ -20,6 +20,7 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
             LOG.warn(f"Ignoring inactive SensorPush sensor '{sensor_info['name']}'")
             continue
 
+        LOG.info(f"Setting up SensorPush: {sensor_info}")
         hass_sensors.append(SensorPushTemperature(hass, sensor_info))
         hass_sensors.append(SensorPushHumidity(hass, sensor_info))
 

@@ -5,7 +5,7 @@
 
 ***NOT YET IMPLEMENTED***
 
-Home Assistant sensors for [SensorPush temperature and humidity/hygrometer sensors](https://www.amazon.com/SensorPush-Wireless-Thermometer-Hygrometer-Android/dp/B01AEQ9X9I?tag=rynoshark-20) for Home Assistant.
+Home Assistant integration for [SensorPush temperature and humidity/hygrometer sensors](https://www.amazon.com/SensorPush-Wireless-Thermometer-Hygrometer-Android/dp/B01AEQ9X9I?tag=rynoshark-20).
 
 ### Supported Sensors
 

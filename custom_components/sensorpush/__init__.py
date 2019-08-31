@@ -9,10 +9,9 @@ See also:
 
 """
 import logging
-import json
-import requests
+
 import time
-from threading import Thread, Lock
+import pysensorpush
 
 from homeassistant.helpers import discovery
 from homeassistant.helpers.entity import Entity
@@ -28,6 +27,8 @@ SENSORPUSH_USER_AGENT = 'Home Assistant (https://homeassistant.io/; https://gith
 SENSORPUSH_CACHE_EXPIRY=10
 
 SENSORPUSH_API = 'https://api.sensorpush.com/api/v1'
+
+MINIMUM_CACHE_TTL = 10
 
 UNIT_SYSTEMS = {
     'imperial': { 
@@ -85,19 +86,26 @@ class SensorPushService:
     """Client interface to the SensorPush service API"""
 
     def __init__(self, config):
-        self._auth_token = None
-        self._auth_token_expiry = 0
-        
         self._username = config[CONF_USERNAME]
         password = config[CONF_PASSWORD]
         self._sensorpush = PySensorPush(self._username, password)
 
-        self._units = UNIT_SYSTEMS['imperial']
+        self._units = UNIT_SYSTEMS['imperial'] # config[CONF_UNIT_SYSTEM]
 
-    # FIXME: cache the results (throttle to avoid DoS API)
+        # prevent DDoS of SensorPush service, cache results for N seconds
+        self._cache_ttl_seconds = 60           # config[CONF_CACHE_TTL]
+        self._last_updated = 0
+
     def get_devices(self):
-        devices = self._sensorpush.devices
+        # rarely accessed, so no need to cache
+        return self._sensorpush.devices
 
-    # FIXME: cache the results (throttle to avoid DoS API)
     def get_samples(self):
-        samples = self._sensorpush.samples
+        current_time = time.time()
+
+        # cache the results (throttle to avoid DoS API)
+        if self._last_updated < current_time - self._cache_ttl_seconds:
+            self._last_sample = self._sensorpush.samples
+            self._last_updated = time.time()
+
+        return self._last_sample

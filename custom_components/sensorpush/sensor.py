@@ -7,10 +7,7 @@ FUTURE:
 """
 import logging
 
-from homeassistant.const import ( TEMP_FAHRENHEIT, ATTR_TEMPERATURE )
-
-from . import SensorPushService, SensorPushEntity, SENSORPUSH_SERVICE, SIGNAL_UPDATE_SENSORPUSH
-
+from . import SensorPushService, SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES
 
 LOG = logging.getLogger(__name__)
 
@@ -20,9 +17,9 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
     sensorpush_service = hass.data[SENSORPUSH_SERVICE]
 
     hass_sensors = []
-    for sensor in sensorpush_service.sensors:
-        hass_sensors.append(SensorPushTemperature(service, sensor.device_id))
-        hass_sensors.append(SensorPushHumidity(service, sensor.device_id))
+    for sensor_info in sensorpush_service.sensors:
+        hass_sensors.append(SensorPushTemperature(sensor_info))
+        hass_sensors.append(SensorPushHumidity(sensor_info))
 
     # execute callback to add new entities
     add_entities_callback(hass_sensors)
@@ -31,46 +28,26 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
 class SensorPushHumidity(SensorPushEntity):
     """Humidity sensor for a SensorPush device"""
 
-    def __init__(self, sensorpush_service, device_id):
-        self._device_id = device_id
+    def __init__(self, sensor_info):
         self._name = 'SensorPush Humidity'
         self._state = 0.0
-        super().__init__(sensorpush_service)
+        super().__init__(sensor_info, 'humidity')
 
     @property
     def unit_of_measurement(self):
         """Relative Humidity (Rh)"""
         return 'Rh'
 
-    @property
-    def state(self):
-        """Humidity"""
-        return self._state
-
-    def update(self):
-        """Update sensor state"""
-        self._update_state_from_field('humidity')
-
 # pylint: disable=too-many-instance-attributes
 class SensorPushTemperature(SensorPushEntity):
     """Temperature sensor for a SensorPush device"""
 
-    def __init__(self, sensorpush_service, device_id):
-        self._device_id = device_id
+    def __init__(self, sensor_info):
         self._name = 'SensorPush Temperature'
         self._state = 0.0
-        super().__init__(sensorpush_service)
+        super().__init__(sensor_info, 'temperature')
 
     @property
     def unit_of_measurement(self):
         """Unit of measurement"""
         return '°F'
-
-    @property
-    def state(self):
-        """Temperature"""
-        return self._state
-
-    def update(self):
-        """Update sensor state"""
-        self._update_state_from_field('temperature')

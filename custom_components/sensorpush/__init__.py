@@ -23,7 +23,7 @@ from requests.exceptions import HTTPError, ConnectTimeout
 from homeassistant.core import callback
 from homeassistant.helpers import config_validation as cv, discovery
 from homeassistant.helpers.entity import Entity
-from homeassistant.helpers.dispatcher import dispatcher_send
+from homeassistant.helpers.dispatcher import dispatcher_send, async_dispatcher_connect
 from homeassistant.helpers.event import track_time_interval
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 #from homeassistant.components.sensor import ( PLATFORM_SCHEMA )
@@ -82,16 +82,12 @@ def setup(hass, config):
 
         # FIXME: log warning if no sensors found?
 
-        updater = SensorPushUpdater(config, sensorpush_service)
-
         # create sensors for all devices registered with SensorPush
-        registered_devices = sensorpush_service.devices
+#        registered_devices = sensorpush_service.devices
 #        for device in registered_devices.values():
 #            SensorPushTemperature
 
     # FIXME: do we ignore devices that are not "active"?  Or go ahead and create them as sensors (with empty data?)
-
-#        discovery.load_platform(hass, component, SENSORPUSH_DOMAIN, conf, device, updater)
 
     #{ 'active': True,
     #                             'address': 'EF:E1:D0:40:F8:37',
@@ -131,7 +127,7 @@ def setup(hass, config):
         hass.data[SENSORPUSH_SAMPLES] = self._sensorpush_service.samples
 
         # notify all listeners (sensor entities) that they may have new data
-        dispatcher_send(hass, SIGNAL_UPDATE_SENSORPUSH)
+        dispatcher_send(hass, SIGNAL_SENSORPUSH_UPDATED)
 
     # subscribe for notifications to trigger an update
     hass.services.register(SENSORPUSH_DOMAIN, 'update', refresh_sensorpush_data)
@@ -145,8 +141,9 @@ def setup(hass, config):
 class SensorPushEntity(Entity):
     """Base Entity class for SensorPush devices"""
 
-    def __init__(self, sensorpush_updater):
-        self._service_updater = sensorpush_updater
+    def __init__(self, sensor_info, field_name):
+        self._sensor_info = sensor_info
+        self._field_name = field_name
         self._attrs = {}
 
         if self._name is None:
@@ -162,21 +159,25 @@ class SensorPushEntity(Entity):
         return 'mdi:gauge'
 
     @property
+    def state(self):
+        return self._state
+
+    @property
     def device_state_attributes(self):
         """Return the device state attributes."""
         return self._attrs
 
     async def async_added_to_hass(self):
         """Register callbacks."""
-        # register for a callback when cached SensorPush data has been updated
+        # register callback when cached SensorPush data has been updated
         async_dispatcher_connect(self.hass, SIGNAL_SENSORPUSH_UPDATED, self._update_callback)
 
     @callback
     def _update_callback(self):
-         """Call update method."""
+        """Call update method."""
         self._update_state_from_field('temperature')
 
-        # let Home Assistant know that SensorPush datafor this entity has been updated
+        # let Home Assistant know that SensorPush data for this entity has been updated
         self.async_schedule_update_ha_state()
 
     def _update_state_from_field(self, field):
@@ -184,8 +185,7 @@ class SensorPushEntity(Entity):
             LOG.error(f"Update field {field} not supported")
             return
 
-        # json_response = self._sensorpush_service.update(self._device_id)
-        #temperature or humidity
+        latest_samples = hass.data[SENSORPUSH_SAMPLES]
 
         self._state = float(json_response['temperature'])
         self._attrs.update({

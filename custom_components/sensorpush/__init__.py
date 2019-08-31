@@ -1,16 +1,6 @@
 """
 SensorPush for Home Assistant
 See https://github.com/rsnodgrass/hass-sensorpush
-
-- battery_voltage
-- deviceId
-- id
-- address?
-- active?
-
-FIXME: "If the component fetches data that causes its related platform entities to update,
-you can notify them using the dispatcher code in homeassistant.helpers.dispatcher."
-
 """
 import logging
 
@@ -19,7 +9,7 @@ from datetime import timedelta
 import voluptuous as vol
 from requests.exceptions import HTTPError, ConnectTimeout
 
-import pysensorpush
+from pysensorpush import PySensorPush
 
 from homeassistant.core import callback
 from homeassistant.helpers import config_validation as cv, discovery

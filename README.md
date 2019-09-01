@@ -15,11 +15,11 @@ NOTE:
 
 If you have trouble with installation and configuration, visit the [SensorPush Home Assistant community discussion](https://community.home-assistant.io/t/sensorpush-humidity-and-temperature-sensors/105711).
 
-### Step 1: Install Custom Components
+#### Step 1: Install Custom Components
 
 Easiest is by setting up [Home Assistant Community Store (HACS)](https://github.com/custom-components/hacs) and then adding the "Integration" repository: *rsnodgrass/hass-sensorpush*. However you can also manually copy all the files in [custom_components/sensorpush/](https://github.com/rsnodgrass/hass-sensorpush/custom_components/sensorpush) directory to `/config/custom_components/sensorpush` on your Home Assistant installation.
 
-### Step 2: Configure SensorPush
+#### Step 2: Configure SensorPush
 
 Example configuration.yaml entry:
 
@@ -29,19 +29,22 @@ sensorpush:
   password: your_password
 ```
 
+## Hardware Requirements
+
+* [SensorPush Wireless Thermometer/Hygrometer - Humidity & Temperature Smart Sensor](https://www.amazon.com/SensorPush-Wireless-Thermometer-Hygrometer-Android/dp/B01AEQ9X9I?tag=rynoshark-20)
+* [SensorPush G1 WiFi Gateway](https://www.amazon.com/SensorPush-G1-WiFi-Gateway-Anywhere/dp/B01N17RWWV?tag=rynoshark-20)
+
 ## See Also
 
 * [Community support for Home Assistant SensorPush integration](https://community.home-assistant.io/t/sensorpush-humidity-and-temperature-sensors/105711)
 * [pysensorpush](https://github.com/rsnodgrass/pysensorpush) - Python interface to SensorPush cloud API
-
-#### Hardware
-
-* [SensorPush Wireless Thermometer/Hygrometer - Humidity & Temperature Smart Sensor](https://www.amazon.com/SensorPush-Wireless-Thermometer-Hygrometer-Android/dp/B01AEQ9X9I?tag=rynoshark-20)
-* [SensorPush G1 WiFi Gateway](https://www.amazon.com/SensorPush-G1-WiFi-Gateway-Anywhere/dp/B01N17RWWV?tag=rynoshark-20)
 * [SensorPush](https://sensorpush.com) (official product page)
 * [ReviewGeek's review of SensorPush](https://www.reviewgeek.com/3291/sensor-push-review-the-best-smart-hygrometer-and-thermometer-around/)
+
+## Known Issues
 
 ## Future Enhancements
 
 * support Celsius (in addition to Fahrenheit) when SensorPush exposes units via its APIs
+
 

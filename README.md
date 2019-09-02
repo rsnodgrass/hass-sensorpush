@@ -27,6 +27,9 @@ Example configuration.yaml entry:
 sensorpush:
   username: your@email.com
   password: your_password
+
+sensors:
+  - platform: sensorpush
 ```
 
 ## Hardware Requirements

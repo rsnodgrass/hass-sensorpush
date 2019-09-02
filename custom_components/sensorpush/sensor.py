@@ -7,6 +7,7 @@ FUTURE:
 import logging
 
 import voluptuous as vol
+from homeassistant.helpers import config_validation as cv
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 
 from . import ( SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES,

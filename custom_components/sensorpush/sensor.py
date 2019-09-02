@@ -21,7 +21,6 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
     if conf.get(CONF_UNIT_SYSTEM) == UNIT_SYSTEM_METRIC:
         unit_system = UNIT_SYSTEM_METRIC
 
-
     LOG.info(f"Setting up SensorPush sensors based on sensor_info: {hass.data[SENSORPUSH_SERVICE].sensors}")
 
     hass_sensors = []

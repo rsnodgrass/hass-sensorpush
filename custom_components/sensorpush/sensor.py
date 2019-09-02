@@ -6,6 +6,9 @@ FUTURE:
 """
 import logging
 
+import homeassistant.helpers.config_validation as cv # FIXME: remove...
+from homeassistant.helpers.entity import Entity # FIXME: remove...
+
 from . import ( SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES,
                 SENSORPUSH_DOMAIN, CONF_MAXIMUM_AGE,
                 CONF_UNIT_SYSTEM, UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS )
@@ -39,7 +42,7 @@ async def async_setup_platform(hass, config, async_add_entities_callback, discov
             LOG.warn(f"Ignoring inactive SensorPush sensor '{sensor_info['name']}'")
             continue
 
-        LOG.info(f"Setting up SensorPush sensors: {sensor_info}")
+        LOG.info(f"Instantiating SensorPush sensors: {sensor_info}")
         hass_sensors.append(SensorPushTemperature(hass, conf, sensor_info, unit_system))
         hass_sensors.append(SensorPushHumidity(hass, conf, sensor_info, unit_system))
 

@@ -9,15 +9,12 @@ from datetime import timedelta
 import voluptuous as vol
 from requests.exceptions import HTTPError, ConnectTimeout
 
-from pysensorpush import PySensorPush
-
 from homeassistant.core import callback
 from homeassistant.helpers import config_validation as cv, discovery
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.dispatcher import dispatcher_send, async_dispatcher_connect
 from homeassistant.helpers.event import track_time_interval
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
-#from homeassistant.components.sensor import ( PLATFORM_SCHEMA )
 
 LOG = logging.getLogger(__name__)
 
@@ -72,6 +69,8 @@ def setup(hass, config):
     password = conf.get(CONF_PASSWORD)
 
     try:
+        from pysensorpush import PySensorPush
+
         sensorpush_service = PySensorPush(username, password)
         #if not sensorpush_service.is_connected:
         #    return False

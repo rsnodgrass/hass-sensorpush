@@ -45,6 +45,7 @@ async def async_setup_platform(hass, config, async_add_entities_callback, discov
 
     hass_sensors = []
     for sensor_info in sensorpush_service.sensors:
+        LOG.info(f"SensorInfo: {sensor_info} -- {type(sensor_info)}")
 
         if sensor_info.get('active') == 'False': # FIXME
             LOG.warn(f"Ignoring inactive SensorPush sensor '{sensor_info.get('name')}")

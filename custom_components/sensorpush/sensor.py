@@ -19,7 +19,7 @@ async def async_setup_platform(hass, config, async_add_entities_callback, discov
 
     sensorpush_service = hass.data.get(SENSORPUSH_SERVICE)
     if not sensorpush_service:
-        log.INFO("NOT setting up SensorPush -- missing SENSORPUSH_SERVICE")
+        LOG.INFO("NOT setting up SensorPush -- missing SENSORPUSH_SERVICE")
         return
 
     conf = config[SENSORPUSH_DOMAIN]

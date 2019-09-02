@@ -158,7 +158,7 @@ class SensorPushEntity(Entity):
         all_sensors = latest_samples['sensors']
         data = all_sensors[self._device_id]
 
-        # FIXME: check observed time against config[CONF_MAXIMUM_AGE], ignoring stale entries
+        # FIXME: check data['observed'] time against config[CONF_MAXIMUM_AGE], ignoring stale entries
 
         self._state = float(data[self._field_name])
 
@@ -166,7 +166,7 @@ class SensorPushEntity(Entity):
             ATTR_OBSERVED_TIME   : data['observed'],
             ATTR_BATTERY_VOLTAGE : self._sensor_info['battery_voltage'] # FIXME: not updated except on restarts of Home Assistant
         })
-        LOG.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, data)
+        LOG.info(f"Updated {self._name} to {self._state} {self.unit_of_measurement} : {data}")
 
         # let Home Assistant know that SensorPush data for this entity has been updated
         self.async_schedule_update_ha_state()

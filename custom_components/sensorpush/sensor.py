@@ -7,10 +7,7 @@ FUTURE:
 import logging
 
 import voluptuous as vol
-
 from homeassistant.components.sensor import PLATFORM_SCHEMA
-import homeassistant.helpers.config_validation as cv # FIXME: remove...
-from homeassistant.helpers.entity import Entity # FIXME: remove...
 
 from . import ( SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES,
                 SENSORPUSH_DOMAIN, CONF_MAXIMUM_AGE,
@@ -36,11 +33,11 @@ async def async_setup_platform(hass, config, async_add_entities_callback, discov
         LOG.info("NOT setting up SensorPush -- missing SENSORPUSH_SERVICE")
         return
 
-    conf = config[SENSORPUSH_DOMAIN]
+#    conf = config[SENSORPUSH_DOMAIN]
 
     unit_system = UNIT_SYSTEM_IMPERIAL
-    if conf.get(CONF_UNIT_SYSTEM) == UNIT_SYSTEM_METRIC:
-        unit_system = UNIT_SYSTEM_METRIC
+#    if conf.get(CONF_UNIT_SYSTEM) == UNIT_SYSTEM_METRIC:
+#        unit_system = UNIT_SYSTEM_METRIC
 
     LOG.info(f"Setting up SensorPush sensors based on sensor_info: {sensorpush_service.sensors}")
 

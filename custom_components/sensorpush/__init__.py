@@ -80,8 +80,6 @@ def setup(hass, config):
         hass.data[SENSORPUSH_SERVICE] = sensorpush_service
         hass.data[SENSORPUSH_SAMPLES] = sensorpush_service.samples
 
-        LOG.info(f"SensorPush sensor_info: {hass.data[SENSORPUSH_SERVICE].sensors}")
-
     except (ConnectTimeout, HTTPError) as ex:
         LOG.error("Unable to connect to SensorPush: %s", str(ex))
         hass.components.persistent_notification.create(

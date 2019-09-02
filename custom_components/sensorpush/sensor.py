@@ -6,6 +6,9 @@ FUTURE:
 """
 import logging
 
+import voluptuous as vol
+
+from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv # FIXME: remove...
 from homeassistant.helpers.entity import Entity # FIXME: remove...
 
@@ -16,6 +19,12 @@ from . import ( SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES,
 LOG = logging.getLogger(__name__)
 
 DEPENDENCIES = ['sensorpush']
+
+PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
+    {
+        vol.Optional(CONF_UNIT_SYSTEM, default=UNIT_SYSTEM_IMPERIAL): cv.string
+    }
+)
 
 # pylint: disable=unused-argument
 async def async_setup_platform(hass, config, async_add_entities_callback, discovery_info=None):

@@ -12,6 +12,8 @@ from . import ( SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES,
 
 LOG = logging.getLogger(__name__)
 
+DEPENDENCIES = ['sensorpush']
+
 # pylint: disable=unused-argument
 async def async_setup_platform(hass, config, async_add_entities_callback, discovery_info=None):
 #def setup_platform(hass, config, add_entities_callback, discovery_info=None):
@@ -19,7 +21,7 @@ async def async_setup_platform(hass, config, async_add_entities_callback, discov
 
     sensorpush_service = hass.data.get(SENSORPUSH_SERVICE)
     if not sensorpush_service:
-        LOG.INFO("NOT setting up SensorPush -- missing SENSORPUSH_SERVICE")
+        LOG.info("NOT setting up SensorPush -- missing SENSORPUSH_SERVICE")
         return
 
     conf = config[SENSORPUSH_DOMAIN]

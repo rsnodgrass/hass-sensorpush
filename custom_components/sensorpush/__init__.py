@@ -34,13 +34,18 @@ ATTR_BATTERY_VOLTAGE = 'battery_voltage'
 ATTR_DEVICE_ID       = 'device_id'
 ATTR_OBSERVED_TIME   = 'observed_time'
 
+CONF_UNIT_SYSTEM = 'unit_system'
+
+UNIT_SYSTEM_IMPERIAL = 'imperial'
+UNIT_SYSTEM_METRIC = 'metric'
+
 UNIT_SYSTEMS = {
-    'imperial': { 
+    UNIT_SYSTEM_IMPERIAL: { 
         'system':   'imperial',
         'temp':     '°F',
         'humidity': 'Rh'
     },
-    'metric': { 
+    UNIT_SYSTEM_METRIC: { 
         'system':   'metric',
         'temp':     '°C',
         'humidity': 'Rh'
@@ -51,7 +56,8 @@ CONFIG_SCHEMA = vol.Schema({
         SENSORPUSH_DOMAIN: vol.Schema({
             vol.Required(CONF_USERNAME): cv.string,
             vol.Required(CONF_PASSWORD): cv.string,
-            vol.Optional(CONF_SCAN_INTERVAL, default=60): cv.positive_int
+            vol.Optional(CONF_SCAN_INTERVAL, default=60): cv.positive_int,
+            vol.Optional(CONF_UNIT_SYSTEM, default='imperial'): cv.string
         })
     }, extra=vol.ALLOW_EXTRA
 )

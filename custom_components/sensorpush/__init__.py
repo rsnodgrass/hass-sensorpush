@@ -35,6 +35,7 @@ ATTR_DEVICE_ID       = 'device_id'
 ATTR_OBSERVED_TIME   = 'observed_time'
 
 CONF_UNIT_SYSTEM = 'unit_system'
+CONF_MAXIMUM_AGE = 'maximum_age' # maximum age (in minutes) of observations before they expire
 
 UNIT_SYSTEM_IMPERIAL = 'imperial'
 UNIT_SYSTEM_METRIC = 'metric'
@@ -57,7 +58,8 @@ CONFIG_SCHEMA = vol.Schema({
             vol.Required(CONF_USERNAME): cv.string,
             vol.Required(CONF_PASSWORD): cv.string,
             vol.Optional(CONF_SCAN_INTERVAL, default=60): cv.positive_int,
-            vol.Optional(CONF_UNIT_SYSTEM, default='imperial'): cv.string
+            vol.Optional(CONF_UNIT_SYSTEM, default='imperial'): cv.string,
+            vol.Optional(CONF_MAXIMUM_AGE, default=30): cv.positive_int
         })
     }, extra=vol.ALLOW_EXTRA
 )
@@ -118,8 +120,9 @@ def setup(hass, config):
 class SensorPushEntity(Entity):
     """Base Entity class for SensorPush devices"""
 
-    def __init__(self, hass, sensor_info, field_name):
+    def __init__(self, hass, config, sensor_info, field_name):
         self._hass = hass
+        self._config = config
         self._sensor_info = sensor_info
         self._device_id = sensor_info['id']
         self._field_name = field_name
@@ -158,11 +161,13 @@ class SensorPushEntity(Entity):
         all_sensors = latest_samples['sensors']
         data = all_sensors[self._device_id]
 
+        # FIXME: check observed time against config[CONF_MAXIMUM_AGE], ignoring stale entries
+
         self._state = float(data[self._field_name])
 
         self._attrs.update({
             ATTR_OBSERVED_TIME   : data['observed'],
-            ATTR_BATTERY_VOLTAGE : self._sensor_info['battery_voltage'] # FIXME: this is not updated once the 
+            ATTR_BATTERY_VOLTAGE : self._sensor_info['battery_voltage'] # FIXME: not updated except on restarts of Home Assistant
         })
         LOG.info("Updated %s to %f %s : %s", self._name, self._state, self.unit_of_measurement, data)
 

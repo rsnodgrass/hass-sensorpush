@@ -13,8 +13,14 @@ from . import ( SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES,
 LOG = logging.getLogger(__name__)
 
 # pylint: disable=unused-argument
-def setup_platform(hass, config, add_entities_callback, discovery_info=None):
+async def async_setup_platform(hass, config, async_add_entities_callback, discovery_info=None):
+#def setup_platform(hass, config, add_entities_callback, discovery_info=None):
     """Setup the SensorPush sensor"""
+
+    sensorpush_service = hass.data.get(SENSORPUSH_SERVICE)
+    if not sensorpush_service:
+        log.INFO("NOT setting up SensorPush -- missing SENSORPUSH_SERVICE")
+        return
 
     conf = config[SENSORPUSH_DOMAIN]
 
@@ -22,10 +28,10 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
     if conf.get(CONF_UNIT_SYSTEM) == UNIT_SYSTEM_METRIC:
         unit_system = UNIT_SYSTEM_METRIC
 
-    LOG.info(f"Setting up SensorPush sensors based on sensor_info: {hass.data[SENSORPUSH_SERVICE].sensors}")
+    LOG.info(f"Setting up SensorPush sensors based on sensor_info: {sensorpush_service.sensors}")
 
     hass_sensors = []
-    for sensor_info in hass.data[SENSORPUSH_SERVICE].sensors:
+    for sensor_info in sensorpush_service.sensors:
 
         if sensor_info['active'] == 'False': # FIXME
             LOG.warn(f"Ignoring inactive SensorPush sensor '{sensor_info['name']}'")
@@ -36,7 +42,7 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
         hass_sensors.append(SensorPushHumidity(hass, conf, sensor_info, unit_system))
 
     # execute callback to add new entities
-    add_entities_callback(hass_sensors)
+    async_add_entities_callback(hass_sensors, True)
 
 # pylint: disable=too-many-instance-attributes
 class SensorPushHumidity(SensorPushEntity):

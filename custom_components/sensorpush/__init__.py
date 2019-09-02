@@ -77,8 +77,6 @@ def setup(hass, config):
         #    return False
         # FIXME: log warning if no sensors found?
 
-        # units = UNIT_SYSTEMS['imperial'] # config[CONF_UNIT_SYSTEM]
-
         # share reference to the service with other components/platforms running within HASS
         hass.data[SENSORPUSH_SERVICE] = sensorpush_service
         hass.data[SENSORPUSH_SAMPLES] = sensorpush_service.samples
@@ -115,7 +113,6 @@ def setup(hass, config):
     track_time_interval(hass, refresh_sensorpush_data, scan_interval)
 
     return True
-
 
 class SensorPushEntity(Entity):
     """Base Entity class for SensorPush devices"""

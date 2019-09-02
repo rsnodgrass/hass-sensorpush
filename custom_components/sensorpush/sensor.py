@@ -34,7 +34,8 @@ async def async_setup_platform(hass, config, async_add_entities_callback, discov
         LOG.info("NOT setting up SensorPush -- missing SENSORPUSH_SERVICE")
         return
 
-#    conf = config[SENSORPUSH_DOMAIN]
+#    conf = hass.config[SENSORPUSH_DOMAIN]
+    conf = None
 
     unit_system = UNIT_SYSTEM_IMPERIAL
 #    if conf.get(CONF_UNIT_SYSTEM) == UNIT_SYSTEM_METRIC:
@@ -45,8 +46,8 @@ async def async_setup_platform(hass, config, async_add_entities_callback, discov
     hass_sensors = []
     for sensor_info in sensorpush_service.sensors:
 
-        if sensor_info['active'] == 'False': # FIXME
-            LOG.warn(f"Ignoring inactive SensorPush sensor '{sensor_info['name']}'")
+        if sensor_info.get('active') == 'False': # FIXME
+            LOG.warn(f"Ignoring inactive SensorPush sensor '{sensor_info.get('name')}")
             continue
 
         LOG.info(f"Instantiating SensorPush sensors: {sensor_info}")
@@ -61,10 +62,9 @@ class SensorPushHumidity(SensorPushEntity):
     """Humidity sensor for a SensorPush device"""
 
     def __init__(self, hass, config, sensor_info, unit_system):
-        self._name = f"{sensor_info['name']} Humidity"
-        self._unit_system = unit_system
+        self._name = f"{sensor_info.get('name')} Humidity"
         self._state = 0.0
-        super().__init__(hass, config, sensor_info, 'humidity')
+        super().__init__(hass, config, sensor_info, unit_system, 'humidity')
 
     @property
     def unit_of_measurement(self):
@@ -76,12 +76,11 @@ class SensorPushTemperature(SensorPushEntity):
     """Temperature sensor for a SensorPush device"""
 
     def __init__(self, hass, config, sensor_info, unit_system):
-        self._name = f"{sensor_info['name']} Temperature"
-        self._unit_system = unit_system
+        self._name = f"{sensor_info.get('name')} Temperature"
         self._state = 0.0
-        super().__init__(hass, config, sensor_info, 'temperature')
+        super().__init__(hass, config, sensor_info, unit_system, 'temperature')
 
     @property
     def unit_of_measurement(self):
         """Temperature (Fahrenheit or Celsius)"""
-        return UNIT_SYSTEMS[self._unit_system]['temp']
+        return UNIT_SYSTEMS[self._unit_system]['temperature']

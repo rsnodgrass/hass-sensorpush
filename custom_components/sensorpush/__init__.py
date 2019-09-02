@@ -39,14 +39,14 @@ UNIT_SYSTEM_METRIC = 'metric'
 
 UNIT_SYSTEMS = {
     UNIT_SYSTEM_IMPERIAL: { 
-        'system':   'imperial',
-        'temp':     '°F',
-        'humidity': 'Rh'
+        'system':      'imperial',
+        'temperature': '°F',
+        'humidity':    'Rh'
     },
     UNIT_SYSTEM_METRIC: { 
-        'system':   'metric',
-        'temp':     '°C',
-        'humidity': 'Rh'
+        'system':      'metric',
+        'temperature': '°C',
+        'humidity':    'Rh'
     }
 }
 
@@ -114,16 +114,16 @@ def setup(hass, config):
 class SensorPushEntity(Entity):
     """Base Entity class for SensorPush devices"""
 
-    def __init__(self, hass, config, sensor_info, field_name):
+    def __init__(self, hass, config, sensor_info, unit_system, field_name):
         self._hass = hass
-        self._config = config
         self._sensor_info = sensor_info
-        self._device_id = sensor_info['id']
+        self._unit_system = unit_system
+        self._device_id = sensor_info.get('id')
         self._field_name = field_name
         self._attrs = {}
         
         if not self._name:
-            self._name = f"SensorPush {sensor_info['name']}"
+            self._name = f"SensorPush {sensor_info.get('name')}"
 
     @property
     def name(self):
@@ -161,7 +161,7 @@ class SensorPushEntity(Entity):
 
         self._attrs.update({
             ATTR_OBSERVED_TIME   : data['observed'],
-            ATTR_BATTERY_VOLTAGE : self._sensor_info['battery_voltage'] # FIXME: not updated except on restarts of Home Assistant
+            ATTR_BATTERY_VOLTAGE : self._sensor_info.get('battery_voltage') # FIXME: not updated except on restarts of Home Assistant
         })
         LOG.info(f"Updated {self._name} to {self._state} {self.unit_of_measurement} : {data}")
 

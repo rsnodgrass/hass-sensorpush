@@ -151,19 +151,21 @@ class SensorPushEntity(Entity):
     @callback
     def _update_callback(self):
         """Call update method."""
-        latest_samples = self._hass.data[SENSORPUSH_SAMPLES]
-        all_sensors = latest_samples['sensors']
+        samples = self._hass.data[SENSORPUSH_SAMPLES]
+        all_sensors = samples['sensors']
+        
         data = all_sensors[self._device_id]
+        latest_result = data[0]
 
         # FIXME: check data['observed'] time against config[CONF_MAXIMUM_AGE], ignoring stale entries
 
-        self._state = float(data.get(self._field_name))
-
+        self._state = float(latest_result.get(self._field_name))
         self._attrs.update({
-            ATTR_OBSERVED_TIME   : data['observed'],
+            ATTR_OBSERVED_TIME   : latest_result['observed'],
             ATTR_BATTERY_VOLTAGE : self._sensor_info.get('battery_voltage') # FIXME: not updated except on restarts of Home Assistant
         })
-        LOG.info(f"Updated {self._name} to {self._state} {self.unit_of_measurement} : {data}")
+
+        LOG.info(f"Updated {self._name} to {self._state} {self.unit_of_measurement} : {latest_result}")
 
         # let Home Assistant know that SensorPush data for this entity has been updated
         self.async_schedule_update_ha_state()

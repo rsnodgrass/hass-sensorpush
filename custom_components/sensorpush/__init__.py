@@ -152,10 +152,10 @@ class SensorPushEntity(Entity):
     def _update_callback(self):
         """Call update method."""
         samples = self._hass.data[SENSORPUSH_SAMPLES]
-        all_sensors = samples['sensors']
+        sensor_results = samples['sensors']
         
-        data = all_sensors[self._device_id]
-        latest_result = data[0]
+        sensor_data = sensor_results[self._device_id]
+        latest_result = sensor_data[0]
 
         # FIXME: check data['observed'] time against config[CONF_MAXIMUM_AGE], ignoring stale entries
 

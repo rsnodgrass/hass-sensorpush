@@ -15,11 +15,11 @@ NOTE:
 
 If you have trouble with installation and configuration, visit the [SensorPush Home Assistant community discussion](https://community.home-assistant.io/t/sensorpush-humidity-and-temperature-sensors/105711).
 
-#### Step 1: Install Custom Components
+### Step 1: Install Custom Components
 
 Easiest is by setting up [Home Assistant Community Store (HACS)](https://github.com/custom-components/hacs) and then adding the "Integration" repository: *rsnodgrass/hass-sensorpush*. However you can also manually copy all the files in [custom_components/sensorpush/](https://github.com/rsnodgrass/hass-sensorpush/custom_components/sensorpush) directory to `/config/custom_components/sensorpush` on your Home Assistant installation.
 
-#### Step 2: Configure SensorPush
+### Step 2: Configure SensorPush
 
 Example configuration.yaml entry:
 
@@ -30,6 +30,17 @@ sensorpush:
 
 sensors:
   - platform: sensorpush
+```
+
+#### Lovelace
+
+```yaml
+entities:
+  - entity: sensor.warehouse_humidity
+  - entity: sensor.warehouse_temperature
+show_header_toggle: false
+title: SensorPush
+type: entities
 ```
 
 ## Hardware Requirements

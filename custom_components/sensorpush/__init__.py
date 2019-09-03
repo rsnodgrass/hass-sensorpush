@@ -157,7 +157,7 @@ class SensorPushEntity(Entity):
 
         # FIXME: check data['observed'] time against config[CONF_MAXIMUM_AGE], ignoring stale entries
 
-        self._state = float(data[self._field_name])
+        self._state = float(data.get(self._field_name))
 
         self._attrs.update({
             ATTR_OBSERVED_TIME   : data['observed'],

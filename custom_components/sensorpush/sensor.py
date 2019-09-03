@@ -41,7 +41,7 @@ async def async_setup_platform(hass, config, async_add_entities_callback, discov
 #    if conf.get(CONF_UNIT_SYSTEM) == UNIT_SYSTEM_METRIC:
 #        unit_system = UNIT_SYSTEM_METRIC
 
-    LOG.info(f"Setting up SensorPush sensors based on sensor_info: {sensorpush_service.sensors}")
+    LOG.debug(f"Setting up SensorPush sensors: {sensorpush_service.sensors}")
 
     hass_sensors = []
     for sensor_info in sensorpush_service.sensors.values():
@@ -84,4 +84,4 @@ class SensorPushTemperature(SensorPushEntity):
     @property
     def unit_of_measurement(self):
         """Temperature (Fahrenheit or Celsius)"""
-        return UNIT_SYSTEMS[self._unit_system]['temperature']
+        return UNIT_SYSTEMS.get(self._unit_system).get('temperature')

@@ -41,12 +41,12 @@ UNIT_SYSTEMS = {
     UNIT_SYSTEM_IMPERIAL: { 
         'system':      'imperial',
         'temperature': '°F',
-        'humidity':    'Rh'
+        'humidity':    '%' # 'Rh'
     },
     UNIT_SYSTEM_METRIC: { 
         'system':      'metric',
         'temperature': '°C',
-        'humidity':    'Rh'
+        'humidity':    '%' # 'Rh'
     }
 }
 

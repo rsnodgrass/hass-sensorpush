@@ -68,6 +68,10 @@ class SensorPushHumidity(SensorPushEntity):
         super().__init__(hass, config, sensor_info, unit_system, 'humidity')
 
     @property
+    def icon(self):
+        return 'mdi:water-percent'
+
+    @property
     def unit_of_measurement(self):
         """Relative Humidity (Rh)"""
         return 'Rh'

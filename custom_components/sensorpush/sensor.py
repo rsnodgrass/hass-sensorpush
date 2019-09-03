@@ -73,8 +73,8 @@ class SensorPushHumidity(SensorPushEntity):
 
     @property
     def unit_of_measurement(self):
-        """Relative Humidity (Rh)"""
-        return 'Rh'
+        """Relative Humidity (Rh %)"""
+        return '%'
 
 # pylint: disable=too-many-instance-attributes
 class SensorPushTemperature(SensorPushEntity):

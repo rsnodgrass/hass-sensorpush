@@ -70,5 +70,7 @@ No plans to implement the following at this time:
 - [Jaalee Beacon IB004NPLUSSHT](https://fccid.io/2ABRO-IB004NPLUSSHT/Test-Report/Test-Report-3431944) (FCC Grantee 2ABRO)
 - [Saalee iB004N-Plus-SHT](https://www.dhgate.com/product/wireless-digital-bluetooth-sensor-beacon/451751881.html?skuid=568611302727536642)
 - [AnkhMaway iB004N-Plus-SHT LT](https://ankhmaway.en.alibaba.com/product/60602605562-806002398/Ble_Beacon_With_Temperature_and_Humidity_Sensor_Bluetooth_Programmable_iBeacon.html) / (https://www.beaconzone.co.uk/iB004NPLUSLight)
+- [BLW Eddystone iBeacon](https://www.alibaba.com/product-detail/BLE-Eddystone-iBeacon-Temperature-And-Humidity_60611834273.html?spm=a2700.details.maylikeexp.2.12f71911uMO9SV)
+- [iBeacon NRF51822](https://www.globalsources.com/si/AS/Shenzhen-AnkhMaway/6008840431707/pdtl/Apple-Certified-iBeacon-NRF51822-Low-Energy-Blueto/1100456449.htm)
 
 * allow fetching data directly from the sensor via Bluetooth (no cloud dependency required); may be required to integrate with above sensors

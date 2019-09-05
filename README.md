@@ -43,6 +43,50 @@ title: SensorPush
 type: entities
 ```
 
+More complex example using mini-graph-card and color thresholds:
+
+```yaml
+~cards:
+  - color_thresholds:
+      - color: '#00ff00'
+        value: 0
+      - color: '#abf645'
+        value: 30
+      - color: '#FFD500'
+        value: 50
+      - color: '#ff0000'
+        value: 60
+    decimals: 0
+    entities:
+      - entity: sensor.warehouse_office_humidity
+        name: Humidity
+    font_size: 75
+    hours_to_show: 12
+    line_color: blue
+    line_width: 8
+    points_per_hour: 2
+    show:
+      fill: true
+      icon: false
+    type: 'custom:mini-graph-card'
+  - color_thresholds:
+      - color: '#abf645'
+        value: 0
+    decimals: 0
+    entities:
+      - entity: sensor.warehouse_office_temperature
+        name: Temperature
+    font_size: 75
+    hours_to_show: 12
+    line_color: var(--accent-color)
+    line_width: 8
+    points_per_hour: 2
+    show:
+      icon: false
+    type: 'custom:mini-graph-card'
+type: horizontal-stack
+```
+
 ## Hardware Requirements
 
 * [SensorPush Wireless Thermometer/Hygrometer - Humidity & Temperature Smart Sensor](https://www.amazon.com/SensorPush-Wireless-Thermometer-Hygrometer-Android/dp/B01AEQ9X9I?tag=rynoshark-20)

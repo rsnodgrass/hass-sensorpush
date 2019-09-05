@@ -46,7 +46,7 @@ type: entities
 Lovelace gauge example:
 
 ```yaml
-entity: sensor.warehouse_office_humidity
+entity: sensor.warehouse_humidity
 max: 100
 min: 0
 name: Office
@@ -73,7 +73,7 @@ More complex example using mini-graph-card and color thresholds:
         value: 60
     decimals: 0
     entities:
-      - entity: sensor.warehouse_office_humidity
+      - entity: sensor.warehouse_humidity
         name: Humidity
     font_size: 75
     hours_to_show: 12
@@ -89,7 +89,7 @@ More complex example using mini-graph-card and color thresholds:
         value: 0
     decimals: 0
     entities:
-      - entity: sensor.warehouse_office_temperature
+      - entity: sensor.warehouse_temperature
         name: Temperature
     font_size: 75
     hours_to_show: 12

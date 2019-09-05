@@ -43,6 +43,21 @@ title: SensorPush
 type: entities
 ```
 
+Lovelace gauge example:
+
+```yaml
+entity: sensor.warehouse_office_humidity
+max: 100
+min: 0
+name: Office
+severity:
+  green: 45
+  red: 15
+  yellow: 25
+theme: Backend-selected
+type: gauge
+```
+
 More complex example using mini-graph-card and color thresholds:
 
 ```yaml

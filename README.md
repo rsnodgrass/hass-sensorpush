@@ -34,6 +34,8 @@ sensors:
 
 #### Lovelace
 
+![Lovelace Example](https://github.com/rsnodgrass/hass-sensorpush/blob/master/docs/sensorpush-entities.png?raw=true)
+
 ```yaml
 entities:
   - entity: sensor.warehouse_humidity
@@ -44,6 +46,8 @@ type: entities
 ```
 
 Lovelace gauge example:
+
+![Lovelace Example](https://github.com/rsnodgrass/hass-sensorpush/blob/master/docs/sensorpush-graph.png?raw=true)
 
 ```yaml
 entity: sensor.warehouse_humidity

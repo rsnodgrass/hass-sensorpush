@@ -1,5 +1,5 @@
 {
   "name": "SensorPush",
   "domains": ["sensor"],
-  "render_readme": True
+  "render_readme": true
 }

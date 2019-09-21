@@ -47,8 +47,6 @@ type: entities
 
 Lovelace gauge example:
 
-![Lovelace Example](https://github.com/rsnodgrass/hass-sensorpush/blob/master/docs/sensorpush-graph.png?raw=true)
-
 ```yaml
 entity: sensor.warehouse_humidity
 max: 100
@@ -64,8 +62,10 @@ type: gauge
 
 More complex example using mini-graph-card and color thresholds:
 
+![Lovelace Example](https://github.com/rsnodgrass/hass-sensorpush/blob/master/docs/sensorpush-graph.png?raw=true)
+
 ```yaml
-~cards:
+cards:
   - color_thresholds:
       - color: '#00ff00'
         value: 0

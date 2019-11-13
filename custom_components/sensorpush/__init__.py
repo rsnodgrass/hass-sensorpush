@@ -129,6 +129,9 @@ class SensorPushEntity(Entity):
         if not self._name:
             self._name = f"SensorPush {sensor_info.get('name')}"
 
+        # force state to be updated on creation
+        self._update_callback()
+
     @property
     def name(self):
         """Return the display name for this sensor"""

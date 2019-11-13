@@ -64,6 +64,7 @@ class SensorPushHumidity(SensorPushEntity):
 
     def __init__(self, hass, config, sensor_info, unit_system):
         self._name = f"{sensor_info.get('name')} Humidity"
+        self._state = 0.0
         super().__init__(hass, config, sensor_info, unit_system, 'humidity')
 
     @property
@@ -81,6 +82,7 @@ class SensorPushTemperature(SensorPushEntity):
 
     def __init__(self, hass, config, sensor_info, unit_system):
         self._name = f"{sensor_info.get('name')} Temperature"
+        self._state = 0.0
         super().__init__(hass, config, sensor_info, unit_system, 'temperature')
 
     @property

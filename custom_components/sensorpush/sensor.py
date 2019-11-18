@@ -52,8 +52,8 @@ async def async_setup_platform(hass, config, async_add_entities_callback, discov
             continue
 
         LOG.info(f"Instantiating SensorPush sensors: {sensor_info}")
-        hass_sensors.append(SensorPushTemperature(hass, conf, sensor_info, unit_system))
-        hass_sensors.append(SensorPushHumidity(hass, conf, sensor_info, unit_system))
+        hass_sensors.append( SensorPushTemperature(hass, conf, sensor_info, unit_system) )
+        hass_sensors.append( SensorPushHumidity(hass, conf, sensor_info, unit_system))
 
     # execute callback to add new entities
     async_add_entities_callback(hass_sensors, True)
@@ -63,9 +63,8 @@ class SensorPushHumidity(SensorPushEntity):
     """Humidity sensor for a SensorPush device"""
 
     def __init__(self, hass, config, sensor_info, unit_system):
-        self._name = f"{sensor_info.get('name')} Humidity"
-        self._state = 0.0
-        super().__init__(hass, config, sensor_info, unit_system, 'humidity')
+        self._state = ''
+        super().__init__(hass, config, 'Humidity', sensor_info, unit_system, 'humidity')
 
     @property
     def icon(self):
@@ -81,9 +80,8 @@ class SensorPushTemperature(SensorPushEntity):
     """Temperature sensor for a SensorPush device"""
 
     def __init__(self, hass, config, sensor_info, unit_system):
-        self._name = f"{sensor_info.get('name')} Temperature"
-        self._state = 0.0
-        super().__init__(hass, config, sensor_info, unit_system, 'temperature')
+        self._state = ''
+        super().__init__(hass, config, 'Temperature', sensor_info, unit_system, 'temperature')
 
     @property
     def unit_of_measurement(self):

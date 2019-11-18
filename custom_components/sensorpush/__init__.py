@@ -118,16 +118,14 @@ def setup(hass, config):
 class SensorPushEntity(Entity):
     """Base Entity class for SensorPush devices"""
 
-    def __init__(self, hass, config, sensor_info, unit_system, field_name):
+    def __init__(self, hass, config, name_suffix, sensor_info, unit_system, field_name):
         self._hass = hass
         self._sensor_info = sensor_info
         self._unit_system = unit_system
         self._device_id = sensor_info.get('id')
         self._field_name = field_name
         self._attrs = {}
-        
-        if not self._name:
-            self._name = f"SensorPush {sensor_info.get('name')}"
+        self._name = f"{sensor_info.get('name')} {name_suffix}}"
 
     @property
     def name(self):

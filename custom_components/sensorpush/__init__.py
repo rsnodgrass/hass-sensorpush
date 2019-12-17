@@ -125,7 +125,7 @@ class SensorPushEntity(Entity):
         self._device_id = sensor_info.get('id')
         self._field_name = field_name
         self._attrs = {}
-        self._name = f"{sensor_info.get('name')} {name_suffix}}"
+        self._name = f"{sensor_info.get('name')} {name_suffix}"
 
     @property
     def name(self):

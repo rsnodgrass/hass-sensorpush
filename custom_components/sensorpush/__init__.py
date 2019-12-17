@@ -167,7 +167,7 @@ class SensorPushEntity(Entity):
             ATTR_BATTERY_VOLTAGE : self._sensor_info.get('battery_voltage') # FIXME: not updated except on restarts of Home Assistant
         })
 
-        LOG.info(f"Updated {self._name} to {self._state} {self.unit_of_measurement} : {latest_result}")
+        LOG.debug(f"Updated {self._name} to {self._state} {self.unit_of_measurement} : {latest_result}")
 
         # let Home Assistant know that SensorPush data for this entity has been updated
         self.async_schedule_update_ha_state()

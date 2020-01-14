@@ -138,5 +138,6 @@ No plans to implement the following at this time:
 - [AnkhMaway iB004N-Plus-SHT LT](https://ankhmaway.en.alibaba.com/product/60602605562-806002398/Ble_Beacon_With_Temperature_and_Humidity_Sensor_Bluetooth_Programmable_iBeacon.html) / (https://www.beaconzone.co.uk/iB004NPLUSLight)
 - [BLW Eddystone iBeacon](https://www.alibaba.com/product-detail/BLE-Eddystone-iBeacon-Temperature-And-Humidity_60611834273.html?spm=a2700.details.maylikeexp.2.12f71911uMO9SV)
 - [iBeTag AKMW-iB004N-5](https://www.globalsources.com/si/AS/Shenzhen-AnkhMaway/6008840431707/pdtl/Apple-Certified-iBeacon-NRF51822-Low-Energy-Blueto/1100456449.htm)
+ [Mitsubishi Kumo Cloud temp/humidity sensor (PAC-USWHS003-TH-1)](https://www.ecomfort.com/Mitsubishi-PAC-USWHS003-TH-1/p81573.html?gclid=CjwKCAiA6vXwBRBKEiwAYE7iSxgq2RjFPeO1yAODQGvRlAAGtobvCq7w2Ay8R7yU9WY4CbK3jVnBxhoCjZ8QAvD_BwE)
 
 * allow fetching data directly from the sensor via Bluetooth (no cloud dependency required); may be required to integrate with above sensors

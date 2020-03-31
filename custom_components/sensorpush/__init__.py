@@ -14,6 +14,7 @@ from homeassistant.helpers import config_validation as cv, discovery
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.dispatcher import dispatcher_send, async_dispatcher_connect
 from homeassistant.helpers.event import track_time_interval
+from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 
 LOG = logging.getLogger(__name__)
@@ -115,7 +116,7 @@ def setup(hass, config):
 
     return True
 
-class SensorPushEntity(Entity):
+class SensorPushEntity(Entity, RestoreEntity):
     """Base Entity class for SensorPush devices"""
 
     def __init__(self, hass, config, name_suffix, sensor_info, unit_system, field_name):
@@ -145,11 +146,6 @@ class SensorPushEntity(Entity):
         """Return the device state attributes."""
         return self._attrs
 
-    async def async_added_to_hass(self):
-        """Register callbacks."""
-        # register callback when cached SensorPush data has been updated
-        async_dispatcher_connect(self.hass, SIGNAL_SENSORPUSH_UPDATED, self._update_callback)
-
     @callback
     def _update_callback(self):
         """Call update method."""
@@ -171,3 +167,31 @@ class SensorPushEntity(Entity):
 
         # let Home Assistant know that SensorPush data for this entity has been updated
         self.async_schedule_update_ha_state()
+
+    async def async_added_to_hass(self) -> None:
+        await super().async_added_to_hass()
+        
+        # register callback when cached SensorPush data has been updated
+        async_dispatcher_connect(self.hass, SIGNAL_SENSORPUSH_UPDATED, self._update_callback)
+
+        # on restart, attempt to restore previous state (see https://aarongodfrey.dev/programming/restoring-an-entity-in-home-assistant/)
+        state = await self.async_get_last_state()
+        if not state:
+            return
+        self._state = state.state
+        LOG.debug(f"Restored sensor {self._name} previous state {self._state}")
+
+        # restore any attributes
+        if ATTR_OBSERVED_TIME in state.attributes:
+            self._attrs = {
+                ATTR_OBSERVED_TIME: state.attributes[ATTR_OBSERVED_TIME],
+                ATTR_BATTERY_VOLTAGE: state.attribute[ATTR_BATTERY_VOLTAGE]
+            }
+
+        async_dispatcher_connect(
+            self._hass, DATA_UPDATED, self._schedule_immediate_update
+        )
+
+    @callback
+    def _schedule_immediate_update(self):
+        self.async_schedule_update_ha_state(True)

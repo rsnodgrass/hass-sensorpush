@@ -62,6 +62,8 @@ CONFIG_SCHEMA = vol.Schema({
     }, extra=vol.ALLOW_EXTRA
 )
 
+DATA_UPDATED = "sensorpush_data_updated"
+
 def setup(hass, config):
     """Initialize the SensorPush integration"""
     conf = config[SENSORPUSH_DOMAIN]

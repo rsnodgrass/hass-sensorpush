@@ -116,7 +116,7 @@ def setup(hass, config):
 
     return True
 
-class SensorPushEntity(Entity, RestoreEntity):
+class SensorPushEntity(RestoreEntity):
     """Base Entity class for SensorPush devices"""
 
     def __init__(self, hass, config, name_suffix, sensor_info, unit_system, field_name):

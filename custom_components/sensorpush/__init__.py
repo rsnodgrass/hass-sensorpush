@@ -187,7 +187,7 @@ class SensorPushEntity(RestoreEntity):
         if ATTR_OBSERVED_TIME in state.attributes:
             self._attrs = {
                 ATTR_OBSERVED_TIME: state.attributes[ATTR_OBSERVED_TIME],
-                ATTR_BATTERY_VOLTAGE: state.attribute[ATTR_BATTERY_VOLTAGE]
+                ATTR_BATTERY_VOLTAGE: state.attributes[ATTR_BATTERY_VOLTAGE]
             }
 
         async_dispatcher_connect(

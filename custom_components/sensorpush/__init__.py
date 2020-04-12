@@ -185,7 +185,7 @@ class SensorPushEntity(RestoreEntity):
         # restore any attributes
         for attribute in [ATTR_OBSERVED_TIME, ATTR_BATTERY_VOLTAGE]:
             if attribute in state.attributes:
-                self._attrs[attribute] = state.attributes[attributes]
+                self._attrs[attribute] = state.attributes[attribute]
 
         LOG.debug(f"Restored sensor {self._name} previous state {self._state}: {self._attrs}")
 

@@ -181,14 +181,13 @@ class SensorPushEntity(RestoreEntity):
         if not state:
             return
         self._state = state.state
-        LOG.debug(f"Restored sensor {self._name} previous state {self._state}")
 
         # restore any attributes
-        if ATTR_OBSERVED_TIME in state.attributes:
-            self._attrs = {
-                ATTR_OBSERVED_TIME: state.attributes[ATTR_OBSERVED_TIME],
-                ATTR_BATTERY_VOLTAGE: state.attributes[ATTR_BATTERY_VOLTAGE]
-            }
+        for attribute in [ATTR_OBSERVED_TIME, ATTR_BATTERY_VOLTAGE]:
+            if attribute in state.attributes:
+                self._attrs[attribute] = state.attributes[attributes]
+
+        LOG.debug(f"Restored sensor {self._name} previous state {self._state}: {self._attrs}")
 
         async_dispatcher_connect(
             self._hass, DATA_UPDATED, self._schedule_immediate_update

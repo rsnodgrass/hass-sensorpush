@@ -75,6 +75,10 @@ class SensorPushHumidity(SensorPushEntity):
         """Relative Humidity (Rh %)"""
         return '%'
 
+    @property
+    def unique_id(self):
+        return f"sensorpush_humidity_{self._device_id}"
+    
 # pylint: disable=too-many-instance-attributes
 class SensorPushTemperature(SensorPushEntity):
     """Temperature sensor for a SensorPush device"""
@@ -87,3 +91,7 @@ class SensorPushTemperature(SensorPushEntity):
     def unit_of_measurement(self):
         """Temperature (Fahrenheit or Celsius)"""
         return UNIT_SYSTEMS.get(self._unit_system).get('temperature')
+
+    @property
+    def unique_id(self):
+        return f"sensorpush_temp_{self._device_id}"

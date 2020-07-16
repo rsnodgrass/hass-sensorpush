@@ -119,6 +119,20 @@ cards:
 type: horizontal-stack
 ```
 
+#### Tracking Battery
+
+The battery level of sensors are attributes on each sensor, a separate sensor is not provided. However, if you wish to track battery levels, you can add a template sensor.
+
+```yaml
+sensor:
+  - platform: template
+    sensors:
+      fridge_sensor_battery_voltage:
+        friendly_name: 'Fridge SensorPush battery voltage'
+        unit_of_measurement: 'V'
+        value_template: '{{ state_attr("sensor.fridge_humidity", "battery_voltage") }}'
+```
+
 ## Hardware Requirements
 
 * [SensorPush Wireless Thermometer/Hygrometer - Humidity & Temperature Smart Sensor](https://www.amazon.com/SensorPush-Wireless-Thermometer-Hygrometer-Android/dp/B01AEQ9X9I?tag=rynoshark-20)

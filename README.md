@@ -41,7 +41,7 @@ sensorpush:
   username: your@email.com
   password: your_password
 
-sensors:
+sensor:
   - platform: sensorpush
 ```
 

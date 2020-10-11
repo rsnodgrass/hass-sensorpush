@@ -32,7 +32,11 @@ Note: Manual installation by direct download and copying is not supported, if yo
 The 'master' branch of this custom component is considered unstable, alpha quality and not guaranteed to work.
 Please make sure to use one of the official release branches when installing using HACS, see [what has changed in each version](https://github.com/rsnodgrass/hass-sensorpush/releases).
 
-### Step 2: Configure SensorPush
+### Step 2: Enable API Access
+
+If you've never accessed the [SensorPush Gateway account dashboard](https://beta.sensorpush.com) you must log in once and agree to the terms in order to allow the integration to access your SensorPush account. (If you've done this any time in the past, you may skip this step.) If you see errors in your log stating `[pysensorpush] Could not authenticate to SensorPush service with <your_email> and password`, and you've checked to ensure your credentials are correct, you probably need to do this.
+
+### Step 3: Configure SensorPush
 
 Example configuration.yaml entry:
 

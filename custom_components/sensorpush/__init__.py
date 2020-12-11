@@ -122,7 +122,7 @@ class SensorPushEntity(RestoreEntity):
     """Base Entity class for SensorPush devices"""
 
     def __init__(self, hass, config, name_suffix, sensor_info, unit_system, field_name):
-        self._hass = hass
+        self.hass = hass
         self._sensor_info = sensor_info
         self._unit_system = unit_system
         self._device_id = sensor_info.get('id')
@@ -151,7 +151,7 @@ class SensorPushEntity(RestoreEntity):
     @callback
     def _update_callback(self):
         """Call update method."""
-        samples = self._hass.data[SENSORPUSH_SAMPLES]
+        samples = self.hass.data[SENSORPUSH_SAMPLES]
         sensor_results = samples['sensors']
         
         sensor_data = sensor_results[self._device_id]
@@ -190,7 +190,7 @@ class SensorPushEntity(RestoreEntity):
         LOG.debug(f"Restored sensor {self._name} previous state {self._state}: {self._attrs}")
 
         async_dispatcher_connect(
-            self._hass, DATA_UPDATED, self._schedule_immediate_update
+            self.hass, DATA_UPDATED, self._schedule_immediate_update
         )
 
     @callback

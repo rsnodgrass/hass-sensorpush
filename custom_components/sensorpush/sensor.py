@@ -31,19 +31,19 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 
 # pylint: disable=unused-argument
 def setup_platform(hass, config, add_entities_callback, discovery_info=None):
-#def setup_platform(hass, config, add_entities_callback, discovery_info=None):
-    """Setup the SensorPush sensor"""
+    """Create all the SensorPush sensors"""
 
     sensorpush_service = hass.data.get(SENSORPUSH_SERVICE)
     if not sensorpush_service:
-        LOG.info("NOT setting up SensorPush -- missing SENSORPUSH_SERVICE")
+        LOG.info("NOT setting up SensorPush -- SENSORPUSH_SERVICE has not been initialized")
         return
 
-    conf = hass.config[SENSORPUSH_DOMAIN]
+    conf = config[SENSORPUSH_DOMAIN]
 
     unit_system = UNIT_SYSTEM_IMPERIAL
     if conf.get(CONF_UNIT_SYSTEM) == UNIT_SYSTEM_METRIC:
         unit_system = UNIT_SYSTEM_METRIC
+    LOG.info(f"Using unit system '{unit_system}'")
 
     hass_sensors = []
     for sensor_info in sensorpush_service.sensors.values():

@@ -38,7 +38,7 @@ CONFIG_SCHEMA = vol.Schema({
             vol.Required(CONF_PASSWORD): cv.string,
             vol.Optional(CONF_SCAN_INTERVAL, default=60): cv.positive_int,
             vol.Optional(CONF_UNIT_SYSTEM, default='imperial'): cv.string,
-            vol.Optional(CONF_MAXIMUM_AGE, default=30): cv.positive_int
+            vol.Optional(CONF_MAXIMUM_AGE, default=60): cv.positive_int
         })
     }, extra=vol.ALLOW_EXTRA
 )
@@ -135,12 +135,16 @@ class SensorPushEntity(RestoreEntity):
         
         sensor_data = sensor_results[self._device_id]
         latest_result = sensor_data[0]
+        observed_time = latest_result['observed']
 
         # FIXME: check data['observed'] time against config[CONF_MAXIMUM_AGE], ignoring stale entries
+#        age = now - observed_time
+#        if age > config[CONF_MAXIMUM_AGE]:
+#            LOG.warning(f"Sensor {self._device_id} is returning stale data {age} min old (warning at {} min)")
 
         self._state = float(latest_result.get(self._field_name))
         self._attrs.update({
-            ATTR_OBSERVED_TIME   : latest_result['observed'],
+            ATTR_OBSERVED_TIME   : observed_time,
             ATTR_BATTERY_VOLTAGE : self._sensor_info.get('battery_voltage') # FIXME: not updated except on restarts of Home Assistant
         })
 

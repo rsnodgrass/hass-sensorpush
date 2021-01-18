@@ -2,9 +2,12 @@ from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 SENSORPUSH_DOMAIN = 'sensorpush'
 
+ATTR_AGE             = 'age'
 ATTR_BATTERY_VOLTAGE = 'battery_voltage'
 ATTR_DEVICE_ID       = 'device_id'
 ATTR_OBSERVED_TIME   = 'observed_time'
+ATTR_LIMIT_MIN       = 'limit_min'
+ATTR_LIMIT_MAX       = 'limit_max'
 
 CONF_UNIT_SYSTEM = 'unit_system'
 CONF_MAXIMUM_AGE = 'maximum_age' # maximum age (in minutes) of observations before they expire

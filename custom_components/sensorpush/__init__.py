@@ -17,7 +17,7 @@ from homeassistant.helpers.event import track_time_interval
 from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 
-from .const import (ATTR_BATTERY_VOLTAGE, ATTR_DEVICE_ID, ATTR_OBSERVED_TIME,
+from .const import (ATTR_BATTERY_VOLTAGE, ATTR_DEVICE_ID, ATTR_OBSERVED_TIME, ATTR_AGE,
                     CONF_UNIT_SYSTEM, CONF_MAXIMUM_AGE, SENSORPUSH_DOMAIN,
                     UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS,
                     MEASURE_TEMP, MEASURE_HUMIDITY, MEASURE_DEWPOINT, MEASURE_BAROMETRIC_PRESSURE,
@@ -34,12 +34,15 @@ NOTIFICATION_TITLE = 'SensorPush'
 
 DATA_UPDATED = "sensorpush_data_updated"
 
+MIN_SCAN_INTERVAL_IN_SECONDS = 30
+
 CONFIG_SCHEMA = vol.Schema({
         SENSORPUSH_DOMAIN: vol.Schema({
             vol.Required(CONF_USERNAME): cv.string,
             vol.Required(CONF_PASSWORD): cv.string,
-            vol.Optional(CONF_SCAN_INTERVAL, default=60): cv.positive_int,
-            vol.Optional(CONF_UNIT_SYSTEM, default='imperial'): cv.string,
+            vol.Optional(CONF_SCAN_INTERVAL, default=60):
+                vol.All(vol.Coerce(int), vol.Range(min=MIN_SCAN_INTERVAL_IN_SECONDS)),
+            vol.Optional(CONF_UNIT_SYSTEM, default='imperial'): vol.In( UNIT_SYSTEMS.keys() ),
             vol.Optional(CONF_MAXIMUM_AGE, default=60): cv.positive_int
         })
     }, extra=vol.ALLOW_EXTRA
@@ -107,6 +110,7 @@ class SensorPushEntity(RestoreEntity):
         self._sensor_info = sensor_info
         self._unit_system = unit_system
         self._device_id = sensor_info.get('id')
+
         self._field_name = field_name
         self._attrs = {}
         self._name = f"{sensor_info.get('name')} {name_suffix}"
@@ -140,6 +144,7 @@ class SensorPushEntity(RestoreEntity):
         observed_time = latest_result['observed']
 
         # FIXME: check data['observed'] time against config[CONF_MAXIMUM_AGE], ignoring stale entries
+        age = 0
 #        age = now - observed_time
 #        if age > config[CONF_MAXIMUM_AGE]:
 #            LOG.warning(f"Sensor {self._device_id} is returning stale data {age} min old (warning at {} min)")
@@ -147,7 +152,8 @@ class SensorPushEntity(RestoreEntity):
         self._state = float(latest_result.get(self._field_name))
         self._attrs.update({
             ATTR_OBSERVED_TIME   : observed_time,
-            ATTR_BATTERY_VOLTAGE : self._sensor_info.get('battery_voltage') # FIXME: not updated except on restarts of Home Assistant
+            ATTR_AGE             : age,
+            ATTR_BATTERY_VOLTAGE : self._sensor_info.get(ATTR_BATTERY_VOLTAGE) # FIXME: not updated except on restarts of Home Assistant
         })
 
         LOG.debug(f"Updated {self._name} to {self._state} {self.unit_of_measurement} : {latest_result}")

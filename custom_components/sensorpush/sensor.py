@@ -62,22 +62,18 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
 class SensorPushMeasurement(SensorPushEntity):
     """Measurement sensor for a SensorPush device"""
     def __init__(self, hass, config, sensor_info, unit_system, measure):
-        self._measure = measure
-        self._unit_system = unit_system
-        self._name = MEASURES[self._measure]['name']
-        self._sensor_info = sensor_info
+        self._name = MEASURES[measure]['name']
         self._state = None
-
         super().__init__(hass, config, self._name, sensor_info, unit_system, measure)
 
     @property
     def icon(self):
-        return MEASURES[self._measure]['icon']
+        return MEASURES[self._field_name]['icon']
 
     @property
     def unit_of_measurement(self):
-        return UNIT_SYSTEMS[self._unit_system][self._measure]
+        return UNIT_SYSTEMS[self._unit_system][self._field_name]
 
     @property
     def unique_id(self):
-        return f"sensorpush_{self._measure}_{self._device_id}"
+        return f"sensorpush_{self._field_name}_{self._device_id}"

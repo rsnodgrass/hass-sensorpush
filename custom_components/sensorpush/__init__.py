@@ -18,6 +18,7 @@ from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 
 from .const import (ATTR_BATTERY_VOLTAGE, ATTR_DEVICE_ID, ATTR_OBSERVED_TIME, ATTR_AGE,
+                    ATTR_ALERT_MIN, ATTR_ALERT_MAX,
                     CONF_UNIT_SYSTEM, CONF_MAXIMUM_AGE, SENSORPUSH_DOMAIN,
                     UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS,
                     MEASURE_TEMP, MEASURE_HUMIDITY, MEASURE_DEWPOINT, MEASURE_BAROMETRIC_PRESSURE,
@@ -105,13 +106,13 @@ def setup(hass, config):
 class SensorPushEntity(RestoreEntity):
     """Base Entity class for SensorPush devices"""
 
-    def __init__(self, hass, config, name_suffix, sensor_info, unit_system, field_name):
+    def __init__(self, hass, config, name_suffix, sensor_info, unit_system, measure):
         self.hass = hass
         self._sensor_info = sensor_info
         self._unit_system = unit_system
         self._device_id = sensor_info.get('id')
 
-        self._field_name = field_name
+        self._field_name = measure
         self._attrs = {}
         self._name = f"{sensor_info.get('name')} {name_suffix}"
 
@@ -149,14 +150,24 @@ class SensorPushEntity(RestoreEntity):
 #        if age > config[CONF_MAXIMUM_AGE]:
 #            LOG.warning(f"Sensor {self._device_id} is returning stale data {age} min old (warning at {} min)")
 
+        # FIXME: Note that _sensor_info does not refresh except on restarts.  Need to
+        # add support for this to enable alert changes and voltage to be reflected.
+
         self._state = float(latest_result.get(self._field_name))
         self._attrs.update({
-            ATTR_OBSERVED_TIME   : observed_time,
             ATTR_AGE             : age,
-            ATTR_BATTERY_VOLTAGE : self._sensor_info.get(ATTR_BATTERY_VOLTAGE) # FIXME: not updated except on restarts of Home Assistant
+            ATTR_OBSERVED_TIME   : observed_time,
+            ATTR_BATTERY_VOLTAGE : self._sensor_info.get(ATTR_BATTERY_VOLTAGE)
         })
 
-        LOG.debug(f"Updated {self._name} to {self._state} {self.unit_of_measurement} : {latest_result}")
+        alerts = self._sensor_info.get("alerts").get(self._field_name)
+        if alerts.get("enabled") == "True":
+            self._attrs.update({
+                ATTR_ALERT_MIN: alerts.get("min"),
+                ATTR_ALERT_MAX: alerts.get("max")
+            })
+
+        LOG.info(f"Updated {self._name} to {self._state} {self.unit_of_measurement} : {latest_result}")
 
         # let Home Assistant know that SensorPush data for this entity has been updated
         self.async_schedule_update_ha_state()
@@ -173,10 +184,12 @@ class SensorPushEntity(RestoreEntity):
             return
         self._state = state.state
 
-        # restore any attributes
-        for attribute in [ATTR_OBSERVED_TIME, ATTR_BATTERY_VOLTAGE]:
+        # restore any attributes (FIXME: why not restore ALL attributes?)
+        for attribute in [ATTR_AGE, ATTR_OBSERVED_TIME, ATTR_BATTERY_VOLTAGE, ATTR_ALERT_MIN, ATTR_ALERT_MAX]:
             if attribute in state.attributes:
-                self._attrs[attribute] = state.attributes[attribute]
+                value = state.attributes.get(attribute)
+                if value:
+                    self._attrs[attribute] = value
 
         LOG.debug(f"Restored sensor {self._name} previous state {self._state}: {self._attrs}")
 

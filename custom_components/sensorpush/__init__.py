@@ -17,9 +17,11 @@ from homeassistant.helpers.event import track_time_interval
 from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 
-LOG = logging.getLogger(__name__)
+from .const import (ATTR_BATTERY_VOLTAGE, ATTR_DEVICE_ID, ATTR_OBSERVED_TIME,
+                    CONF_UNIT_SYSTEM, CONF_MAXIMUM_AGE, SENSORPUSH_DOMAIN,
+                    UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS)
 
-SENSORPUSH_DOMAIN = 'sensorpush'
+LOG = logging.getLogger(__name__)
 
 SENSORPUSH_SERVICE = 'sensorpush_service'
 SENSORPUSH_SAMPLES = 'sensorpush_samples'
@@ -28,28 +30,7 @@ SIGNAL_SENSORPUSH_UPDATED = 'sensorpush_updated'
 NOTIFICATION_ID = 'sensorpush_notification'
 NOTIFICATION_TITLE = 'SensorPush'
 
-ATTR_BATTERY_VOLTAGE = 'battery_voltage'
-ATTR_DEVICE_ID       = 'device_id'
-ATTR_OBSERVED_TIME   = 'observed_time'
-
-CONF_UNIT_SYSTEM = 'unit_system'
-CONF_MAXIMUM_AGE = 'maximum_age' # maximum age (in minutes) of observations before they expire
-
-UNIT_SYSTEM_IMPERIAL = 'imperial'
-UNIT_SYSTEM_METRIC = 'metric'
-
-UNIT_SYSTEMS = {
-    UNIT_SYSTEM_IMPERIAL: { 
-        'system':      'imperial',
-        'temperature': '°F',
-        'humidity':    '%' # 'Rh'
-    },
-    UNIT_SYSTEM_METRIC: { 
-        'system':      'metric',
-        'temperature': '°C',
-        'humidity':    '%' # 'Rh'
-    }
-}
+DATA_UPDATED = "sensorpush_data_updated"
 
 CONFIG_SCHEMA = vol.Schema({
         SENSORPUSH_DOMAIN: vol.Schema({
@@ -61,8 +42,6 @@ CONFIG_SCHEMA = vol.Schema({
         })
     }, extra=vol.ALLOW_EXTRA
 )
-
-DATA_UPDATED = "sensorpush_data_updated"
 
 def setup(hass, config):
     """Initialize the SensorPush integration"""

@@ -79,7 +79,6 @@ def setup(hass, config):
 
     def refresh_sensorpush_data(event_time):
         """Call SensorPush service to refresh latest data"""
-        LOG.debug("Updating data from SensorPush cloud API")
 
         # TODO: discovering new devices (and auto-configuring HASS sensors) is not supported
         #hass.data[SENSORPUSH_SERVICE].update(update_devices=True)
@@ -166,8 +165,6 @@ class SensorPushEntity(RestoreEntity):
                 ATTR_ALERT_MIN: alerts.get("min"),
                 ATTR_ALERT_MAX: alerts.get("max")
             })
-
-        LOG.info(f"Updated {self._name} to {self._state} {self.unit_of_measurement} : {latest_result}")
 
         # let Home Assistant know that SensorPush data for this entity has been updated
         self.async_schedule_update_ha_state()

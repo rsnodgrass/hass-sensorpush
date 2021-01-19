@@ -110,12 +110,13 @@ class SensorPushEntity(RestoreEntity):
 
     def __init__(self, hass, config, name_suffix, sensor_info, unit_system, measure):
         self.hass = hass
-        self._sensor_info = sensor_info
+
+        self._field_name = measure
         self._unit_system = unit_system
+        self._sensor_info = sensor_info
         self._max_age = 7 * 1440
         self._device_id = sensor_info.get('id')
 
-        self._field_name = measure
         self._attrs = {}
         self._name = f"{sensor_info.get('name')} {name_suffix}"
 
@@ -142,7 +143,7 @@ class SensorPushEntity(RestoreEntity):
         """Call update method."""
         samples = self.hass.data[SENSORPUSH_SAMPLES]
         sensor_results = samples['sensors']
-        
+
         sensor_data = sensor_results[self._device_id]
         latest_result = sensor_data[0]
         observed_time = latest_result['observed']
@@ -158,7 +159,7 @@ class SensorPushEntity(RestoreEntity):
 
         self._state = float(latest_result.get(self._field_name))
         self._attrs.update({
-            ATTR_AGE             : age,
+            ATTR_AGE             : age_in_minutes,
             ATTR_OBSERVED_TIME   : observed_time,
             ATTR_BATTERY_VOLTAGE : self._sensor_info.get(ATTR_BATTERY_VOLTAGE)
         })

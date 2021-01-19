@@ -5,9 +5,11 @@ See https://github.com/rsnodgrass/hass-sensorpush
 import logging
 
 import time
-from datetime import timedelta
 import voluptuous as vol
+from datetime import datetime, timedelta
 from requests.exceptions import HTTPError, ConnectTimeout
+
+from pysensorpush import PySensorPush
 
 from homeassistant.core import callback
 from homeassistant.helpers import config_validation as cv, discovery
@@ -18,11 +20,8 @@ from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 
 from .const import (ATTR_BATTERY_VOLTAGE, ATTR_DEVICE_ID, ATTR_OBSERVED_TIME, ATTR_AGE,
-                    ATTR_ALERT_MIN, ATTR_ALERT_MAX,
-                    CONF_UNIT_SYSTEM, CONF_MAXIMUM_AGE, SENSORPUSH_DOMAIN,
-                    UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS,
-                    MEASURE_TEMP, MEASURE_HUMIDITY, MEASURE_DEWPOINT, MEASURE_BAROMETRIC_PRESSURE,
-                    MEASURE_VPD, MEASURES)
+                    ATTR_ALERT_MIN, ATTR_ALERT_MAX, CONF_UNIT_SYSTEM, CONF_MAXIMUM_AGE,
+                    SENSORPUSH_DOMAIN, UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS)
 
 LOG = logging.getLogger(__name__)
 
@@ -43,7 +42,8 @@ CONFIG_SCHEMA = vol.Schema({
             vol.Required(CONF_PASSWORD): cv.string,
             vol.Optional(CONF_SCAN_INTERVAL, default=60):
                 vol.All(vol.Coerce(int), vol.Range(min=MIN_SCAN_INTERVAL_IN_SECONDS)),
-            vol.Optional(CONF_UNIT_SYSTEM, default='imperial'): vol.In( UNIT_SYSTEMS.keys() ),
+            vol.Optional(CONF_UNIT_SYSTEM, default=UNIT_SYSTEM_METRIC):
+                vol.In( UNIT_SYSTEMS.keys() ),
             vol.Optional(CONF_MAXIMUM_AGE, default=60): cv.positive_int
         })
     }, extra=vol.ALLOW_EXTRA
@@ -51,14 +51,17 @@ CONFIG_SCHEMA = vol.Schema({
 
 def setup(hass, config):
     """Initialize the SensorPush integration"""
+    hass.data[SENSORPUSH_DOMAIN] = {}
     conf = config[SENSORPUSH_DOMAIN]
 
+    unit_system = conf.get(CONF_UNIT_SYSTEM)
+    hass.data[SENSORPUSH_DOMAIN][CONF_UNIT_SYSTEM] = unit_system
+    LOG.info(f"Using unit system '{unit_system}'")
+    
     username = conf.get(CONF_USERNAME)
     password = conf.get(CONF_PASSWORD)
 
     try:
-        from pysensorpush import PySensorPush
-
         sensorpush_service = PySensorPush(username, password)
         #if not sensorpush_service.is_connected:
         #    return False
@@ -109,6 +112,7 @@ class SensorPushEntity(RestoreEntity):
         self.hass = hass
         self._sensor_info = sensor_info
         self._unit_system = unit_system
+        self._max_age = 7 * 1440
         self._device_id = sensor_info.get('id')
 
         self._field_name = measure
@@ -144,10 +148,10 @@ class SensorPushEntity(RestoreEntity):
         observed_time = latest_result['observed']
 
         # FIXME: check data['observed'] time against config[CONF_MAXIMUM_AGE], ignoring stale entries
-        age = 0
-#        age = now - observed_time
-#        if age > config[CONF_MAXIMUM_AGE]:
-#            LOG.warning(f"Sensor {self._device_id} is returning stale data {age} min old (warning at {} min)")
+        observed = datetime.isoparse(observed_time)
+        age_in_minutes = ( datetime.utcnow() - datetime.utcfromtimestamp(observed) ) / 60
+        if age_in_minutes > self._max_age:
+            LOG.warning(f"Stale data {self._device_id} detected ({age_in_minutes} min > {self._max_age} min)")
 
         # FIXME: Note that _sensor_info does not refresh except on restarts.  Need to
         # add support for this to enable alert changes and voltage to be reflected.

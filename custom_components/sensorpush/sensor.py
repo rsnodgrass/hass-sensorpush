@@ -12,11 +12,8 @@ from homeassistant.components.sensor import PLATFORM_SCHEMA
 
 from . import ( SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES)
 
-from .const import (CONF_UNIT_SYSTEM, UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS,
-                    CONF_MAXIMUM_AGE, SENSORPUSH_DOMAIN,
-                    UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS,
-                    MEASURE_TEMP, MEASURE_HUMIDITY, MEASURE_DEWPOINT, MEASURE_BAROMETRIC_PRESSURE,
-                    MEASURE_VPD, MEASURES)
+from .const import (SENSORPUSH_DOMAIN, CONF_UNIT_SYSTEM, MEASURES,
+                    UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS)
 
 LOG = logging.getLogger(__name__)
 
@@ -31,13 +28,7 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
         LOG.info("NOT setting up SensorPush -- SENSORPUSH_SERVICE has not been initialized")
         return
 
-    conf = config.get(SENSORPUSH_DOMAIN)
-    LOG.info(f"Config = {config}")
-
-    unit_system = UNIT_SYSTEM_IMPERIAL
-    if config.get(CONF_UNIT_SYSTEM) == UNIT_SYSTEM_METRIC:
-        unit_system = UNIT_SYSTEM_METRIC
-    LOG.info(f"Using unit system '{unit_system}'")
+    unit_system = hass.data[SENSORPUSH_DOMAIN][CONF_UNIT_SYSTEM]
 
     hass_sensors = []
     for sensor_info in sensorpush_service.sensors.values():
@@ -52,7 +43,7 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
         for measure in MEASURES:
             # only include measurements supported by this sensor
             if measure in supported_measurements:
-                sensor = SensorPushMeasurement(hass, conf, sensor_info, unit_system, measure)
+                sensor = SensorPushMeasurement(hass, config, sensor_info, unit_system, measure)
                 hass_sensors.append(sensor)
 
     # execute callback to add new entities

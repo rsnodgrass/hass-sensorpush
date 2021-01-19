@@ -148,7 +148,7 @@ class SensorPushEntity(RestoreEntity):
         observed_time = latest_result['observed']
 
         # FIXME: check data['observed'] time against config[CONF_MAXIMUM_AGE], ignoring stale entries
-        observed = datetime.isoparse(observed_time)
+        observed = datetime.fromisoformat(observed_time)
         age_in_minutes = ( datetime.utcnow() - datetime.utcfromtimestamp(observed) ) / 60
         if age_in_minutes > self._max_age:
             LOG.warning(f"Stale data {self._device_id} detected ({age_in_minutes} min > {self._max_age} min)")

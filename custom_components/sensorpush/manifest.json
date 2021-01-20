@@ -1,8 +1,9 @@
 {
-  "domain": "sensorpush",
-  "name": "SensorPush",
-  "documentation": "https://github.com/rsnodgrass/hass-sensorpush/",
-  "requirements": ["pysensorpush>=0.1.6"],
-  "dependencies": [],
-  "codeowners": ["@rsnodgrass"]
+    "domain": "sensorpush",
+    "name": "SensorPush",
+    "documentation": "https://github.com/rsnodgrass/hass-sensorpush/",
+    "issue_tracker": "https://github.com/rsnodgrass/hass-sensorpush/issues",
+    "requirements": ["pysensorpush>=0.1.6"],
+    "dependencies": [],
+    "codeowners": ["@rsnodgrass"]
 }

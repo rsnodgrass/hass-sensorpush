@@ -11,6 +11,7 @@ ATTR_DEVICE_ID       = 'device_id'
 ATTR_OBSERVED_TIME   = 'observed_time'
 ATTR_ALERT_MIN       = 'alert_min'
 ATTR_ALERT_MAX       = 'alert_max'
+ATTR_ALERT_ENABLED   = 'alert_enabled'
 
 CONF_UNIT_SYSTEM = 'unit_system'
 CONF_MAXIMUM_AGE = 'maximum_age' # maximum age (in minutes) of observations before they expire

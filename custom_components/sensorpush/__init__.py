@@ -21,6 +21,7 @@ from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 
 from .const import (ATTR_BATTERY_VOLTAGE, ATTR_DEVICE_ID, ATTR_OBSERVED_TIME, ATTR_AGE,
+                    ATTR_ATTRIBUTION, ATTRIBUTION,
                     ATTR_ALERT_MIN, ATTR_ALERT_MAX, CONF_UNIT_SYSTEM, CONF_MAXIMUM_AGE,
                     SENSORPUSH_DOMAIN, UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS)
 
@@ -163,7 +164,8 @@ class SensorPushEntity(RestoreEntity):
         self._attrs.update({
 #            ATTR_AGE             : age_in_minutes,
             ATTR_OBSERVED_TIME   : observed_time,
-            ATTR_BATTERY_VOLTAGE : self._sensor_info.get(ATTR_BATTERY_VOLTAGE)
+            ATTR_BATTERY_VOLTAGE : self._sensor_info.get(ATTR_BATTERY_VOLTAGE),
+            ATTR_ATTRIBUTION     : ATTRIBUTION,
         })
 
         alerts = self._sensor_info.get("alerts").get(self._field_name)

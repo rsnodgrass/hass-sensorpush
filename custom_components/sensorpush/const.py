@@ -2,6 +2,9 @@ from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 SENSORPUSH_DOMAIN = 'sensorpush'
 
+ATTRIBUTION="Data provided by SensorPush"
+ATTR_ATTRIBUTION="attribution"
+
 ATTR_AGE             = 'age'
 ATTR_BATTERY_VOLTAGE = 'battery_voltage'
 ATTR_DEVICE_ID       = 'device_id'

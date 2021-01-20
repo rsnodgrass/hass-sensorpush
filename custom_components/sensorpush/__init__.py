@@ -43,7 +43,7 @@ CONFIG_SCHEMA = vol.Schema({
             vol.Required(CONF_PASSWORD): cv.string,
             vol.Optional(CONF_SCAN_INTERVAL, default=60):
                 vol.All(vol.Coerce(int), vol.Range(min=MIN_SCAN_INTERVAL_IN_SECONDS)),
-            vol.Optional(CONF_UNIT_SYSTEM, default=UNIT_SYSTEM_METRIC):
+            vol.Optional(CONF_UNIT_SYSTEM, default=UNIT_SYSTEM_IMPERIAL):
                 vol.In( UNIT_SYSTEMS.keys() ),
             vol.Optional(CONF_MAXIMUM_AGE, default=60): cv.positive_int
         })

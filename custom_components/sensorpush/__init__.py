@@ -7,6 +7,7 @@ import logging
 import time
 import voluptuous as vol
 from datetime import datetime, timedelta
+import dateutil.parser
 from requests.exceptions import HTTPError, ConnectTimeout
 
 from pysensorpush import PySensorPush
@@ -149,17 +150,18 @@ class SensorPushEntity(RestoreEntity):
         observed_time = latest_result['observed']
 
         # FIXME: check data['observed'] time against config[CONF_MAXIMUM_AGE], ignoring stale entries
-        observed = datetime.fromisoformat(observed_time)
-        age_in_minutes = ( datetime.utcnow() - datetime.utcfromtimestamp(observed) ) / 60
-        if age_in_minutes > self._max_age:
-            LOG.warning(f"Stale data {self._device_id} detected ({age_in_minutes} min > {self._max_age} min)")
+#        observed = dateutil.parser.isoparse(observed_time)
+#        delta = datetime.now(datetime.timezone.utc) - datetime.fromtimestamp(observed, datetime.timezone.utc)
+#        age_in_minutes = delta.total_seconds() / 60
+#        if age_in_minutes > self._max_age:
+#            LOG.warning(f"Stale data {self._device_id} detected ({age_in_minutes} min > {self._max_age} min)")
 
         # FIXME: Note that _sensor_info does not refresh except on restarts.  Need to
         # add support for this to enable alert changes and voltage to be reflected.
 
         self._state = float(latest_result.get(self._field_name))
         self._attrs.update({
-            ATTR_AGE             : age_in_minutes,
+#            ATTR_AGE             : age_in_minutes,
             ATTR_OBSERVED_TIME   : observed_time,
             ATTR_BATTERY_VOLTAGE : self._sensor_info.get(ATTR_BATTERY_VOLTAGE)
         })

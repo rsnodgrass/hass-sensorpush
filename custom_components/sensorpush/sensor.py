@@ -58,10 +58,6 @@ class SensorPushMeasurement(SensorPushEntity):
         super().__init__(hass, config, self._name, sensor_info, unit_system, measure)
 
     @property
-    def icon(self):
-        return MEASURES[self._field_name]['icon']
-
-    @property
     def unit_of_measurement(self):
         return UNIT_SYSTEMS[self._unit_system][self._field_name]
 

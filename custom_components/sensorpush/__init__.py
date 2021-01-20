@@ -21,7 +21,7 @@ from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 
 from .const import (ATTR_BATTERY_VOLTAGE, ATTR_DEVICE_ID, ATTR_OBSERVED_TIME, ATTR_AGE,
-                    ATTR_ATTRIBUTION, ATTRIBUTION,
+                    ATTR_ATTRIBUTION, ATTRIBUTION, MEASURES,
                     ATTR_ALERT_MIN, ATTR_ALERT_MAX, CONF_UNIT_SYSTEM, CONF_MAXIMUM_AGE,
                     SENSORPUSH_DOMAIN, UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS)
 
@@ -129,7 +129,7 @@ class SensorPushEntity(RestoreEntity):
 
     @property
     def icon(self):
-        return 'mdi:gauge'
+        return MEASURES[self._field_name].get('icon') or 'mdi:gauge'
 
     @property
     def state(self):
@@ -169,11 +169,13 @@ class SensorPushEntity(RestoreEntity):
         })
 
         alerts = self._sensor_info.get("alerts").get(self._field_name)
-        if alerts.get("enabled") == "True":
+        if alerts.get("min"):
             self._attrs.update({
                 ATTR_ALERT_MIN: alerts.get("min"),
                 ATTR_ALERT_MAX: alerts.get("max")
             })
+
+#        LOG.info(f"{self._state} ... {self._attrs} ... {sensor_data} ... {self._sensor_info}")
 
         # let Home Assistant know that SensorPush data for this entity has been updated
         self.async_schedule_update_ha_state()

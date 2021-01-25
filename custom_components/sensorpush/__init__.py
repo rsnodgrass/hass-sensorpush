@@ -65,12 +65,12 @@ def setup(hass, config):
 
     try:
         sensorpush_service = PySensorPush(username, password)
+        hass.data[SENSORPUSH_SERVICE] = sensorpush_service
+
         #if not sensorpush_service.is_connected:
         #    return False
         # FIXME: log warning if no sensors found?
 
-        # share reference to the service with other components/platforms running within HASS
-        hass.data[SENSORPUSH_SERVICE] = sensorpush_service
         hass.data[SENSORPUSH_SAMPLES] = sensorpush_service.samples
 
     except (ConnectTimeout, HTTPError) as ex:
@@ -142,7 +142,6 @@ class SensorPushEntity(RestoreEntity):
 
     @callback
     def _update_callback(self):
-        """Call update method."""
         samples = self.hass.data[SENSORPUSH_SAMPLES]
         sensor_results = samples['sensors']
 
@@ -165,14 +164,24 @@ class SensorPushEntity(RestoreEntity):
 #            ATTR_AGE             : age_in_minutes,
             ATTR_OBSERVED_TIME   : observed_time,
             ATTR_BATTERY_VOLTAGE : self._sensor_info.get(ATTR_BATTERY_VOLTAGE),
-            ATTR_ATTRIBUTION     : ATTRIBUTION,
+            ATTR_ATTRIBUTION     : ATTRIBUTION
         })
 
         alerts = self._sensor_info.get("alerts").get(self._field_name)
         if alerts.get("min"):
+            alert_min = alerts.get("min")
+            alert_max = alerts.get("max")
+
+            # NOTE: The SensorPush API currently does not return units for the min/max
+            # alert settings and are always returned in Fahrenheit. If user has
+            # specified metric unit system convert to Celsius.
+            if UNIT_SYSTEM_METRIC == self.hass.data[SENSORPUSH_DOMAIN][CONF_UNIT_SYSTEM]:
+                alert_min = (alert_min - 32) / 1.8
+                alert_max = (alert_max - 32) / 1.8
+
             self._attrs.update({
-                ATTR_ALERT_MIN: alerts.get("min"),
-                ATTR_ALERT_MAX: alerts.get("max"),
+                ATTR_ALERT_MIN: alert_min,
+                ATTR_ALERT_MAX: alert_max,
                 ATTR_ALERT_ENABLED: alerts.get("enabled")
             })
 

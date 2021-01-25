@@ -153,7 +153,7 @@ sensor:
 
 ## Future Enhancements
 
-* support Celsius (in addition to Fahrenheit) when SensorPush exposes units via its APIs
+* merge this into the Home Assistant core (requires someone to contribute a config_flow)
 
 #### Out of Scope
 

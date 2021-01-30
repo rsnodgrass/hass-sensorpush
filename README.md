@@ -11,13 +11,13 @@ NOTE:
 
 * If you register a new physical sensor with SensorPush, you must restart Home Assistant to discover the new device(s).
 
-*  Ideally SensorPush sensors would be located within range of a [SensorPush G1 WiFi Gateway](https://www.amazon.com/SensorPush-G1-WiFi-Gateway-Anywhere/dp/B01N17RWWV?tag=rynoshark-20) for continously collecting and publishing data from the sensors to the SensorPush cloud. However, SensorPush sensors can also synchronize historical data over Bluetooth when nearby to an iOS or Android device with the SensorPush app).
+*  Ideally SensorPush sensors would be located within range of a [SensorPush G1 WiFi Gateway](https://www.amazon.com/SensorPush-G1-WiFi-Gateway-Anywhere/dp/B01N17RWWV?tag=rynoshark-20) for continuously collecting and publishing data from the sensors to the SensorPush cloud. However, SensorPush sensors can also synchronize historical data over Bluetooth when nearby an iOS or Android device with the SensorPush app).
 
 ## Support
 
 If you have trouble with installation and configuration, visit the [SensorPush Home Assistant community discussion](https://community.home-assistant.io/t/sensorpush-humidity-and-temperature-sensors/105711).
 
-This integration was developed to cover use cases for my home integration, which I wanted to contribute back to the community. Additional features beyond what has already been provided are the responsibility of the community to implement (unless trivial to add).
+This integration was developed to cover use cases for my home integration and released as a contribution to the community. Implementing new features beyond what exists is the responsibility of the community to contribute.
 
 ## Installation
 
@@ -25,16 +25,16 @@ This integration was developed to cover use cases for my home integration, which
 
 Mkae sure [Home Assistant Community Store (HACS)](https://github.com/custom-components/hacs) is installed,  then add the "Integration" repository: *rsnodgrass/hass-sensorpush*.
 
-Note: Manual installation by direct download and copying is not supported, if you have issues, please first try installing this integration with HACS.
+Note: Manual installation by direct download and copying is not supported. If you have issues, please first try installing this integration with HACS.
 
 #### Versions
 
-The 'master' branch of this custom component is considered unstable, alpha quality and not guaranteed to work.
+The 'master' branch of this custom component is considered unstable, alpha quality, and not guaranteed to work.
 Please make sure to use one of the official release branches when installing using HACS, see [what has changed in each version](https://github.com/rsnodgrass/hass-sensorpush/releases).
 
 ### Step 2: Enable API Access
 
-If you've never accessed the [SensorPush Gateway account dashboard](https://beta.sensorpush.com) you must log in once and agree to the terms in order to allow the integration to access your SensorPush account. (If you've done this any time in the past, you may skip this step.) If you see errors in your log stating `[pysensorpush] Could not authenticate to SensorPush service with <your_email> and password`, and you've checked to ensure your credentials are correct, you probably need to do this.
+If you've never accessed the [SensorPush Gateway account dashboard](https://beta.sensorpush.com) you must log in once and agree to the terms to allow the integration to access your SensorPush account. (If you've done this any time in the past, you may skip this step.) If you see errors in your log stating `[pysensorpush] Could not authenticate to SensorPush service with <your_email> and password`, and you've checked to ensure your credentials are correct, you probably need to do this.
 
 ### Step 3: Configure SensorPush
 

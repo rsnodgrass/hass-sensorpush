@@ -173,7 +173,7 @@ class SensorPushEntity(RestoreEntity):
             alert_max = alerts.get("max")
 
             # NOTE: The SensorPush API currently does not return units for the min/max
-            # alert settings and are always returned in Fahrenheit. If user has
+            # alert settings and always returns data in Fahrenheit. If user has
             # specified metric unit system convert to Celsius.
             if UNIT_SYSTEM_METRIC == self.hass.data[SENSORPUSH_DOMAIN][CONF_UNIT_SYSTEM]:
                 alert_min = (alert_min - 32) / 1.8

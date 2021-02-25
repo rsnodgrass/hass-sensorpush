@@ -4,6 +4,7 @@
     "documentation": "https://github.com/rsnodgrass/hass-sensorpush/",
     "issue_tracker": "https://github.com/rsnodgrass/hass-sensorpush/issues",
     "requirements": ["pysensorpush>=0.1.6"],
+    "version": "0.0.8",
     "dependencies": [],
     "codeowners": ["@rsnodgrass"]
 }

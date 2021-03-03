@@ -6,11 +6,11 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+Home Assistant integration for wireless SensorPush temperature and humidity/hygrometer sensors.
+
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=WREP29UDAMB6G)
 [![Buy Me A Coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://buymeacoffee.com/DYks67r)
 [🥈](https://www.home-assistant.io/docs/quality_scale/)
-
-Home Assistant integration for wireless SensorPush temperature and humidity/hygrometer sensors.
 
 ## Hardware Supported
 

@@ -29,9 +29,7 @@ This integration was developed to cover use cases for my home integration and re
 
 ### Step 1: Install Custom Components
 
-Mkae sure [Home Assistant Community Store (HACS)](https://github.com/custom-components/hacs) is installed,  then add the "Integration" repository: *rsnodgrass/hass-sensorpush*.
-
-Note: Manual installation by direct download and copying is not supported. If you have issues, please first try installing this integration with HACS.
+Make sure you have installed [Home Assistant Community Store (HACS)](https://github.com/custom-components/hacs), then add the "Integration" repository: *rsnodgrass/hass-sensorpush*.
 
 #### Versions
 
@@ -150,21 +148,16 @@ sensor:
 * [SensorPush](https://sensorpush.com) (official product page)
 * [ReviewGeek's review of SensorPush](https://www.reviewgeek.com/3291/sensor-push-review-the-best-smart-hygrometer-and-thermometer-around/)
 
-## Known Issues
+## Out of Scope
 
-## Feature NOT Supported
+No plans to implement the following at this time. However, community contributions to add these features would be greatly appreciated!
 
 - [applying calibration adjustments to individual sensors made within the SensorPush app](https://github.com/rsnodgrass/hass-sensorpush/issues/18)
+- poll data directly from sensors via Bluetooth (no cloud dependency required)
 
-## Future Enhancements
+#### Alternative Devices
 
-* merge this into the Home Assistant core (requires someone to contribute a config_flow)
-
-#### Out of Scope
-
-No plans to implement the following at this time:
-
-* determine if the following devices work with SensorPush (all were tested/approved the same day, with same internal designs), but these may require a custom firmware flash:
+The following hardware is not supported. These are just recorded here as these devices share the same internal design; were tested and approved on the same day; but likely require custom firmware flash to be able to communicate with SensorPush.
 
 - [Mitsubishi Kumo Cloud temp/humidity sensor (PAC-USWHS003-TH-1)](https://www.ecomfort.com/Mitsubishi-PAC-USWHS003-TH-1/p81573.html?gclid=CjwKCAiA6vXwBRBKEiwAYE7iSxgq2RjFPeO1yAODQGvRlAAGtobvCq7w2Ay8R7yU9WY4CbK3jVnBxhoCjZ8QAvD_BwE)
 - Oasis OH-31 HT Tracker (FCC Grantee [2AL92](https://fccid.io/2AL92-OH31/Test-Report/Test-Report-3428874), ID: 2AL92-OH31) like the SensorPush (FCC Grantee 2AL9W and [2AL9X HT1](https://fccid.io/2AL9X-HT1/Test-Report/Test-Report-3433404))
@@ -174,5 +167,3 @@ No plans to implement the following at this time:
 - [AnkhMaway iB004N-Plus-SHT LT](https://ankhmaway.en.alibaba.com/product/60602605562-806002398/Ble_Beacon_With_Temperature_and_Humidity_Sensor_Bluetooth_Programmable_iBeacon.html) / (https://www.beaconzone.co.uk/iB004NPLUSLight)
 - [BLW Eddystone iBeacon](https://www.alibaba.com/product-detail/BLE-Eddystone-iBeacon-Temperature-And-Humidity_60611834273.html?spm=a2700.details.maylikeexp.2.12f71911uMO9SV)
 - [iBeTag AKMW-iB004N-5](https://www.globalsources.com/si/AS/Shenzhen-AnkhMaway/6008840431707/pdtl/Apple-Certified-iBeacon-NRF51822-Low-Energy-Blueto/1100456449.htm)
-
-* allow fetching data directly from the sensor via Bluetooth (no cloud dependency required); may be required to integrate with above sensors

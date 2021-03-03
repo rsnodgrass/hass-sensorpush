@@ -16,6 +16,7 @@ NOTE:
 ## Hardware Supported
 
 | Model                             | Temp | Humidity | Presure | Dewpoint | VPD | Battery Life | Range     | Water Resistant | 
+| --------------------------------- |:----:|:--------:|:-------:|:--------:|:---:|:------------:|:---------:|:-:|
 | [HT.w](https://amzn.to/3kHq02j)   |   X  |     X    |         |     X    |  X  |      2 years | 100m/325' | X |
 | [HTP.xw](https://amzn.to/2MH4gXx) |   X  |     X    |    X    |     X    |  X  |      2 years | 100m/325' | X |
 | [HT1](https://amzn.to/3b9GWLB)    |   X  |     X    |         |     X    |  X  |       1 year | 100m/325' |   |

@@ -13,6 +13,15 @@ NOTE:
 
 *  Ideally SensorPush sensors would be located within range of a [SensorPush G1 WiFi Gateway](https://www.amazon.com/SensorPush-G1-WiFi-Gateway-Anywhere/dp/B01N17RWWV?tag=rynoshark-20) for continuously collecting and publishing data from the sensors to the SensorPush cloud. However, SensorPush sensors can also synchronize historical data over Bluetooth when nearby an iOS or Android device with the SensorPush app).
 
+## Hardware Supported
+
+| Model | Temp | Humidity | Presure | Dewpoint | VPD | Battery Life | Range | Water Resistant | 
+| [HT.w](https://www.amazon.com/SensorPush-HT-w-Thermometer-Hygrometer-Water-Resistant/dp/B08PKWPKM2?tag=rynoshark-20) | X | X | | X | X | 2 years | 100m/325' | X |
+| [HTP.xw](https://www.amazon.com/SensorPush-HTP-xw-Thermometer-Hygrometer-Water-Resistant/dp/B08PKVRJJX?tag=rynoshark-20) | X | X | | X | X | 2 years | 100m/325' | X |
+| [HT1](https://www.amazon.com/SensorPush-Wireless-Thermometer-Hygrometer-Android/dp/B01AEQ9X9I?tag=rynoshark-20) | X | X | | X | X | 1 year | 100m/325' | |
+
+For constant updates of sensor data, adding the [SensorPush G1 WiFi Gateway](https://www.amazon.com/SensorPush-G1-WiFi-Gateway-Anywhere/dp/B01N17RWWV?tag=rynoshark-20) is required to continually stream data from the sensors to SensorPush's cloud service
+
 ## Support
 
 If you have trouble with installation and configuration, visit the [SensorPush Home Assistant community discussion](https://community.home-assistant.io/t/sensorpush-humidity-and-temperature-sensors/105711).
@@ -150,6 +159,10 @@ sensor:
 * [ReviewGeek's review of SensorPush](https://www.reviewgeek.com/3291/sensor-push-review-the-best-smart-hygrometer-and-thermometer-around/)
 
 ## Known Issues
+
+## Feature NOT Supported
+
+- [applying calibration adjustments to individual sensors made within the SensorPush app](https://github.com/rsnodgrass/hass-sensorpush/issues/18)
 
 ## Future Enhancements
 

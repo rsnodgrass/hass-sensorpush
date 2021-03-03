@@ -42,7 +42,7 @@ Please make sure to use one of the official release branches when installing usi
 
 ### Step 2: Enable API Access
 
-If you've never accessed the [SensorPush Gateway account dashboard](https://beta.sensorpush.com) you must log in once and agree to the terms to allow the integration to access your SensorPush account. (If you've done this any time in the past, you may skip this step.) If you see errors in your log stating `[pysensorpush] Could not authenticate to SensorPush service with <your_email> and password`, and you've checked to ensure your credentials are correct, you probably need to do this.
+If you've never accessed the [SensorPush Gateway account dashboard](https://beta.sensorpush.com) you must sign in once to agree to Sensorpush terms before this integration can access data in your SensorPush account. (If you've done this any time in the past, you may skip this step.) If you see errors in your log stating `[pysensorpush] Could not authenticate to SensorPush service with <your_email> and password`, and you've checked to ensure your credentials are correct, you probably need to do this.
 
 ### Step 3: Configure SensorPush
 

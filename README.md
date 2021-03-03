@@ -5,13 +5,7 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 ![beta_badge](https://img.shields.io/badge/maturity-Beta-yellow.png)
 
-Home Assistant integration for [SensorPush temperature and humidity/hygrometer sensors](https://www.amazon.com/SensorPush-Wireless-Thermometer-Hygrometer-Android/dp/B01AEQ9X9I?tag=rynoshark-20).
-
-NOTE:
-
-* If you register a new physical sensor with SensorPush, you must restart Home Assistant to discover the new device(s).
-
-*  Ideally SensorPush sensors would be located within range of a [SensorPush G1 WiFi Gateway](https://www.amazon.com/SensorPush-G1-WiFi-Gateway-Anywhere/dp/B01N17RWWV?tag=rynoshark-20) for continuously collecting and publishing data from the sensors to the SensorPush cloud. However, SensorPush sensors can also synchronize historical data over Bluetooth when nearby an iOS or Android device with the SensorPush app).
+Home Assistant integration for wireless SensorPush temperature and humidity/hygrometer sensors.
 
 ## Hardware Supported
 
@@ -21,7 +15,9 @@ NOTE:
 | [HTP.xw](https://amzn.to/2MH4gXx) |   X  |     X    |    X    |     X    |  X  |     X      | 2 years | 100m/325' |
 | [HT1](https://amzn.to/3b9GWLB)    |   X  |     X    |         |     X    |  X  |            | 1 year | 100m/325' |
 
-NOTE: For constant updates of sensor data without opening the iOS or Android app to synchronize data, the [SensorPush G1 WiFi Gateway](https://amzn.to/30b4ycg) is required to continually stream data from the sensors to SensorPush's cloud service
+1. For constant updates of sensor data without opening the iOS or Android app to synchronize data, the [SensorPush G1 WiFi Gateway](https://amzn.to/30b4ycg) is required to continually stream data from the sensors to SensorPush's cloud service However, SensorPush sensors can also synchronize historical data over Bluetooth when nearby an iOS or Android device with the SensorPush app).
+
+2. If you register a new physical sensor with SensorPush, you must restart Home Assistant to discover the new device(s).
 
 ## Support
 

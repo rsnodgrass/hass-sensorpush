@@ -25,7 +25,7 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
 
     sensorpush_service = hass.data.get(SENSORPUSH_SERVICE)
     if not sensorpush_service:
-        LOG.info("NOT setting up SensorPush -- SENSORPUSH_SERVICE has not been initialized")
+        LOG.error("NOT setting up SensorPush -- SENSORPUSH_SERVICE has not been initialized")
         return
 
     unit_system = hass.data[SENSORPUSH_DOMAIN][CONF_UNIT_SYSTEM]

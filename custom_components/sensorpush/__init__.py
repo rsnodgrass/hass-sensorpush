@@ -73,6 +73,9 @@ def setup(hass, config):
 
         hass.data[SENSORPUSH_SAMPLES] = sensorpush_service.samples
 
+        # FIXME: trigger automatic setup of sensors
+        
+
     except (ConnectTimeout, HTTPError) as ex:
         LOG.error("Unable to connect to SensorPush: %s", str(ex))
         hass.components.persistent_notification.create(

@@ -159,6 +159,7 @@ No plans to implement the following at this time. However, community contributio
 
 - [applying calibration adjustments to individual sensors made within the SensorPush app](https://github.com/rsnodgrass/hass-sensorpush/issues/18)
 - poll data directly from sensors via Bluetooth (no cloud dependency required)
+- supporting multiple SensorPush accounts within a single Home Assistance instance
 
 #### Alternative Devices
 

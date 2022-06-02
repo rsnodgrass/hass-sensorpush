@@ -9,8 +9,6 @@
 
 Home Assistant integration for wireless SensorPush temperature and humidity/hygrometer sensors.
 
-[![coffee](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://buymeacoffee.com/DYks67r)
-
 ## Hardware Supported
 
 | Model                             | Temp | Humidity | Presure | Dewpoint | VPD | Waterproof | Battery Life | Range     |

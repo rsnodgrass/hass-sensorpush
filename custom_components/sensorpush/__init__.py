@@ -91,14 +91,17 @@ def setup(hass, config):
         #hass.data[SENSORPUSH_SERVICE].update(update_devices=True)
 
         # retrieve the latest samples from the SensorPush cloud service
-        latest_samples = hass.data[SENSORPUSH_SERVICE].samples()
-        if latest_samples:
-            hass.data[SENSORPUSH_SAMPLES] = latest_samples
+        try:
+            latest_samples = hass.data[SENSORPUSH_SERVICE].samples()
+            if latest_samples:
+                hass.data[SENSORPUSH_SAMPLES] = latest_samples
 
-            # notify all listeners (sensor entities) that they may have new data
-            dispatcher_send(hass, SIGNAL_SENSORPUSH_UPDATED)
-        else:
-            LOG.warn("Unable to fetch latest samples from SensorPush cloud")
+                # notify all listeners (sensor entities) that they may have new data
+                dispatcher_send(hass, SIGNAL_SENSORPUSH_UPDATED)
+            else:
+                LOG.warn("Unable to fetch latest samples from SensorPush cloud")
+        except Exception as ex:	
+            LOG.warn(f"Unable to fetch latest samples from SensorPush cloud. Error: {ex}")
 
     # subscribe for notifications that an update should be triggered
     hass.services.register(SENSORPUSH_DOMAIN, 'update', refresh_sensorpush_data)

@@ -9,6 +9,7 @@ import logging
 import voluptuous as vol
 from homeassistant.helpers import config_validation as cv
 from homeassistant.components.sensor import PLATFORM_SCHEMA
+from homeassistant.components.sensor import SensorEntity
 
 from . import ( SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES)
 
@@ -50,7 +51,7 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
     add_entities_callback(hass_sensors, True)
 
 # pylint: disable=too-many-instance-attributes
-class SensorPushMeasurement(SensorPushEntity):
+class SensorPushMeasurement(SensorPushEntity, SensorEntity):
     """Measurement sensor for a SensorPush device"""
     def __init__(self, hass, config, sensor_info, unit_system, measure):
         self._name = MEASURES[measure]['name']

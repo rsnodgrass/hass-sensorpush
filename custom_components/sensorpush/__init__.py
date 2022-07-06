@@ -71,10 +71,9 @@ def setup(hass, config):
         #    return False
         # FIXME: log warning if no sensors found?
 
-        hass.data[SENSORPUSH_SAMPLES] = sensorpush_service.samples
+        hass.data[SENSORPUSH_SAMPLES] = sensorpush_service.samples()
 
         # FIXME: trigger automatic setup of sensors
-        
 
     except (ConnectTimeout, HTTPError) as ex:
         LOG.error("Unable to connect to SensorPush: %s", str(ex))
@@ -92,7 +91,7 @@ def setup(hass, config):
         #hass.data[SENSORPUSH_SERVICE].update(update_devices=True)
 
         # retrieve the latest samples from the SensorPush cloud service
-        latest_samples = hass.data[SENSORPUSH_SERVICE].samples
+        latest_samples = hass.data[SENSORPUSH_SERVICE].samples()
         if latest_samples:
             hass.data[SENSORPUSH_SAMPLES] = latest_samples
 
@@ -146,7 +145,7 @@ class SensorPushEntity(RestoreEntity):
     @callback
     def _update_callback(self):
         samples = self.hass.data[SENSORPUSH_SAMPLES]
-        sensor_results = samples['sensors']
+        sensor_results = samples.get('sensors')
 
         sensor_data = sensor_results[self._device_id]
         latest_result = sensor_data[0]

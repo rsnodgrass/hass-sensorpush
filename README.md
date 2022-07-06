@@ -4,12 +4,10 @@
 ![beta_badge](https://img.shields.io/badge/maturity-Beta-yellow.png)
 ![release_badge](https://img.shields.io/github/v/release/rsnodgrass/hass-sensorpush.svg)
 ![release_date](https://img.shields.io/github/release-date/rsnodgrass/hass-sensorpush.svg)
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Home Assistant integration for wireless SensorPush temperature and humidity/hygrometer sensors.
-
-[![coffee](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://buymeacoffee.com/DYks67r)
 
 ## Hardware Supported
 

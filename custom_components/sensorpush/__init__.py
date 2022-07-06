@@ -194,24 +194,9 @@ class SensorPushEntity(RestoreEntity):
 
     async def async_added_to_hass(self) -> None:
         await super().async_added_to_hass()
-        
+
         # register callback when cached SensorPush data has been updated
         async_dispatcher_connect(self.hass, SIGNAL_SENSORPUSH_UPDATED, self._update_callback)
-
-        # on restart, attempt to restore previous state (see https://aarongodfrey.dev/programming/restoring-an-entity-in-home-assistant/)
-        state = await self.async_get_last_state()
-        if not state:
-            return
-        self._state = state.state
-
-        # restore any attributes (FIXME: why not restore ALL attributes?)
-        for attribute in [ATTR_AGE, ATTR_OBSERVED_TIME, ATTR_BATTERY_VOLTAGE, ATTR_ALERT_MIN, ATTR_ALERT_MAX]:
-            if attribute in state.attributes:
-                value = state.attributes.get(attribute)
-                if value:
-                    self._attrs[attribute] = value
-
-        LOG.debug(f"Restored sensor {self._name} previous state {self._state}: {self._attrs}")
 
         async_dispatcher_connect(
             self.hass, DATA_UPDATED, self._schedule_immediate_update

@@ -21,9 +21,9 @@ from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.const import CONF_NAME, CONF_USERNAME, CONF_PASSWORD, CONF_SCAN_INTERVAL
 
 from .const import (ATTR_BATTERY_VOLTAGE, ATTR_DEVICE_ID, ATTR_OBSERVED_TIME, ATTR_AGE,
-                    ATTR_ATTRIBUTION, ATTRIBUTION, MEASURES, CONF_UNIT_SYSTEM, CONF_MAXIMUM_AGE,
+                    ATTR_ATTRIBUTION, ATTRIBUTION, MEASURES, CONF_MAXIMUM_AGE,
                     ATTR_ALERT_MIN, ATTR_ALERT_MAX, ATTR_ALERT_ENABLED,
-                    SENSORPUSH_DOMAIN, UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS)
+                    SENSORPUSH_DOMAIN, UNIT_SYSTEMS)
 
 LOG = logging.getLogger(__name__)
 
@@ -44,8 +44,6 @@ CONFIG_SCHEMA = vol.Schema({
             vol.Required(CONF_PASSWORD): cv.string,
             vol.Optional(CONF_SCAN_INTERVAL, default=60):
                 vol.All(vol.Coerce(int), vol.Range(min=MIN_SCAN_INTERVAL_IN_SECONDS)),
-            vol.Optional(CONF_UNIT_SYSTEM, default=UNIT_SYSTEM_IMPERIAL):
-                vol.In( UNIT_SYSTEMS.keys() ),
             vol.Optional(CONF_MAXIMUM_AGE, default=60): cv.positive_int
         })
     }, extra=vol.ALLOW_EXTRA
@@ -56,10 +54,6 @@ def setup(hass, config):
     hass.data[SENSORPUSH_DOMAIN] = {}
     conf = config[SENSORPUSH_DOMAIN]
 
-    unit_system = conf.get(CONF_UNIT_SYSTEM)
-    hass.data[SENSORPUSH_DOMAIN][CONF_UNIT_SYSTEM] = unit_system
-    LOG.info(f"Using unit system '{unit_system}'")
-    
     username = conf.get(CONF_USERNAME)
     password = conf.get(CONF_PASSWORD)
 
@@ -100,7 +94,7 @@ def setup(hass, config):
                 dispatcher_send(hass, SIGNAL_SENSORPUSH_UPDATED)
             else:
                 LOG.warn("Unable to fetch latest samples from SensorPush cloud")
-        except Exception as ex:	
+        except Exception as ex:
             LOG.warn(f"Unable to fetch latest samples from SensorPush cloud. Error: {ex}")
 
     # subscribe for notifications that an update should be triggered
@@ -115,11 +109,10 @@ def setup(hass, config):
 class SensorPushEntity(RestoreEntity):
     """Base Entity class for SensorPush devices"""
 
-    def __init__(self, hass, config, name_suffix, sensor_info, unit_system, measure):
+    def __init__(self, hass, config, name_suffix, sensor_info, measure):
         self.hass = hass
 
         self._field_name = measure
-        self._unit_system = unit_system
         self._sensor_info = sensor_info
         self._max_age = 7 * 1440
         self._device_id = sensor_info.get('id')
@@ -137,7 +130,15 @@ class SensorPushEntity(RestoreEntity):
         return MEASURES[self._field_name].get('icon') or 'mdi:gauge'
 
     @property
-    def state(self):
+    def device_class(self):
+        return self._field_name
+
+    @property
+    def native_unit_of_measurement(self):
+        return UNIT_SYSTEMS[self._field_name]
+
+    @property
+    def native_value(self):
         return self._state
 
     @property
@@ -176,13 +177,6 @@ class SensorPushEntity(RestoreEntity):
         if alerts.get("min"):
             alert_min = alerts.get("min")
             alert_max = alerts.get("max")
-
-            # NOTE: The SensorPush API currently does not return units for the min/max
-            # alert settings and always returns data in Fahrenheit. If user has
-            # specified metric unit system convert to Celsius.
-            if UNIT_SYSTEM_METRIC == self.hass.data[SENSORPUSH_DOMAIN][CONF_UNIT_SYSTEM]:
-                alert_min = (alert_min - 32) / 1.8
-                alert_max = (alert_max - 32) / 1.8
 
             self._attrs.update({
                 ATTR_ALERT_MIN: alert_min,

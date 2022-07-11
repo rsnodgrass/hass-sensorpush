@@ -13,8 +13,7 @@ from homeassistant.components.sensor import SensorEntity
 
 from . import ( SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES)
 
-from .const import (SENSORPUSH_DOMAIN, CONF_UNIT_SYSTEM, MEASURES,
-                    UNIT_SYSTEM_IMPERIAL, UNIT_SYSTEM_METRIC, UNIT_SYSTEMS)
+from .const import (SENSORPUSH_DOMAIN, MEASURES, UNIT_SYSTEMS)
 
 LOG = logging.getLogger(__name__)
 
@@ -29,8 +28,6 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
         LOG.error("NOT setting up SensorPush -- SENSORPUSH_SERVICE has not been initialized")
         return
 
-    unit_system = hass.data[SENSORPUSH_DOMAIN][CONF_UNIT_SYSTEM]
-
     hass_sensors = []
     for sensor_info in sensorpush_service.sensors.values():
         LOG.info(f"SensorInfo: {sensor_info} -- {type(sensor_info)}")
@@ -44,7 +41,7 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
         for measure in MEASURES:
             # only include measurements supported by this sensor
             if measure in supported_measurements:
-                sensor = SensorPushMeasurement(hass, config, sensor_info, unit_system, measure)
+                sensor = SensorPushMeasurement(hass, config, sensor_info, measure)
                 hass_sensors.append(sensor)
 
     # execute callback to add new entities
@@ -53,14 +50,10 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
 # pylint: disable=too-many-instance-attributes
 class SensorPushMeasurement(SensorPushEntity, SensorEntity):
     """Measurement sensor for a SensorPush device"""
-    def __init__(self, hass, config, sensor_info, unit_system, measure):
+    def __init__(self, hass, config, sensor_info, measure):
         self._name = MEASURES[measure]['name']
         self._state = None
-        super().__init__(hass, config, self._name, sensor_info, unit_system, measure)
-
-    @property
-    def unit_of_measurement(self):
-        return UNIT_SYSTEMS[self._unit_system][self._field_name]
+        super().__init__(hass, config, self._name, sensor_info, measure)
 
     @property
     def unique_id(self):

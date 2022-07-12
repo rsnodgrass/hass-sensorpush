@@ -4,7 +4,7 @@
     "documentation": "https://github.com/rsnodgrass/hass-sensorpush/",
     "issue_tracker": "https://github.com/rsnodgrass/hass-sensorpush/issues",
     "requirements": ["pysensorpush>=0.1.7"],
-    "version": "0.1.2",
+    "version": "0.1.4",
     "dependencies": [],
     "codeowners": ["@rsnodgrass"],
     "iot_class": "cloud_polling"

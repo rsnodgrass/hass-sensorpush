@@ -1,5 +1,3 @@
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
-
 SENSORPUSH_DOMAIN = 'sensorpush'
 
 ATTRIBUTION="Data by SensorPush"
@@ -13,7 +11,6 @@ ATTR_ALERT_MIN       = 'alert_min'
 ATTR_ALERT_MAX       = 'alert_max'
 ATTR_ALERT_ENABLED   = 'alert_enabled'
 
-CONF_UNIT_SYSTEM = 'unit_system'
 CONF_MAXIMUM_AGE = 'maximum_age' # maximum age (in minutes) of observations before they expire
 
 MEASURE_TEMP = "temperature"
@@ -49,25 +46,11 @@ MEASURES = {
     }
 }
 
-UNIT_SYSTEM_IMPERIAL = 'imperial'
-UNIT_SYSTEM_METRIC = 'metric'
-
 UNIT_SYSTEMS = {
-    UNIT_SYSTEM_IMPERIAL: { 
-        'system': 'imperial',
-        MEASURE_BAROMETRIC_PRESSURE: 'inHg',
-        MEASURE_DEWPOINT: TEMP_FAHRENHEIT,
-        MEASURE_HUMIDITY: '%', # 'Rh'
-        MEASURE_TEMP: TEMP_FAHRENHEIT,
-        MEASURE_VPD: 'kPa'
-    },
-
-    UNIT_SYSTEM_METRIC: { 
-        'system': 'metric',
-        MEASURE_BAROMETRIC_PRESSURE: 'mbar',
-        MEASURE_DEWPOINT: TEMP_CELSIUS, # FIXME: icon mdi:temperature-celsius
-        MEASURE_HUMIDITY: '%', # 'Rh'
-        MEASURE_TEMP: TEMP_CELSIUS,
-        MEASURE_VPD: 'kPa'
-    }
+    'system': 'imperial',
+    MEASURE_BAROMETRIC_PRESSURE: 'inHg',
+    MEASURE_DEWPOINT: '°F',
+    MEASURE_HUMIDITY: '%', # 'Rh'
+    MEASURE_TEMP: '°F',
+    MEASURE_VPD: 'kPa'
 }

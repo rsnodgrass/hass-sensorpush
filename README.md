@@ -9,6 +9,10 @@
 
 Home Assistant integration for wireless SensorPush temperature and humidity/hygrometer sensors.
 
+## NATIVE HOME ASSISTANT SUPPORT
+
+As of the Home Assistant 2022.08 release [SensorPush](https://rc.home-assistant.io/integrations/sensorpush) sensors are natively supported WITHOUT require a gateway! 
+
 ## Hardware Supported
 
 | Model                             | Temp | Humidity | Presure | Dewpoint | VPD | Waterproof | Battery Life | Range     |

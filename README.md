@@ -15,11 +15,11 @@ As of the Home Assistant 2022.08 release [SensorPush](https://rc.home-assistant.
 
 ## Hardware Supported
 
-| Model                             | Temp | Humidity | Presure | Dewpoint | VPD | Waterproof | Battery Life | Range     |
-| --------------------------------- |:----:|:--------:|:-------:|:--------:|:---:|:----------:|:------------:|:---------:|
-| [HT.w](https://amzn.to/3kHq02j)   |   X  |     X    |         |     X    |  X  |     X      | 2 years | 100m/325' |
-| [HTP.xw](https://amzn.to/2MH4gXx) |   X  |     X    |    X    |     X    |  X  |     X      | 2 years | 100m/325' |
-| [HT1](https://amzn.to/3b9GWLB)    |   X  |     X    |         |     X    |  X  |            | 1 year | 100m/325' |
+| Model                             | Temp | Humidity | Pressure | Dewpoint | VPD |
+| --------------------------------- |:----:|:--------:|:--------:|:--------:|:---:|
+| [HT.w](https://amzn.to/3kHq02j)   |   X  |     X    |          |     X    |  X  |
+| [HTP.xw](https://amzn.to/2MH4gXx) |   X  |     X    |    X     |     X    |  X  |
+| [HT1](https://amzn.to/3b9GWLB)    |   X  |     X    |          |     X    |  X  |
 
 1. For constant updates of sensor data without opening the iOS or Android app to synchronize data, the [SensorPush G1 WiFi Gateway](https://amzn.to/30b4ycg) is required to continually stream data from the sensors to SensorPush's cloud service However, SensorPush sensors can also synchronize historical data over Bluetooth when nearby an iOS or Android device with the SensorPush app).
 

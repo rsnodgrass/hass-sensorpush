@@ -13,7 +13,7 @@ from homeassistant.components.sensor import SensorEntity
 
 from . import ( SensorPushEntity, SENSORPUSH_SERVICE, SENSORPUSH_SAMPLES)
 
-from .const import (SENSORPUSH_DOMAIN, MEASURES, UNIT_SYSTEMS)
+from .const import (SENSORPUSH_DOMAIN, MEASURES, UNIT_SYSTEMS, MEASURE_BAROMETRIC_PRESSURE)
 
 LOG = logging.getLogger(__name__)
 
@@ -40,7 +40,7 @@ def setup_platform(hass, config, add_entities_callback, discovery_info=None):
         LOG.info(f"Instantiating SensorPush sensors: {sensor_info}")
         for measure in MEASURES:
             # only include measurements supported by this sensor
-            if measure in supported_measurements:
+            if sensor_info.get('type') == 'HTP.xw' or measure != MEASURE_BAROMETRIC_PRESSURE:
                 sensor = SensorPushMeasurement(hass, config, sensor_info, measure)
                 hass_sensors.append(sensor)
 

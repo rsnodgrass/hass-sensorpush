@@ -11,6 +11,7 @@ import dateutil.parser
 from requests.exceptions import HTTPError, ConnectTimeout
 
 from pysensorpush import PySensorPush
+from pysensorpush.const import QUERY_SAMPLES_ENDPOINT as qURL
 
 from homeassistant.core import callback
 from homeassistant.helpers import config_validation as cv, discovery
@@ -49,6 +50,8 @@ CONFIG_SCHEMA = vol.Schema({
     }, extra=vol.ALLOW_EXTRA
 )
 
+qxParams = { 'limit': 1, 'measures': ['temperature', 'humidity', 'vpd', 'dewpoint', 'barometric_pressure'] }
+
 def setup(hass, config):
     """Initialize the SensorPush integration"""
     hass.data[SENSORPUSH_DOMAIN] = {}
@@ -65,7 +68,7 @@ def setup(hass, config):
         #    return False
         # FIXME: log warning if no sensors found?
 
-        hass.data[SENSORPUSH_SAMPLES] = sensorpush_service.samples()
+        hass.data[SENSORPUSH_SAMPLES] = sensorpush_service.query(url=qURL, extra_params=qxParams)
 
         # FIXME: trigger automatic setup of sensors
 
@@ -86,7 +89,7 @@ def setup(hass, config):
 
         # retrieve the latest samples from the SensorPush cloud service
         try:
-            latest_samples = hass.data[SENSORPUSH_SERVICE].samples()
+            latest_samples = hass.data[SENSORPUSH_SERVICE].query(url=qURL, extra_params=qxParams)
             if latest_samples:
                 hass.data[SENSORPUSH_SAMPLES] = latest_samples
 

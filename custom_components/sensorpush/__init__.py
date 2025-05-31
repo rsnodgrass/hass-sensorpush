@@ -205,18 +205,15 @@ class SensorPushEntity(RestoreEntity):
             }
         )
 
-        alerts = self._sensor_info.get('alerts').get(self._field_name)
-        if alerts.get('min'):
-            alert_min = alerts.get('min')
-            alert_max = alerts.get('max')
+        if alerts := self._sensor_info.get('alerts').get(self._field_name):
+            if alert_min := alerts.get('min'):
+                alert_max = alerts.get('max')
 
-            self._attrs.update(
-                {
+                self._attrs.update({
                     ATTR_ALERT_MIN: alert_min,
                     ATTR_ALERT_MAX: alert_max,
                     ATTR_ALERT_ENABLED: alerts.get('enabled'),
-                }
-            )
+                })
 
         #        LOG.info(f"{self._state} ... {self._attrs} ... {sensor_data} ... {self._sensor_info}")
 
